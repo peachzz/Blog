@@ -122,10 +122,10 @@
 	git push origin <tag_name>  #推送标签到远程库
 	git push origin --tags  #推送所有未推送的标签到远程库
 	git push origin :refs/tags/<tag_name>  #删除远程标签（先删除本地，再使用该命令删除）
-	```
+	
 	
 	##### 自定义Git
-	```
+	
 	git config --global user.name "you_name"  #设置全局用户名
 	git config --global user.email "email@example.com"  #设置全局邮箱
 	git config --global color.ui true  #设置全局颜色显示

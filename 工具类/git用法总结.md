@@ -1,4 +1,4 @@
-####Git用法总结
+#### Git用法总结
 
 ##### 创建版本库
 ```
@@ -116,7 +116,6 @@ git branch -D <branch>  #强制删除分支（常用于未合并的分支）
 
 - 分支管理策略图
 
-![image](http://www.liaoxuefeng.com/files/attachments/001384909239390d355eb07d9d64305b6322aaf4edac1e3000/0)
 
 ##### 标签管理
 ```

@@ -30,9 +30,10 @@
 #include "stm32f429_eth.h"
 #include "LAN8742A.h"
 #include "netif.h"
-#include "netconf.h"
+//#include "netconf.h"
 #include "lwip/dhcp.h"
-
+#include "ethernetif.h"
+#include "bsp_SysTick.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -40,18 +41,13 @@
 ETH_InitTypeDef ETH_InitStructure;
 __IO uint32_t  EthStatus = 0;
 __IO uint8_t EthLinkStatus = 0;
-extern struct netif gnetif;
-#ifdef USE_DHCP
-extern __IO uint8_t DHCP_state;
-#endif /* LWIP_DHCP */
 
+struct netif gnetif;
 /* Private function prototypes -----------------------------------------------*/
 static void ETH_GPIO_Config(void);
 static void ETH_MACDMA_Config(void);
 
 /* Private functions ---------------------------------------------------------*/
-/* Bit 2 from Basic Status Register in PHY */
-#define GET_PHY_LINK_STATUS()		(ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, PHY_BSR) & 0x00000004)
 
 /**
   * @brief  ETH_BSP_Config
@@ -269,178 +265,10 @@ void ETH_GPIO_Config(void)
 	GPIO_Init(ETH_RMII_RESET_PORT, &GPIO_InitStructure);
 	
 	GPIO_ResetBits(ETH_RMII_RESET_PORT,ETH_RMII_RESET_PIN);
-	Delay_ms(50);
+	Delay_Ms(50);
 	GPIO_SetBits(ETH_RMII_RESET_PORT,ETH_RMII_RESET_PIN);
-	
 }
 
-/* This function is called periodically each second */
-/* It checks link status for ethernet controller */
-void ETH_CheckLinkStatus(uint16_t PHYAddress) 
-{
-	static uint8_t status = 0;
-	uint32_t t = GET_PHY_LINK_STATUS();
-	
-	/* If we have link and previous check was not yet */
-	if (t && !status) {
-		/* Set link up */
-		netif_set_link_up(&gnetif);
-		
-		status = 1;
-	}	
-	/* If we don't have link and it was on previous check */
-	if (!t && status) {
-		EthLinkStatus = 1;
-		/* Set link down */
-		netif_set_link_down(&gnetif);
-			
-		status = 0;
-	}
-}
-
-/**
-  * @brief  Link callback function, this function is called on change of link status.
-  * @param  The network interface
-  * @retval None
-  */
-void ETH_link_callback(struct netif *netif)
-{
-  __IO uint32_t timeout = 0;
- uint32_t tmpreg,RegValue;
-  struct ip_addr ipaddr;
-  struct ip_addr netmask;
-  struct ip_addr gw;
-
-  if(netif_is_link_up(netif))
-  {
-    /* Restart the autonegotiation */
-    if(ETH_InitStructure.ETH_AutoNegotiation != ETH_AutoNegotiation_Disable)
-    {
-      /* Reset Timeout counter */
-      timeout = 0;
-
-      /* Enable auto-negotiation */
-      ETH_WritePHYRegister(ETHERNET_PHY_ADDRESS, PHY_BCR, PHY_AutoNegotiation);
-
-      /* Wait until the auto-negotiation will be completed */
-      do
-      {
-        timeout++;
-      } while (!(ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, PHY_BSR) & PHY_AutoNego_Complete) && (timeout < (uint32_t)PHY_READ_TO));  
-
-      /* Reset Timeout counter */
-      timeout = 0;
-
-      /* Read the result of the auto-negotiation */
-      RegValue = ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, PHY_SR);
-    
-      /* Configure the MAC with the Duplex Mode fixed by the auto-negotiation process */
-      if((RegValue & PHY_DUPLEX_STATUS) != (uint32_t)RESET)
-      {
-        /* Set Ethernet duplex mode to Full-duplex following the auto-negotiation */
-        ETH_InitStructure.ETH_Mode = ETH_Mode_FullDuplex;  
-      }
-      else
-      {
-        /* Set Ethernet duplex mode to Half-duplex following the auto-negotiation */
-        ETH_InitStructure.ETH_Mode = ETH_Mode_HalfDuplex;           
-      }
-      /* Configure the MAC with the speed fixed by the auto-negotiation process */
-      if(RegValue & PHY_SPEED_STATUS)
-      {
-        /* Set Ethernet speed to 10M following the auto-negotiation */    
-        ETH_InitStructure.ETH_Speed = ETH_Speed_10M; 
-      }
-      else
-      {
-        /* Set Ethernet speed to 100M following the auto-negotiation */ 
-        ETH_InitStructure.ETH_Speed = ETH_Speed_100M;      
-      }
-			
-//    	/* This is different for every PHY */
-//			ETH_EXTERN_GetSpeedAndDuplex(ETHERNET_PHY_ADDRESS, &ETH_InitStructure);
-			
-      /*------------------------ ETHERNET MACCR Re-Configuration --------------------*/
-      /* Get the ETHERNET MACCR value */  
-      tmpreg = ETH->MACCR;
-
-      /* Set the FES bit according to ETH_Speed value */ 
-      /* Set the DM bit according to ETH_Mode value */ 
-      tmpreg |= (uint32_t)(ETH_InitStructure.ETH_Speed | ETH_InitStructure.ETH_Mode);
-
-      /* Write to ETHERNET MACCR */
-      ETH->MACCR = (uint32_t)tmpreg;
-
-      _eth_delay_(ETH_REG_WRITE_DELAY);
-      tmpreg = ETH->MACCR;
-      ETH->MACCR = tmpreg;
-    }
-
-    /* Restart MAC interface */
-    ETH_Start();
-
-#ifdef USE_DHCP
-    ipaddr.addr = 0;
-    netmask.addr = 0;
-    gw.addr = 0;
-    DHCP_state = DHCP_START;
-#else
-    IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
-    IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
-    IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-#endif /* USE_DHCP */
-
-    netif_set_addr(&gnetif, &ipaddr , &netmask, &gw);
-    
-    /* When the netif is fully configured this function must be called.*/
-    netif_set_up(&gnetif);    
-
-    EthLinkStatus = 0;
-  }
-  else
-  {
-    ETH_Stop();
-#ifdef USE_DHCP
-    DHCP_state = DHCP_LINK_DOWN;
-    dhcp_stop(netif);
-#endif /* USE_DHCP */
-
-    /*  When the netif link is down this function must be called.*/
-    netif_set_down(&gnetif);
-  }
-}
-
-void ETH_EXTERN_GetSpeedAndDuplex(uint32_t PHYAddress, ETH_InitTypeDef* ETH_InitStruct) 
-{
-	uint32_t RegValue;
 
 /* LAN8720A */
-	/* Read status register, register number 31 = 0x1F */
-	RegValue = ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, 0x1F);
-	/* Mask out bits which are not for speed and link indication, bits 4:2 are used */
-	RegValue = (RegValue >> 2) & 0x07;
-
-	/* Switch statement */
-	switch (RegValue) {
-		case 1: /* Base 10, half-duplex */
-			ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
-			ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
-			break;
-		case 2: /* Base 100, half-duplex */
-			ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
-			ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
-			break;
-		case 5: /* Base 10, full-duplex */
-			ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
-			ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
-			break;
-		case 6: /* Base 100, full-duplex */
-			ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
-			ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
-			break;
-		default:
-			break;
-	}
-/* LAN8720A */	  
-}
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

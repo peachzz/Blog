@@ -44,8 +44,32 @@
  */
 
 #include "lwip/opt.h"
+#include "ethernetif.h"
+#include "LAN8742A.h"
+#include "tcp_priv.h"
+#include <string.h>
+#include "stm32f429_eth.h"
+#include "netif/ethernet.h"
+#include "lwip/dhcp.h"
+/* Private typedef -----------------------------------------------------------*/
+#define MAX_DHCP_TRIES        4
 
-#if 0 /* don't build, this is only a skeleton, see previous comment */
+/* Private define ------------------------------------------------------------*/
+#ifdef USE_DHCP
+uint32_t DHCPfineTimer = 0;
+uint32_t DHCPcoarseTimer = 0;
+__IO uint8_t DHCP_state;
+#endif
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+
+struct dhcp *gdhcp;
+uint32_t TCPTimer = 0;
+uint32_t ARPTimer = 0;
+uint32_t LinkTimer = 0;
+uint32_t IPaddress = 0;
+
+#if 1 /* don't build, this is only a skeleton, see previous comment */
 
 #include "lwip/def.h"
 #include "lwip/mem.h"
@@ -60,6 +84,22 @@
 #define IFNAME0 'e'
 #define IFNAME1 'n'
 
+/* Ethernet Rx & Tx DMA Descriptors */
+extern ETH_DMADESCTypeDef  DMARxDscrTab[ETH_RXBUFNB], DMATxDscrTab[ETH_TXBUFNB];
+
+/* Ethernet Driver Receive buffers  */
+extern uint8_t Rx_Buff[ETH_RXBUFNB][ETH_RX_BUF_SIZE]; 
+
+/* Ethernet Driver Transmit buffers */
+extern uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE]; 
+
+/* Global pointers to track current transmit and receive descriptors */
+extern ETH_DMADESCTypeDef  *DMATxDescToSet;
+extern ETH_DMADESCTypeDef  *DMARxDescToGet;
+
+/* Global pointer for last received frame infos */
+extern ETH_DMA_Rx_Frame_infos *DMA_RX_FRAME_infos;
+
 /**
  * Helper struct to hold private data used to operate your ethernet interface.
  * Keeping the ethernet address of the MAC in this struct is not necessary
@@ -71,50 +111,52 @@ struct ethernetif {
   /* Add whatever per-interface state that is needed here. */
 };
 
-/* Forward declarations. */
-static void  ethernetif_input(struct netif *netif);
-
-/**
- * In this function, the hardware should be initialized.
- * Called from ethernetif_init().
- *
- * @param netif the already initialized lwip network interface structure
- *        for this ethernetif
- */
-static void
-low_level_init(struct netif *netif)
+#endif /* 0 */
+//================================
+static void low_level_init(struct netif *netif)
 {
-  struct ethernetif *ethernetif = netif->state;
-
+#ifdef CHECKSUM_BY_HARDWARE
+  int i; 
+#endif
   /* set MAC hardware address length */
   netif->hwaddr_len = ETHARP_HWADDR_LEN;
 
   /* set MAC hardware address */
-  netif->hwaddr[0] = ;
-  ...
-  netif->hwaddr[5] = ;
+  netif->hwaddr[0] =  MAC_ADDR0;
+  netif->hwaddr[1] =  MAC_ADDR1;
+  netif->hwaddr[2] =  MAC_ADDR2;
+  netif->hwaddr[3] =  MAC_ADDR3;
+  netif->hwaddr[4] =  MAC_ADDR4;
+  netif->hwaddr[5] =  MAC_ADDR5;
+  
+  /* initialize MAC address in ethernet MAC */ 
+  ETH_MACAddressConfig(ETH_MAC_Address0, netif->hwaddr); 
 
   /* maximum transfer unit */
   netif->mtu = 1500;
 
   /* device capabilities */
   /* don't set NETIF_FLAG_ETHARP if this device is not an ethernet one */
-  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
+  netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP;
 
-#if LWIP_IPV6 && LWIP_IPV6_MLD
-  /*
-   * For hardware/netifs that implement MAC filtering.
-   * All-nodes link-local is handled by default, so we must let the hardware know
-   * to allow multicast packets in.
-   * Should set mld_mac_filter previously. */
-  if (netif->mld_mac_filter != NULL) {
-    ip6_addr_t ip6_allnodes_ll;
-    ip6_addr_set_allnodes_linklocal(&ip6_allnodes_ll);
-    netif->mld_mac_filter(netif, &ip6_allnodes_ll, NETIF_ADD_MAC_FILTER);
-  }
-#endif /* LWIP_IPV6 && LWIP_IPV6_MLD */
+  /* Initialize Tx Descriptors list: Chain Mode */
+  ETH_DMATxDescChainInit(DMATxDscrTab, &Tx_Buff[0][0], ETH_TXBUFNB);
+  /* Initialize Rx Descriptors list: Chain Mode  */
+  ETH_DMARxDescChainInit(DMARxDscrTab, &Rx_Buff[0][0], ETH_RXBUFNB);
 
-  /* Do whatever else is needed to initialize interface. */
+#ifdef CHECKSUM_BY_HARDWARE
+  /* Enable the TCP, UDP and ICMP checksum insertion for the Tx frames */
+  for(i=0; i<ETH_TXBUFNB; i++)
+    {
+      ETH_DMATxDescChecksumInsertionConfig(&DMATxDscrTab[i], ETH_DMATxDesc_ChecksumTCPUDPICMPFull);
+    }
+#endif
+
+   /* Note: TCP, UDP, ICMP checksum checking for received frame are enabled in DMA config */
+
+  /* Enable MAC and DMA transmission and reception */
+  ETH_Start();
+
 }
 
 /**
@@ -129,48 +171,88 @@ low_level_init(struct netif *netif)
  *
  * @note Returning ERR_MEM here if a DMA queue of your MAC is full can lead to
  *       strange results. You might consider waiting for space in the DMA queue
- *       to become available since the stack doesn't retry to send a packet
+ *       to become availale since the stack doesn't retry to send a packet
  *       dropped because of memory failure (except for the TCP timers).
  */
 
-static err_t
-low_level_output(struct netif *netif, struct pbuf *p)
+static err_t low_level_output(struct netif *netif, struct pbuf *p)
 {
-  struct ethernetif *ethernetif = netif->state;
+  err_t errval;
   struct pbuf *q;
+  u8 *buffer =  (u8 *)(DMATxDescToSet->Buffer1Addr);
+  __IO ETH_DMADESCTypeDef *DmaTxDesc;
+  uint16_t framelength = 0;
+  uint32_t bufferoffset = 0;
+  uint32_t byteslefttocopy = 0;
+  uint32_t payloadoffset = 0;
 
-  initiate transfer();
+  DmaTxDesc = DMATxDescToSet;
+  bufferoffset = 0;
 
-#if ETH_PAD_SIZE
-  pbuf_remove_header(p, ETH_PAD_SIZE); /* drop the padding word */
-#endif
+  /* copy frame from pbufs to driver buffers */
+  for(q = p; q != NULL; q = q->next)
+    {
+      /* Is this buffer available? If not, goto error */
+      if((DmaTxDesc->Status & ETH_DMATxDesc_OWN) != (u32)RESET)
+      {
+        errval = ERR_BUF;
+        goto error;
+      }
 
-  for (q = p; q != NULL; q = q->next) {
-    /* Send the data from the pbuf to the interface, one pbuf at a
-       time. The size of the data in each pbuf is kept in the ->len
-       variable. */
-    send data from(q->payload, q->len);
+      /* Get bytes in current lwIP buffer */
+      byteslefttocopy = q->len;
+      payloadoffset = 0;
+
+      /* Check if the length of data to copy is bigger than Tx buffer size*/
+      while( (byteslefttocopy + bufferoffset) > ETH_TX_BUF_SIZE )
+      {
+        /* Copy data to Tx buffer*/
+        memcpy( (u8_t*)((u8_t*)buffer + bufferoffset), (u8_t*)((u8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) );
+
+        /* Point to next descriptor */
+        DmaTxDesc = (ETH_DMADESCTypeDef *)(DmaTxDesc->Buffer2NextDescAddr);
+
+        /* Check if the buffer is available */
+        if((DmaTxDesc->Status & ETH_DMATxDesc_OWN) != (u32)RESET)
+        {
+          errval = ERR_USE;
+          goto error;
+        }
+
+        buffer = (u8 *)(DmaTxDesc->Buffer1Addr);
+
+        byteslefttocopy = byteslefttocopy - (ETH_TX_BUF_SIZE - bufferoffset);
+        payloadoffset = payloadoffset + (ETH_TX_BUF_SIZE - bufferoffset);
+        framelength = framelength + (ETH_TX_BUF_SIZE - bufferoffset);
+        bufferoffset = 0;
+      }
+
+      /* Copy the remaining bytes */
+      memcpy( (u8_t*)((u8_t*)buffer + bufferoffset), (u8_t*)((u8_t*)q->payload + payloadoffset), byteslefttocopy );
+      bufferoffset = bufferoffset + byteslefttocopy;
+      framelength = framelength + byteslefttocopy;
+    }
+  
+  /* Note: padding and CRC for transmitted frame 
+     are automatically inserted by DMA */
+
+  /* Prepare transmit descriptors to give to DMA*/ 
+  ETH_Prepare_Transmit_Descriptors(framelength);
+
+  errval = ERR_OK;
+
+error:
+  
+  /* When Transmit Underflow flag is set, clear it and issue a Transmit Poll Demand to resume transmission */
+  if ((ETH->DMASR & ETH_DMASR_TUS) != (uint32_t)RESET)
+  {
+    /* Clear TUS ETHERNET DMA flag */
+    ETH->DMASR = ETH_DMASR_TUS;
+
+    /* Resume DMA transmission*/
+    ETH->DMATPDR = 0;
   }
-
-  signal that packet should be sent();
-
-  MIB2_STATS_NETIF_ADD(netif, ifoutoctets, p->tot_len);
-  if (((u8_t *)p->payload)[0] & 1) {
-    /* broadcast or multicast packet*/
-    MIB2_STATS_NETIF_INC(netif, ifoutnucastpkts);
-  } else {
-    /* unicast packet */
-    MIB2_STATS_NETIF_INC(netif, ifoutucastpkts);
-  }
-  /* increase ifoutdiscards or ifouterrors on error */
-
-#if ETH_PAD_SIZE
-  pbuf_add_header(p, ETH_PAD_SIZE); /* reclaim the padding word */
-#endif
-
-  LINK_STATS_INC(link.xmit);
-
-  return ERR_OK;
+  return errval;
 }
 
 /**
@@ -180,66 +262,79 @@ low_level_output(struct netif *netif, struct pbuf *p)
  * @param netif the lwip network interface structure for this ethernetif
  * @return a pbuf filled with the received packet (including MAC header)
  *         NULL on memory error
- */
-static struct pbuf *
-low_level_input(struct netif *netif)
+   */
+static struct pbuf * low_level_input(struct netif *netif)
 {
-  struct ethernetif *ethernetif = netif->state;
   struct pbuf *p, *q;
-  u16_t len;
-
-  /* Obtain the size of the packet and put it into the "len"
-     variable. */
-  len = ;
-
-#if ETH_PAD_SIZE
-  len += ETH_PAD_SIZE; /* allow room for Ethernet padding */
-#endif
-
-  /* We allocate a pbuf chain of pbufs from the pool. */
+  uint32_t len;
+  FrameTypeDef frame;
+  u8 *buffer;
+  __IO ETH_DMADESCTypeDef *DMARxDesc;
+  uint32_t bufferoffset = 0;
+  uint32_t payloadoffset = 0;
+  uint32_t byteslefttocopy = 0;
+  uint32_t i=0;  
+  
+  /* get received frame */
+  frame = ETH_Get_Received_Frame();
+  
+  /* Obtain the size of the packet and put it into the "len" variable. */
+  len = frame.length;
+  buffer = (u8 *)frame.buffer;
+  
+  /* We allocate a pbuf chain of pbufs from the Lwip buffer pool */
   p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
-
-  if (p != NULL) {
-
-#if ETH_PAD_SIZE
-    pbuf_remove_header(p, ETH_PAD_SIZE); /* drop the padding word */
-#endif
-
-    /* We iterate over the pbuf chain until we have read the entire
-     * packet into the pbuf. */
-    for (q = p; q != NULL; q = q->next) {
-      /* Read enough bytes to fill this pbuf in the chain. The
-       * available data in the pbuf is given by the q->len
-       * variable.
-       * This does not necessarily have to be a memcpy, you can also preallocate
-       * pbufs for a DMA-enabled MAC and after receiving truncate it to the
-       * actually received size. In this case, ensure the tot_len member of the
-       * pbuf is the sum of the chained pbuf len members.
-       */
-      read data into(q->payload, q->len);
+  
+  if (p != NULL)
+  {
+    DMARxDesc = frame.descriptor;
+    bufferoffset = 0;
+    for(q = p; q != NULL; q = q->next)
+    {
+      byteslefttocopy = q->len;
+      payloadoffset = 0;
+      
+      /* Check if the length of bytes to copy in current pbuf is bigger than Rx buffer size*/
+      while( (byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE )
+      {
+        /* Copy data to pbuf*/
+        memcpy( (u8_t*)((u8_t*)q->payload + payloadoffset), (u8_t*)((u8_t*)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset));
+        
+        /* Point to next descriptor */
+        DMARxDesc = (ETH_DMADESCTypeDef *)(DMARxDesc->Buffer2NextDescAddr);
+        buffer = (unsigned char *)(DMARxDesc->Buffer1Addr);
+        
+        byteslefttocopy = byteslefttocopy - (ETH_RX_BUF_SIZE - bufferoffset);
+        payloadoffset = payloadoffset + (ETH_RX_BUF_SIZE - bufferoffset);
+        bufferoffset = 0;
+      }
+      /* Copy remaining data in pbuf */
+      memcpy( (u8_t*)((u8_t*)q->payload + payloadoffset), (u8_t*)((u8_t*)buffer + bufferoffset), byteslefttocopy);
+      bufferoffset = bufferoffset + byteslefttocopy;
     }
-    acknowledge that packet has been read();
-
-    MIB2_STATS_NETIF_ADD(netif, ifinoctets, p->tot_len);
-    if (((u8_t *)p->payload)[0] & 1) {
-      /* broadcast or multicast packet*/
-      MIB2_STATS_NETIF_INC(netif, ifinnucastpkts);
-    } else {
-      /* unicast packet*/
-      MIB2_STATS_NETIF_INC(netif, ifinucastpkts);
-    }
-#if ETH_PAD_SIZE
-    pbuf_add_header(p, ETH_PAD_SIZE); /* reclaim the padding word */
-#endif
-
-    LINK_STATS_INC(link.recv);
-  } else {
-    drop packet();
-    LINK_STATS_INC(link.memerr);
-    LINK_STATS_INC(link.drop);
-    MIB2_STATS_NETIF_INC(netif, ifindiscards);
   }
+  
+  /* Release descriptors to DMA */
+  DMARxDesc =frame.descriptor;
 
+  /* Set Own bit in Rx descriptors: gives the buffers back to DMA */
+  for (i=0; i<DMA_RX_FRAME_infos->Seg_Count; i++)
+  {  
+    DMARxDesc->Status = ETH_DMARxDesc_OWN;
+    DMARxDesc = (ETH_DMADESCTypeDef *)(DMARxDesc->Buffer2NextDescAddr);
+  }
+  
+  /* Clear Segment_Count */
+  DMA_RX_FRAME_infos->Seg_Count =0;
+  
+  /* When Rx Buffer unavailable flag is set: clear it and resume reception */
+  if ((ETH->DMASR & ETH_DMASR_RBUS) != (u32)RESET)  
+  {
+    /* Clear RBUS ETHERNET DMA flag */
+    ETH->DMASR = ETH_DMASR_RBUS;
+    /* Resume DMA reception */
+    ETH->DMARPDR = 0;
+  }
   return p;
 }
 
@@ -252,26 +347,26 @@ low_level_input(struct netif *netif)
  *
  * @param netif the lwip network interface structure for this ethernetif
  */
-static void
-ethernetif_input(struct netif *netif)
+err_t ethernetif_input(struct netif *netif)
 {
-  struct ethernetif *ethernetif;
-  struct eth_hdr *ethhdr;
+  err_t err;
   struct pbuf *p;
-
-  ethernetif = netif->state;
 
   /* move received packet into a new pbuf */
   p = low_level_input(netif);
-  /* if no packet could be read, silently ignore this */
-  if (p != NULL) {
-    /* pass all packets to ethernet_input, which decides what packets it supports */
-    if (netif->input(p, netif) != ERR_OK) {
-      LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
-      pbuf_free(p);
-      p = NULL;
-    }
+
+  /* no packet could be read, silently ignore this */
+  if (p == NULL) return ERR_MEM;
+
+  /* entry point to the LwIP stack */
+  err = netif->input(p, netif);
+  
+  if (err != ERR_OK)
+  {
+    LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
+    pbuf_free(p);
   }
+  return err;
 }
 
 /**
@@ -286,52 +381,428 @@ ethernetif_input(struct netif *netif)
  *         ERR_MEM if private data couldn't be allocated
  *         any other err_t on error
  */
-err_t
-ethernetif_init(struct netif *netif)
+err_t ethernetif_init(struct netif *netif)
 {
-  struct ethernetif *ethernetif;
-
   LWIP_ASSERT("netif != NULL", (netif != NULL));
-
-  ethernetif = mem_malloc(sizeof(struct ethernetif));
-  if (ethernetif == NULL) {
-    LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_init: out of memory\n"));
-    return ERR_MEM;
-  }
-
+  
 #if LWIP_NETIF_HOSTNAME
   /* Initialize interface hostname */
   netif->hostname = "lwip";
 #endif /* LWIP_NETIF_HOSTNAME */
 
-  /*
-   * Initialize the snmp variables and counters inside the struct netif.
-   * The last argument should be replaced with your link speed, in units
-   * of bits per second.
-   */
-  MIB2_INIT_NETIF(netif, snmp_ifType_ethernet_csmacd, LINK_SPEED_OF_YOUR_NETIF_IN_BPS);
-
-  netif->state = ethernetif;
   netif->name[0] = IFNAME0;
   netif->name[1] = IFNAME1;
   /* We directly use etharp_output() here to save a function call.
    * You can instead declare your own function an call etharp_output()
    * from it if you have to do some checks before sending (e.g. if link
    * is available...) */
-#if LWIP_IPV4
   netif->output = etharp_output;
-#endif /* LWIP_IPV4 */
-#if LWIP_IPV6
-  netif->output_ip6 = ethip6_output;
-#endif /* LWIP_IPV6 */
   netif->linkoutput = low_level_output;
-
-  ethernetif->ethaddr = (struct eth_addr *) & (netif->hwaddr[0]);
 
   /* initialize the hardware */
   low_level_init(netif);
 
   return ERR_OK;
 }
+//================================
 
-#endif /* 0 */
+/* This function is called periodically each second */
+/* It checks link status for ethernet controller */
+void ETH_CheckLinkStatus(uint16_t PHYAddress) 
+{
+	static uint8_t status = 0;
+	uint32_t t = GET_PHY_LINK_STATUS();
+	
+	/* If we have link and previous check was not yet */
+	if (t && !status) {
+		/* Set link up */
+		netif_set_link_up(&gnetif);
+		
+		status = 1;
+	}	
+	/* If we don't have link and it was on previous check */
+	if (!t && status) {
+		EthLinkStatus = 1;
+		/* Set link down */
+		netif_set_link_down(&gnetif);
+			
+		status = 0;
+	}
+}
+
+/**
+  * @brief  Link callback function, this function is called on change of link status.
+  * @param  The network interface
+  * @retval None
+  */
+void ETH_link_callback(struct netif *netif)
+{
+  __IO uint32_t timeout = 0;
+ uint32_t tmpreg,RegValue;
+  struct ip4_addr ipaddr;
+  struct ip4_addr netmask;
+  struct ip4_addr gw;
+
+  if(netif_is_link_up(netif))
+  {
+    /* Restart the autonegotiation */
+    if(ETH_InitStructure.ETH_AutoNegotiation != ETH_AutoNegotiation_Disable)
+    {
+      /* Reset Timeout counter */
+      timeout = 0;
+
+      /* Enable auto-negotiation */
+      ETH_WritePHYRegister(ETHERNET_PHY_ADDRESS, PHY_BCR, PHY_AutoNegotiation);
+
+      /* Wait until the auto-negotiation will be completed */
+      do
+      {
+        timeout++;
+      } while (!(ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, PHY_BSR) & PHY_AutoNego_Complete) && (timeout < (uint32_t)PHY_READ_TO));  
+
+      /* Reset Timeout counter */
+      timeout = 0;
+
+      /* Read the result of the auto-negotiation */
+      RegValue = ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, PHY_SR);
+    
+      /* Configure the MAC with the Duplex Mode fixed by the auto-negotiation process */
+      if((RegValue & PHY_DUPLEX_STATUS) != (uint32_t)RESET)
+      {
+        /* Set Ethernet duplex mode to Full-duplex following the auto-negotiation */
+        ETH_InitStructure.ETH_Mode = ETH_Mode_FullDuplex;  
+      }
+      else
+      {
+        /* Set Ethernet duplex mode to Half-duplex following the auto-negotiation */
+        ETH_InitStructure.ETH_Mode = ETH_Mode_HalfDuplex;           
+      }
+      /* Configure the MAC with the speed fixed by the auto-negotiation process */
+      if(RegValue & PHY_SPEED_STATUS)
+      {
+        /* Set Ethernet speed to 10M following the auto-negotiation */    
+        ETH_InitStructure.ETH_Speed = ETH_Speed_10M; 
+      }
+      else
+      {
+        /* Set Ethernet speed to 100M following the auto-negotiation */ 
+        ETH_InitStructure.ETH_Speed = ETH_Speed_100M;      
+      }
+			
+    	/* This is different for every PHY */
+			ETH_EXTERN_GetSpeedAndDuplex(ETHERNET_PHY_ADDRESS, &ETH_InitStructure);
+			
+      /*------------------------ ETHERNET MACCR Re-Configuration --------------------*/
+      /* Get the ETHERNET MACCR value */  
+      tmpreg = ETH->MACCR;
+
+      /* Set the FES bit according to ETH_Speed value */ 
+      /* Set the DM bit according to ETH_Mode value */ 
+      tmpreg |= (uint32_t)(ETH_InitStructure.ETH_Speed | ETH_InitStructure.ETH_Mode);
+
+      /* Write to ETHERNET MACCR */
+      ETH->MACCR = (uint32_t)tmpreg;
+
+      _eth_delay_(ETH_REG_WRITE_DELAY);
+      tmpreg = ETH->MACCR;
+      ETH->MACCR = tmpreg;
+    }
+
+    /* Restart MAC interface */
+    ETH_Start();
+
+#ifdef USE_DHCP
+    ipaddr.addr = 0;
+    netmask.addr = 0;
+    gw.addr = 0;
+    DHCP_state = DHCP_START;
+#else
+    IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
+    IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
+    IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+#endif /* USE_DHCP */
+
+    netif_set_addr(&gnetif, &ipaddr , &netmask, &gw);
+    
+    /* When the netif is fully configured this function must be called.*/
+    netif_set_up(&gnetif);    
+
+    EthLinkStatus = 0;
+  }
+  else
+  {
+    ETH_Stop();
+#ifdef USE_DHCP
+    DHCP_state = DHCP_LINK_DOWN;
+    dhcp_stop(netif);
+#endif /* USE_DHCP */
+
+    /*  When the netif link is down this function must be called.*/
+    netif_set_down(&gnetif);
+  }
+}
+
+void ETH_EXTERN_GetSpeedAndDuplex(uint32_t PHYAddress, ETH_InitTypeDef* ETH_InitStruct) 
+{
+	uint32_t RegValue;
+
+/* LAN8720A */
+	/* Read status register, register number 31 = 0x1F */
+	RegValue = ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, 0x1F);
+	/* Mask out bits which are not for speed and link indication, bits 4:2 are used */
+	RegValue = (RegValue >> 2) & 0x07;
+
+	/* Switch statement */
+	switch (RegValue) {
+		case 1: /* Base 10, half-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
+			break;
+		case 2: /* Base 100, half-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
+			break;
+		case 5: /* Base 10, full-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
+			break;
+		case 6: /* Base 100, full-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
+			break;
+		default:
+			break;
+	}  
+}
+
+/**
+* @brief  Initializes the lwIP stack
+* @param  None
+* @retval None
+*/
+void LwIP_Init(void)
+{
+  struct ip4_addr ipaddr;
+  struct ip4_addr netmask;
+  struct ip4_addr gw;
+	
+  /* Initializes the dynamic memory heap defined by MEM_SIZE.*/
+  mem_init();
+  
+  /* Initializes the memory pools defined by MEMP_NUM_x.*/
+  memp_init();
+  
+#ifdef USE_DHCP
+  ipaddr.addr = 0;
+  netmask.addr = 0;
+  gw.addr = 0;
+#else
+  IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
+  IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
+  IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+#endif  
+
+  /* - netif_add(struct netif *netif, struct ip_addr *ipaddr,
+  struct ip_addr *netmask, struct ip_addr *gw,
+  void *state, err_t (* init)(struct netif *netif),
+  err_t (* input)(struct pbuf *p, struct netif *netif))
+
+  Adds your network interface to the netif_list. Allocate a struct
+  netif and pass a pointer to this structure as the first argument.
+  Give pointers to cleared ip_addr structures when using DHCP,
+  or fill them with sane numbers otherwise. The state pointer may be NULL.
+
+  The init function pointer must point to a initialization function for
+  your ethernet netif interface. The following code illustrates it's use.*/
+  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
+
+  /*  Registers the default network interface.*/
+  netif_set_default(&gnetif);
+
+  if (EthStatus == (ETH_INIT_FLAG | ETH_LINK_FLAG))
+  { 
+    /* Set Ethernet link flag */
+    gnetif.flags |= NETIF_FLAG_LINK_UP;
+
+    /* When the netif is fully configured this function must be called.*/
+    netif_set_up(&gnetif);
+#ifdef USE_DHCP
+//		dhcp_set_struct(&gnetif,gdhcp);
+    DHCP_state = DHCP_START;
+#else
+#ifdef SERIAL_DEBUG
+		printf("\n  Static IP address   \n");
+		printf("IP: %d.%d.%d.%d\n",IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
+		printf("NETMASK: %d.%d.%d.%d\n",NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
+		printf("Gateway: %d.%d.%d.%d\n",GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
+#endif /* SERIAL_DEBUG */
+#endif /* USE_DHCP */
+  }
+  else
+  {
+    /*  When the netif link is down this function must be called.*/
+    netif_set_down(&gnetif);
+#ifdef USE_DHCP
+    DHCP_state = DHCP_LINK_DOWN;
+#endif /* USE_DHCP */
+#ifdef SERIAL_DEBUG
+		printf("\n  Network Cable is  \n");
+		printf("    not connected   \n");
+#endif /* SERIAL_DEBUG */
+  }
+
+  /* Set the link callback function, this function is called on change of link status*/
+  netif_set_link_callback(&gnetif, ETH_link_callback);
+}
+
+/**
+* @brief  Called when a frame is received
+* @param  None
+* @retval None
+*/
+void LwIP_Pkt_Handle(void)
+{
+  /* Read a received packet from the Ethernet buffers and send it to the lwIP for handling */
+  ethernetif_input(&gnetif);
+}
+
+
+void LwIP_Periodic_Handle(void)
+{
+#if LWIP_TCP
+  /* TCP periodic process every 250 ms */
+  if (localtime - TCPTimer >= TCP_TMR_INTERVAL)
+  {
+    TCPTimer =  localtime;
+    tcp_tmr();
+  }
+#endif
+  
+  /* ARP periodic process every 5s */
+  if ((localtime - ARPTimer) >= ARP_TMR_INTERVAL)
+  {
+    ARPTimer =  localtime;
+    etharp_tmr();
+  }
+	
+	/* Check link status periodically */
+	if ((localtime - LinkTimer) >= LINK_TIMER_INTERVAL) {
+		ETH_CheckLinkStatus(ETHERNET_PHY_ADDRESS);
+	}
+	
+#ifdef USE_DHCP
+  /* Fine DHCP periodic process every 500ms */
+  if (localtime - DHCPfineTimer >= DHCP_FINE_TIMER_MSECS)
+	{	    
+		DHCPfineTimer =  localtime;
+    dhcp_fine_tmr();
+    if ((DHCP_state != DHCP_ADDRESS_ASSIGNED) && 
+        (DHCP_state != DHCP_TIMEOUT) &&
+          (DHCP_state != DHCP_LINK_DOWN))
+    {
+#ifdef SERIAL_DEBUG
+//			printf("\nFine DHCP periodic process every 500ms\n");
+#endif /* SERIAL_DEBUG */
+      
+      /* process DHCP state machine */
+      LwIP_DHCP_Process_Handle();
+    }
+  }
+
+  /* DHCP Coarse periodic process every 60s */
+
+ if (localtime - DHCPcoarseTimer >= DHCP_COARSE_TIMER_MSECS)
+  {
+    DHCPcoarseTimer =  localtime;
+
+    dhcp_coarse_tmr();
+  }
+
+#endif
+}
+//lwip 2.1.2
+
+#ifdef USE_DHCP
+/**
+* @brief  LwIP_DHCP_Process_Handle
+* @param  None
+* @retval None
+*/
+void LwIP_DHCP_Process_Handle(void)
+{
+  struct ip4_addr ipaddr;
+  struct ip4_addr netmask;
+  struct ip4_addr gw;
+
+  switch (DHCP_state)
+  {
+  case DHCP_START:
+    {
+      DHCP_state = DHCP_WAIT_ADDRESS;
+      dhcp_start(&gnetif);
+      /* IP address should be set to 0 
+         every time we want to assign a new DHCP address */
+      IPaddress = 0;
+#ifdef SERIAL_DEBUG
+			printf("\n     Looking for    \n");
+			printf("     DHCP server    \n");
+			printf("     please wait... \n");
+#endif /* SERIAL_DEBUG */
+    }
+    break;
+
+  case DHCP_WAIT_ADDRESS:
+    {
+      /* Read the new IP address */
+      IPaddress = gnetif.ip_addr.addr;
+
+      if (IPaddress!=0) 
+      {
+        DHCP_state = DHCP_ADDRESS_ASSIGNED;	
+
+        /* Stop DHCP */
+        dhcp_stop(&gnetif);
+//				tcp_echoclient_connect();
+#ifdef SERIAL_DEBUG
+      	printf("\n  IP address assigned \n");
+				printf("    by a DHCP server   \n");
+		    printf("IP: %d.%d.%d.%d\n",(uint8_t)(IPaddress),(uint8_t)(IPaddress >> 8), \
+				                       (uint8_t)(IPaddress >> 16),(uint8_t)(IPaddress >> 24));
+				printf("NETMASK: %d.%d.%d.%d\n",NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
+				printf("Gateway: %d.%d.%d.%d\n",GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
+#endif /* SERIAL_DEBUG */
+      }
+      else
+      {
+			#if 1
+        /* DHCP timeout */
+        if (gdhcp->tries > MAX_DHCP_TRIES)
+        {
+          DHCP_state = DHCP_TIMEOUT;
+
+          /* Stop DHCP */
+          dhcp_stop(&gnetif);
+
+          /* Static address used */
+          IP4_ADDR(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
+          IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
+          IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+          netif_set_addr(&gnetif, &ipaddr , &netmask, &gw);
+
+#ifdef SERIAL_DEBUG
+          printf("\n    DHCP timeout    \n");
+          printf("  Static IP address   \n");
+		      printf("IP: %d.%d.%d.%d\n",IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
+					printf("NETMASK: %d.%d.%d.%d\n",NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
+					printf("Gateway: %d.%d.%d.%d\n",GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
+//          LED1_ON;
+#endif /* SERIAL_DEBUG */
+        }
+			#endif
+      }
+    }
+    break;
+  default: break;
+  }
+}
+#endif //end lwip 2.1.2

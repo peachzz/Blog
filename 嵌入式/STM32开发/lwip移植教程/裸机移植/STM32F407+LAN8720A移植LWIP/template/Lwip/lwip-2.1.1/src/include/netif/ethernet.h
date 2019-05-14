@@ -63,6 +63,7 @@ extern "C" {
 #define LWIP_ARP_FILTER_NETIF 0
 #endif
 
+
 err_t ethernet_input(struct pbuf *p, struct netif *netif);
 err_t ethernet_output(struct netif* netif, struct pbuf* p, const struct eth_addr* src, const struct eth_addr* dst, u16_t eth_type);
 

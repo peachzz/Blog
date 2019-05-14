@@ -35,13 +35,14 @@
 #include "lwip/sys.h"
 #include "lwip/mem.h"
 #include "timeouts.h"
+#include "ethernetif.h"
 
 //为LWIP提供计时
 extern uint32_t lwip_localtime;//lwip本地时间计数器,单位:ms
 
 u32_t sys_now(void)
 {
-	return lwip_localtime;
+	return localtime;
 }
 
 

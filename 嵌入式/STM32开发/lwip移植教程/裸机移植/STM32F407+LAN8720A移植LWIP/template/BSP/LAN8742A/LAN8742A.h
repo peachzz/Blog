@@ -50,7 +50,8 @@
  * Configuration¡±ËµÃ÷¡£
  */
 #define ETHERNET_PHY_ADDRESS       0x00 /* Relative to STM324xG-EVAL Board */
-
+/* Bit 2 from Basic Status Register in PHY */
+#define GET_PHY_LINK_STATUS()		(ETH_ReadPHYRegister(ETHERNET_PHY_ADDRESS, PHY_BSR) & 0x00000004)
 /*
 	ETH_MDIO -------------------------> PA2
 	ETH_MDC --------------------------> PC1
@@ -138,6 +139,15 @@
 #define ETH_LINK_FLAG           0x10 /* Ethernet Link Flag */
 
 /* Exported macro ------------------------------------------------------------*/
+extern struct netif gnetif;
+#ifdef USE_DHCP
+extern __IO uint8_t DHCP_state;
+#endif /* LWIP_DHCP */
+extern ETH_InitTypeDef ETH_InitStructure;
+
+extern __IO uint32_t  EthStatus ;
+extern __IO uint8_t EthLinkStatus ;
+
 /* Exported functions ------------------------------------------------------- */
 void  ETH_BSP_Config(void);
 void ETH_EXTERN_GetSpeedAndDuplex(uint32_t PHYAddress, ETH_InitTypeDef* ETH_InitStruct);

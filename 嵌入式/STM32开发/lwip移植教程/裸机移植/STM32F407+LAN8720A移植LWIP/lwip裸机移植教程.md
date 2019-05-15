@@ -1,9 +1,12 @@
 
 ----------
 
+#### LWIP 裸机移植教程 ####
+
 5/13/2019 4 :10 :31 PM 
 
-LWIP 裸机移植教程
+
+Author :terrycoder 
 
 ----------
 
@@ -469,7 +472,7 @@ bsp\_SysTick.h文件内容为：
 
 从\contrib-2.1.0\examples\ethernetif路径下，复制ethernetif.c到\template\Lwip\lwip_app路径下，新建复制ethernetif.h文件
 
-修改ethernetif.c文件，文件较大点[击此处查看](http://1)
+修改ethernetif.c文件，文件较大点[击此处查看](https://github.com/peachzz/Blog/blob/master/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32%E5%BC%80%E5%8F%91/lwip%E7%A7%BB%E6%A4%8D%E6%95%99%E7%A8%8B/%E8%A3%B8%E6%9C%BA%E7%A7%BB%E6%A4%8D/STM32F407%2BLAN8720A%E7%A7%BB%E6%A4%8DLWIP/template/Lwip/lwip_app/ethernetif.c)
 
 ethernetif.h内容为：
 

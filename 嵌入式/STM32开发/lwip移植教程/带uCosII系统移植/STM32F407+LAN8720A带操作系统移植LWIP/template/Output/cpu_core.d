@@ -1,0 +1,11 @@
+..\output\cpu_core.o: ..\uCosII\uC-CPU\cpu_core.c
+..\output\cpu_core.o: ..\uCosII\uC-CPU\cpu_core.h
+..\output\cpu_core.o: ..\uCosII\uC-CPU\cpu.h
+..\output\cpu_core.o: ..\uCosII\uC-CPU\cpu_def.h
+..\output\cpu_core.o: ..\uCosII\OS\cpu_cfg.h
+..\output\cpu_core.o: ..\uCosII\uC-LIB\lib_def.h
+..\output\cpu_core.o: ..\uCosII\uC-LIB\lib_mem.h
+..\output\cpu_core.o: ..\uCosII\uC-CPU\cpu_core.h
+..\output\cpu_core.o: ..\uCosII\OS\lib_cfg.h
+..\output\cpu_core.o: ..\uCosII\uC-LIB\lib_str.h
+..\output\cpu_core.o: ..\uCosII\uC-LIB\lib_ascii.h

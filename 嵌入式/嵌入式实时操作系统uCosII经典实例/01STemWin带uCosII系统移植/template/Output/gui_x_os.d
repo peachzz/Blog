@@ -98,3 +98,8 @@
 ..\output\gui_x_os.o: ..\STemWin\inc\TEXT.h
 ..\output\gui_x_os.o: ..\STemWin\inc\TREEVIEW.h
 ..\output\gui_x_os.o: ..\STemWin\inc\KNOB.h
+..\output\gui_x_os.o: ..\BSP\inc\bsp_sram.h
+..\output\gui_x_os.o: ..\BSP\inc\bsp_rtc.h
+..\output\gui_x_os.o: ..\BSP\inc\bsp_calendar.h
+..\output\gui_x_os.o: ..\BSP\inc\bsp_date.h
+..\output\gui_x_os.o: ..\BSP\inc\bsp_touch.h

@@ -452,6 +452,7 @@ bsp\_SysTick.h文件内容为：
 	{
     	TimingDelay_Decrement();
 		if(lwip_count++ >= 200){
+		   lwip_count = 0；
 		   lwip_localtime += 20;
 		}
 	}

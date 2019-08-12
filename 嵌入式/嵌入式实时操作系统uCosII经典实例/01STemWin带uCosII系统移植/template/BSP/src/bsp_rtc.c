@@ -15,8 +15,8 @@
   ******************************************************************************
   */
 /* 包含头文件 ----------------------------------------------------------------*/
-#include "bsp/usart/bsp_debug_usart.h"
-#include  "bsp/rtc/bsp_rtc.h"
+#include "bsp_debug_usart.h"
+#include  "bsp_rtc.h"
 
 /* 私有类型定义 --------------------------------------------------------------*/
 /* 私有宏定义 ----------------------------------------------------------------*/
@@ -377,7 +377,7 @@ void Time_Display(uint32_t TimeVar,struct rtc_time *tm)
       
     GetChinaCalendar((u16)tm->tm_year, (u8)tm->tm_mon, (u8)tm->tm_mday, str);	
       printf("今天新历：%0.2d%0.2d,%0.2d,%0.2d\n", str[0], str[1], str[2],  str[3]);
-
+      
     GetChinaCalendarStr((u16)tm->tm_year,(u8)tm->tm_mon,(u8)tm->tm_mday,str);
       printf("今天农历：%s\n", str);
 

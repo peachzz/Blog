@@ -82,6 +82,9 @@
 #include "bsp_SysTick.h"
 #include "GUI.h"
 #include "DIALOG.h"
+#include "bsp_sram.h"
+#include "bsp_rtc.h"
+#include "bsp_touch.h"
 /*
 *********************************************************************************************************
 *                                          GPIO PIN DEFINITIONS

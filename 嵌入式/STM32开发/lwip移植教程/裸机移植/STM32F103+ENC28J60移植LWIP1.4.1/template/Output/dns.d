@@ -1,0 +1,9 @@
+..\output\dns.o: ..\lwip-1.4.1\src\core\dns.c
+..\output\dns.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+..\output\dns.o: ..\User\arch\lwipopts.h
+..\output\dns.o: ..\lwip-1.4.1\src\include\lwip/debug.h
+..\output\dns.o: ..\lwip-1.4.1\src\include\lwip/arch.h
+..\output\dns.o: ..\User\arch/cc.h
+..\output\dns.o: ..\User\arch/cpu.h
+..\output\dns.o: E:\soft\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\dns.o: ..\lwip-1.4.1\src\include\lwip/opt.h

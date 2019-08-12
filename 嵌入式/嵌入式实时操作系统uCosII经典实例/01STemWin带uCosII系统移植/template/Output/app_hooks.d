@@ -98,3 +98,8 @@
 ..\output\app_hooks.o: ..\STemWin\inc\TEXT.h
 ..\output\app_hooks.o: ..\STemWin\inc\TREEVIEW.h
 ..\output\app_hooks.o: ..\STemWin\inc\KNOB.h
+..\output\app_hooks.o: ..\BSP\inc\bsp_sram.h
+..\output\app_hooks.o: ..\BSP\inc\bsp_rtc.h
+..\output\app_hooks.o: ..\BSP\inc\bsp_calendar.h
+..\output\app_hooks.o: ..\BSP\inc\bsp_date.h
+..\output\app_hooks.o: ..\BSP\inc\bsp_touch.h

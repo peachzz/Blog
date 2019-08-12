@@ -1,4 +1,4 @@
-#include "bsp\rtc\bsp_calendar.h"
+#include "bsp_calendar.h"
 
 const uint8_t year_code[597]=
 {

@@ -1,0 +1,11 @@
+#ifndef __SPI_H
+#define __SPI_H
+
+#define LWIP_INTERRUPT
+//SPI1初始化
+void	SPI1_Init(void);
+//SPI1读写一字节数据
+unsigned char	SPI1_ReadWrite(unsigned char writedat);
+void ENC28J60_EXTI_Inits(void);
+
+#endif

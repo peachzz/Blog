@@ -56,7 +56,7 @@ win7 64位系统
 
 到此MQTT服务器搭建已经完成
 
-出现问题
+**出现问题**
 
 按安装过程中执行activeMq start后命令行显示“wapper stop”错误不能正常运行ActiveMQ，解决办法：
 

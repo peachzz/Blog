@@ -30,7 +30,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
 #include "bsp_SysTick.h"
-#include "ethernetif.h"
+
 /** @addtogroup Template_Project
   * @{
   */
@@ -39,7 +39,6 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-uint32_t localtime,lwip_count = 0;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -134,7 +133,8 @@ void DebugMon_Handler(void)
 void PendSV_Handler(void)
 {
 }
-
+extern volatile uint32_t uwTick;
+volatile uint32_t lwip_count = 0;
 /**
   * @brief  This function handles SysTick Handler.
   * @param  None
@@ -142,10 +142,12 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-		TimingDelay_Decrement();
-    if(lwip_count++ >= 200){
-       localtime += 20;
-    }
+	TimingDelay_Decrement();
+	if(lwip_count++ >=20)
+	{
+		lwip_count = 0;
+		uwTick++;
+	}
 }
 
 /******************************************************************************/

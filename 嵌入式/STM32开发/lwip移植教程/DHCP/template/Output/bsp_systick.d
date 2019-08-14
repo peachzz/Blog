@@ -1,6 +1,5 @@
-..\output\bsp_systick.o: ..\BSP\bsp_SysTicks\bsp_SysTick.c
-..\output\bsp_systick.o: ..\BSP\bsp_SysTicks\bsp_SysTick.h
-..\output\bsp_systick.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
+..\output\bsp_systick.o: ..\Bsp\src\bsp_SysTick.c
+..\output\bsp_systick.o: ..\Bsp\inc\bsp_SysTick.h
 ..\output\bsp_systick.o: ..\Libraries\CMSIS\stm32f4xx.h
 ..\output\bsp_systick.o: ..\Libraries\CMSIS\core_cm4.h
 ..\output\bsp_systick.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

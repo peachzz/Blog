@@ -32,19 +32,16 @@
 #ifndef __SYS_RTXC_H__
 #define __SYS_RTXC_H__
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
+#include "cmsis_os.h"
 
-#define SYS_MBOX_NULL (xQueueHandle)0
-#define SYS_SEM_NULL  (xSemaphoreHandle)0
+#define SYS_MBOX_NULL (osMessageQId)0
+#define SYS_SEM_NULL  (osSemaphoreId)0
 #define SYS_DEFAULT_THREAD_STACK_DEPTH	configMINIMAL_STACK_SIZE
 
-typedef xSemaphoreHandle sys_sem_t;
-typedef xSemaphoreHandle sys_mutex_t;
-typedef xQueueHandle sys_mbox_t;
-typedef xTaskHandle sys_thread_t;
+typedef osSemaphoreId sys_sem_t;
+typedef osSemaphoreId sys_mutex_t;
+typedef osMessageQId  sys_mbox_t;
+typedef osThreadId    sys_thread_t;
 
 typedef struct _sys_arch_state_t
 {
@@ -61,7 +58,5 @@ typedef struct _sys_arch_state_t
 //void sys_set_default_state();
 //void sys_set_state(signed char *pTaskName, unsigned short nStackSize);
 
-/* Message queue constants. */
-#define archMESG_QUEUE_LENGTH	( 6 )
 #endif /* __SYS_RTXC_H__ */
 

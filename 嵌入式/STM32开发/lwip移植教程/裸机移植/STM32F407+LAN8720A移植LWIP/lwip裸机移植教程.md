@@ -17,7 +17,7 @@ MCU：STM32F407，PHY芯片为：LAN8720A
 
 #### 准备工作 ####
 
-下载LWIP源码，下载地址为：[http://download.savannah.nongnu.org/releases/lwip/]()
+下载LWIP源码，下载地址为：[http://download.savannah.nongnu.org/releases/lwip/](http://download.savannah.nongnu.org/releases/lwip/)
 
 ![下载页面](1.png)
 
@@ -452,6 +452,7 @@ bsp\_SysTick.h文件内容为：
 	{
     	TimingDelay_Decrement();
 		if(lwip_count++ >= 200){
+		   lwip_count = 0;
 		   lwip_localtime += 20;
 		}
 	}

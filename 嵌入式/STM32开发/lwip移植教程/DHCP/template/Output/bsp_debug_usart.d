@@ -1,5 +1,5 @@
-..\output\bsp_debug_usart.o: ..\BSP\bsp_Usart\bsp_debug_usart.c
-..\output\bsp_debug_usart.o: ..\BSP\bsp_Usart\bsp_debug_usart.h
+..\output\bsp_debug_usart.o: ..\Bsp\src\bsp_debug_usart.c
+..\output\bsp_debug_usart.o: ..\Bsp\inc\bsp_debug_usart.h
 ..\output\bsp_debug_usart.o: ..\Libraries\CMSIS\stm32f4xx.h
 ..\output\bsp_debug_usart.o: ..\Libraries\CMSIS\core_cm4.h
 ..\output\bsp_debug_usart.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

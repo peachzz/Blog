@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Project/STM32F10x_StdPeriph_Template/main.c
+  * @file    Project/STM32F10x_StdPeriph_Template/main.c 
   * @author  MCD Application Team
   * @version V3.5.0
   * @date    08-April-2011
@@ -17,20 +17,19 @@
   *
   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
   ******************************************************************************
-  */
+  */  
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
 #include <stdio.h>
 #include "bsp_SysTick.h"
-#include "LAN8742A.h"
-#include "ethernetif.h"
 #include "bsp_debug_usart.h"
-#include "timeouts.h"
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+
 /**
   * @brief  Main program.
   * @param  None
@@ -38,27 +37,13 @@
   */
 int main(void)
 {
-    /* Add your application code here*/
-    Debug_USART_Config();
-    SysTick_Init();
-    ETH_BSP_Config();
-    LwIP_Init();
-
-    printf("Init BSP Success, System is start!\r\n");
-    /* Infinite loop */
-    while (1)
-    {
-        /* check if any packet received */
-        if (ETH_CheckFrameReceived())
-        {
-            /* process received ethernet packet */
-            LwIP_Pkt_Handle();
-        }
-        sys_check_timeouts();
-        /* handle periodic timers for LwIP */
-
-        LwIP_Periodic_Handle();
-    }
+  /* Add your application code here*/
+  SysTick_Init(); 
+	Debug_USART_Config();
+  /* Infinite loop */
+  while (1)
+  {
+  }
 }
 
 
@@ -71,16 +56,21 @@ int main(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
-{
-    /* User can add his own implementation to report the file name and line number,
-       ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+void assert_failed(uint8_t* file, uint32_t line)
+{ 
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
-    /* Infinite loop */
-    while (1)
-    {
-    }
+  /* Infinite loop */
+  while (1)
+  {
+  }
 }
 #endif
+
+/**
+  * @}
+  */
+
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

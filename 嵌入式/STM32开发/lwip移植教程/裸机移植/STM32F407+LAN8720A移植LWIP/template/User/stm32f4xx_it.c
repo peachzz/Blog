@@ -144,6 +144,7 @@ void SysTick_Handler(void)
 {
 		TimingDelay_Decrement();
     if(lwip_count++ >= 200){
+			lwip_count = 0;
        localtime += 20;
     }
 }

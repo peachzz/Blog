@@ -1,0 +1,9 @@
+..\output\tcpip.o: ..\lwip-1.4.1\src\api\tcpip.c
+..\output\tcpip.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+..\output\tcpip.o: ..\User\arch\lwipopts.h
+..\output\tcpip.o: ..\lwip-1.4.1\src\include\lwip/debug.h
+..\output\tcpip.o: ..\lwip-1.4.1\src\include\lwip/arch.h
+..\output\tcpip.o: ..\User\arch/cc.h
+..\output\tcpip.o: ..\User\arch/cpu.h
+..\output\tcpip.o: E:\soft\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\tcpip.o: ..\lwip-1.4.1\src\include\lwip/opt.h

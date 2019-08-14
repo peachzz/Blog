@@ -1,0 +1,9 @@
+..\output\autoip.o: ..\lwip-1.4.1\src\core\ipv4\autoip.c
+..\output\autoip.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+..\output\autoip.o: ..\User\arch\lwipopts.h
+..\output\autoip.o: ..\lwip-1.4.1\src\include\lwip/debug.h
+..\output\autoip.o: ..\lwip-1.4.1\src\include\lwip/arch.h
+..\output\autoip.o: ..\User\arch/cc.h
+..\output\autoip.o: ..\User\arch/cpu.h
+..\output\autoip.o: E:\soft\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\autoip.o: ..\lwip-1.4.1\src\include\lwip/opt.h

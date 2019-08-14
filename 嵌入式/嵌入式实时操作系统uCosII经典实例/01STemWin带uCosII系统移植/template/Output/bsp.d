@@ -94,3 +94,8 @@
 ..\output\bsp.o: ..\STemWin\inc\TEXT.h
 ..\output\bsp.o: ..\STemWin\inc\TREEVIEW.h
 ..\output\bsp.o: ..\STemWin\inc\KNOB.h
+..\output\bsp.o: ..\BSP\inc\bsp_sram.h
+..\output\bsp.o: ..\BSP\inc\bsp_rtc.h
+..\output\bsp.o: ..\BSP\inc\bsp_calendar.h
+..\output\bsp.o: ..\BSP\inc\bsp_date.h
+..\output\bsp.o: ..\BSP\inc\bsp_touch.h

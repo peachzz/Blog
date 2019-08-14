@@ -1,0 +1,10 @@
+..\output\sys.o: ..\lwip-1.4.1\src\core\sys.c
+..\output\sys.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+..\output\sys.o: ..\User\arch\lwipopts.h
+..\output\sys.o: ..\lwip-1.4.1\src\include\lwip/debug.h
+..\output\sys.o: ..\lwip-1.4.1\src\include\lwip/arch.h
+..\output\sys.o: ..\User\arch/cc.h
+..\output\sys.o: ..\User\arch/cpu.h
+..\output\sys.o: E:\soft\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\sys.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+..\output\sys.o: ..\lwip-1.4.1\src\include\lwip/sys.h

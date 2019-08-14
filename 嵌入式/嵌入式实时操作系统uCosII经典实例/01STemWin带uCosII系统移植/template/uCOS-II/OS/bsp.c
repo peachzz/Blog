@@ -200,6 +200,8 @@ void  BSP_Init (void)
     SysTick_Init();
     BSP_LCD_Init();
     BSP_Tick_Init();
+    /* ³õÊ¼»¯´¥ÃþÆÁ */
+    Touch_Init_GPIO();
     GUI_Init();
 }
 

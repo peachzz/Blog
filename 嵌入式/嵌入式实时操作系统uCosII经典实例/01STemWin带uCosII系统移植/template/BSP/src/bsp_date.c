@@ -1,4 +1,4 @@
-#include "bsp\rtc\bsp_date.h"
+#include "bsp_date.h"
 
 #define FEBRUARY		2
 #define	STARTOFTIME		1970

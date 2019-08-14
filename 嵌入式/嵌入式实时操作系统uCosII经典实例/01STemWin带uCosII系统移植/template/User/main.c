@@ -140,10 +140,11 @@ static  void  AppTaskStart (void *p_arg)
 
 
 
-    //    while (DEF_TRUE)                                            /* Task body, always written as an infinite loop.           */
-    //    {
-    //        OSTimeDlyHMSM(0, 0, 0, 100);
-    //    }
+    while (DEF_TRUE)                                            /* Task body, always written as an infinite loop.           */
+    {
+        
+        OSTimeDlyHMSM(0, 0, 0, 100);
+    }
 }
 
 /*
@@ -183,9 +184,9 @@ static  void AppTaskLed2(void *p_arg)
 
 static  void    AppTaskLed3(void *p_arg)
 {
-
-    p_arg = p_arg;
     uint16_t i = 0;
+    p_arg = p_arg;
+    
 
     GUI_SetBkColor(GUI_RED);
     GUI_Clear();
@@ -229,7 +230,7 @@ static  void  AppTaskCreate (void)
                     (void *)0,
                     OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
 
-    OSTaskCreateExt(AppTaskLed3,                               /* Create the Led2 task                                    */
+    OSTaskCreateExt(AppTaskLed3,                               /* Create the Led3 task                                    */
                     (void *)0,
                     (OS_STK *)&AppTaskLed3Stk[APP_TASK_LED3_STK_SIZE - 1],
                     APP_TASK_LED3_PRIO,
@@ -238,6 +239,7 @@ static  void  AppTaskCreate (void)
                     APP_TASK_LED3_STK_SIZE,
                     (void *)0,
                     OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
+                    
 }
 
 

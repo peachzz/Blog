@@ -29,6 +29,8 @@
 "..\output\bsp_led.o"
 "..\output\bsp_lcd.o"
 "..\output\bsp_systick.o"
+"..\output\bsp_touch.o"
+"..\output\bsp_spi_flash.o"
 "..\output\stm32f10x_it.o"
 "..\output\main.o"
 "..\output\app_hooks.o"

@@ -1,0 +1,2125 @@
+Component: ARM Compiler 5.06 update 4 (build 422) Tool: armlink [4d35d2]
+
+==============================================================================
+
+Section Cross References
+
+    startup_stm32f10x_hd.o(RESET) refers to startup_stm32f10x_hd.o(STACK) for __initial_sp
+    startup_stm32f10x_hd.o(RESET) refers to startup_stm32f10x_hd.o(.text) for Reset_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.NMI_Handler) for NMI_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.HardFault_Handler) for HardFault_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.MemManage_Handler) for MemManage_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.BusFault_Handler) for BusFault_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.UsageFault_Handler) for UsageFault_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.SVC_Handler) for SVC_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.DebugMon_Handler) for DebugMon_Handler
+    startup_stm32f10x_hd.o(RESET) refers to stm32f10x_it.o(i.PendSV_Handler) for PendSV_Handler
+    startup_stm32f10x_hd.o(RESET) refers to bsp_systick.o(i.SysTick_Handler) for SysTick_Handler
+    startup_stm32f10x_hd.o(RESET) refers to enc28j60.o(i.EXTI1_IRQHandler) for EXTI1_IRQHandler
+    startup_stm32f10x_hd.o(.text) refers to system_stm32f10x.o(i.SystemInit) for SystemInit
+    startup_stm32f10x_hd.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    system_stm32f10x.o(i.SetSysClock) refers to system_stm32f10x.o(i.SetSysClockTo72) for SetSysClockTo72
+    system_stm32f10x.o(i.SystemCoreClockUpdate) refers to system_stm32f10x.o(.data) for SystemCoreClock
+    system_stm32f10x.o(i.SystemInit) refers to system_stm32f10x.o(i.SetSysClock) for SetSysClock
+    stm32f10x_adc.o(i.ADC_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_bkp.o(i.BKP_DeInit) refers to stm32f10x_rcc.o(i.RCC_BackupResetCmd) for RCC_BackupResetCmd
+    stm32f10x_can.o(i.CAN_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_can.o(i.CAN_GetITStatus) refers to stm32f10x_can.o(i.CheckITStatus) for CheckITStatus
+    stm32f10x_cec.o(i.CEC_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_dac.o(i.DAC_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_flash.o(i.FLASH_EnableWriteProtection) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_EraseAllBank1Pages) refers to stm32f10x_flash.o(i.FLASH_WaitForLastBank1Operation) for FLASH_WaitForLastBank1Operation
+    stm32f10x_flash.o(i.FLASH_EraseAllPages) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_EraseOptionBytes) refers to stm32f10x_flash.o(i.FLASH_GetReadOutProtectionStatus) for FLASH_GetReadOutProtectionStatus
+    stm32f10x_flash.o(i.FLASH_EraseOptionBytes) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_ErasePage) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_ProgramHalfWord) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_ProgramOptionByteData) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_ProgramWord) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_ReadOutProtection) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_UserOptionByteConfig) refers to stm32f10x_flash.o(i.FLASH_WaitForLastOperation) for FLASH_WaitForLastOperation
+    stm32f10x_flash.o(i.FLASH_WaitForLastBank1Operation) refers to stm32f10x_flash.o(i.FLASH_GetBank1Status) for FLASH_GetBank1Status
+    stm32f10x_flash.o(i.FLASH_WaitForLastOperation) refers to stm32f10x_flash.o(i.FLASH_GetBank1Status) for FLASH_GetBank1Status
+    stm32f10x_gpio.o(i.GPIO_AFIODeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_gpio.o(i.GPIO_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_i2c.o(i.I2C_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_i2c.o(i.I2C_Init) refers to stm32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    stm32f10x_pwr.o(i.PWR_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_rcc.o(i.RCC_GetClocksFreq) refers to stm32f10x_rcc.o(.data) for APBAHBPrescTable
+    stm32f10x_rcc.o(i.RCC_WaitForHSEStartUp) refers to stm32f10x_rcc.o(i.RCC_GetFlagStatus) for RCC_GetFlagStatus
+    stm32f10x_rtc.o(i.RTC_SetAlarm) refers to stm32f10x_rtc.o(i.RTC_EnterConfigMode) for RTC_EnterConfigMode
+    stm32f10x_rtc.o(i.RTC_SetAlarm) refers to stm32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
+    stm32f10x_rtc.o(i.RTC_SetCounter) refers to stm32f10x_rtc.o(i.RTC_EnterConfigMode) for RTC_EnterConfigMode
+    stm32f10x_rtc.o(i.RTC_SetCounter) refers to stm32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
+    stm32f10x_rtc.o(i.RTC_SetPrescaler) refers to stm32f10x_rtc.o(i.RTC_EnterConfigMode) for RTC_EnterConfigMode
+    stm32f10x_rtc.o(i.RTC_SetPrescaler) refers to stm32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
+    stm32f10x_spi.o(i.I2S_Init) refers to stm32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    stm32f10x_spi.o(i.SPI_I2S_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_spi.o(i.SPI_I2S_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_tim.o(i.TIM_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_tim.o(i.TIM_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_tim.o(i.TIM_ETRClockMode1Config) refers to stm32f10x_tim.o(i.TIM_ETRConfig) for TIM_ETRConfig
+    stm32f10x_tim.o(i.TIM_ETRClockMode2Config) refers to stm32f10x_tim.o(i.TIM_ETRConfig) for TIM_ETRConfig
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TI1_Config) for TI1_Config
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TIM_SetIC1Prescaler) for TIM_SetIC1Prescaler
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TI2_Config) for TI2_Config
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TIM_SetIC2Prescaler) for TIM_SetIC2Prescaler
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TI3_Config) for TI3_Config
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TIM_SetIC3Prescaler) for TIM_SetIC3Prescaler
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TI4_Config) for TI4_Config
+    stm32f10x_tim.o(i.TIM_ICInit) refers to stm32f10x_tim.o(i.TIM_SetIC4Prescaler) for TIM_SetIC4Prescaler
+    stm32f10x_tim.o(i.TIM_ITRxExternalClockConfig) refers to stm32f10x_tim.o(i.TIM_SelectInputTrigger) for TIM_SelectInputTrigger
+    stm32f10x_tim.o(i.TIM_PWMIConfig) refers to stm32f10x_tim.o(i.TI1_Config) for TI1_Config
+    stm32f10x_tim.o(i.TIM_PWMIConfig) refers to stm32f10x_tim.o(i.TIM_SetIC1Prescaler) for TIM_SetIC1Prescaler
+    stm32f10x_tim.o(i.TIM_PWMIConfig) refers to stm32f10x_tim.o(i.TI2_Config) for TI2_Config
+    stm32f10x_tim.o(i.TIM_PWMIConfig) refers to stm32f10x_tim.o(i.TIM_SetIC2Prescaler) for TIM_SetIC2Prescaler
+    stm32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to stm32f10x_tim.o(i.TI2_Config) for TI2_Config
+    stm32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to stm32f10x_tim.o(i.TI1_Config) for TI1_Config
+    stm32f10x_tim.o(i.TIM_TIxExternalClockConfig) refers to stm32f10x_tim.o(i.TIM_SelectInputTrigger) for TIM_SelectInputTrigger
+    stm32f10x_usart.o(i.USART_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_usart.o(i.USART_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_usart.o(i.USART_Init) refers to stm32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    stm32f10x_wwdg.o(i.WWDG_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    main.o(i.main) refers to bsp_systick.o(i.SysTick_Init) for SysTick_Init
+    main.o(i.main) refers to misc.o(i.NVIC_PriorityGroupConfig) for NVIC_PriorityGroupConfig
+    main.o(i.main) refers to bsp_debug_usart.o(i.DEBUG_USART_Init) for DEBUG_USART_Init
+    main.o(i.main) refers to bsp_sram.o(i.FSMC_SRAM_Init) for FSMC_SRAM_Init
+    main.o(i.main) refers to bsp_malloc.o(i.my_mem_init) for my_mem_init
+    bsp_debug_usart.o(i.DEBUG_USART_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    bsp_debug_usart.o(i.DEBUG_USART_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    bsp_debug_usart.o(i.DEBUG_USART_Init) refers to stm32f10x_usart.o(i.USART_Init) for USART_Init
+    bsp_debug_usart.o(i.DEBUG_USART_Init) refers to stm32f10x_usart.o(i.USART_Cmd) for USART_Cmd
+    bsp_debug_usart.o(i.fgetc) refers to stm32f10x_usart.o(i.USART_GetFlagStatus) for USART_GetFlagStatus
+    bsp_debug_usart.o(i.fgetc) refers to stm32f10x_usart.o(i.USART_ReceiveData) for USART_ReceiveData
+    bsp_debug_usart.o(i.fputc) refers to stm32f10x_usart.o(i.USART_SendData) for USART_SendData
+    bsp_debug_usart.o(i.fputc) refers to stm32f10x_usart.o(i.USART_GetFlagStatus) for USART_GetFlagStatus
+    bsp_led.o(i.LED_GPIO_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    bsp_led.o(i.LED_GPIO_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    bsp_led.o(i.LED_GPIO_Init) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    bsp_led.o(i.LEDx_StateSet) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    bsp_led.o(i.LEDx_StateSet) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    bsp_malloc.o(i.my_mem_free) refers to bsp_malloc.o(.data) for mallco_dev
+    bsp_malloc.o(i.my_mem_free) refers to bsp_malloc.o(.constdata) for memsize
+    bsp_malloc.o(i.my_mem_init) refers to bsp_malloc.o(i.mymemset) for mymemset
+    bsp_malloc.o(i.my_mem_init) refers to bsp_malloc.o(.constdata) for memtblsize
+    bsp_malloc.o(i.my_mem_init) refers to bsp_malloc.o(.data) for mallco_dev
+    bsp_malloc.o(i.my_mem_malloc) refers to bsp_malloc.o(.data) for mallco_dev
+    bsp_malloc.o(i.my_mem_malloc) refers to bsp_malloc.o(.constdata) for memblksize
+    bsp_malloc.o(i.my_mem_perused) refers to bsp_malloc.o(.data) for mallco_dev
+    bsp_malloc.o(i.my_mem_perused) refers to bsp_malloc.o(.constdata) for memtblsize
+    bsp_malloc.o(i.myfree) refers to bsp_malloc.o(i.my_mem_free) for my_mem_free
+    bsp_malloc.o(i.myfree) refers to bsp_malloc.o(.data) for mallco_dev
+    bsp_malloc.o(i.mymalloc) refers to bsp_malloc.o(i.my_mem_malloc) for my_mem_malloc
+    bsp_malloc.o(i.mymalloc) refers to bsp_malloc.o(.data) for mallco_dev
+    bsp_malloc.o(i.myrealloc) refers to bsp_malloc.o(i.my_mem_malloc) for my_mem_malloc
+    bsp_malloc.o(i.myrealloc) refers to bsp_malloc.o(i.mymemcpy) for mymemcpy
+    bsp_malloc.o(i.myrealloc) refers to bsp_malloc.o(i.myfree) for myfree
+    bsp_malloc.o(i.myrealloc) refers to bsp_malloc.o(.data) for mallco_dev
+    bsp_malloc.o(.data) refers to bsp_malloc.o(i.my_mem_init) for my_mem_init
+    bsp_malloc.o(.data) refers to bsp_malloc.o(i.my_mem_perused) for my_mem_perused
+    bsp_malloc.o(.data) refers to bsp_malloc.o(.bss) for mem1base
+    bsp_malloc.o(.data) refers to bsp_malloc.o(.ARM.__AT_0x68000000) for mem2base
+    bsp_malloc.o(.data) refers to bsp_malloc.o(.ARM.__AT_0x680F0000) for mem2mapbase
+    bsp_sram.o(i.FSMC_SRAM_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    bsp_sram.o(i.FSMC_SRAM_Init) refers to stm32f10x_rcc.o(i.RCC_AHBPeriphClockCmd) for RCC_AHBPeriphClockCmd
+    bsp_sram.o(i.FSMC_SRAM_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    bsp_sram.o(i.FSMC_SRAM_Init) refers to stm32f10x_fsmc.o(i.FSMC_NORSRAMInit) for FSMC_NORSRAMInit
+    bsp_sram.o(i.FSMC_SRAM_Init) refers to stm32f10x_fsmc.o(i.FSMC_NORSRAMCmd) for FSMC_NORSRAMCmd
+    bsp_sram.o(i.fsmc_sram_test_read) refers to bsp_sram.o(i.FSMC_SRAM_ReadBuffer) for FSMC_SRAM_ReadBuffer
+    bsp_sram.o(i.fsmc_sram_test_write) refers to bsp_sram.o(i.FSMC_SRAM_WriteBuffer) for FSMC_SRAM_WriteBuffer
+    bsp_systick.o(i.Delay_ms) refers to bsp_systick.o(.data) for TimingDelay
+    bsp_systick.o(i.SysTick_Handler) refers to bsp_systick.o(i.TimingDelay_Decrement) for TimingDelay_Decrement
+    bsp_systick.o(i.SysTick_Handler) refers to bsp_systick.o(.data) for lwip_count
+    bsp_systick.o(i.SysTick_Init) refers to system_stm32f10x.o(.data) for SystemCoreClock
+    bsp_systick.o(i.TimingDelay_Decrement) refers to bsp_systick.o(.data) for TimingDelay
+    enc28j60.o(i.ENC28J60_Get_Duplex) refers to enc28j60.o(i.ENC28J60_PHY_Read) for ENC28J60_PHY_Read
+    enc28j60.o(i.ENC28J60_Get_EREVID) refers to enc28j60.o(i.ENC28J60_Read) for ENC28J60_Read
+    enc28j60.o(i.ENC28J60_ISRHandler) refers to enc28j60.o(i.ENC28J60_Write_Op) for ENC28J60_Write_Op
+    enc28j60.o(i.ENC28J60_ISRHandler) refers to enc28j60.o(i.ENC28J60_Read) for ENC28J60_Read
+    enc28j60.o(i.ENC28J60_ISRHandler) refers to enc28j60.o(i.ENC28J60_Write) for ENC28J60_Write
+    enc28j60.o(i.ENC28J60_ISRHandler) refers to printf8.o(i.__0printf$8) for __2printf
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_gpio.o(i.GPIO_EXTILineConfig) for GPIO_EXTILineConfig
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_exti.o(i.EXTI_Init) for EXTI_Init
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_exti.o(i.EXTI_ClearITPendingBit) for EXTI_ClearITPendingBit
+    enc28j60.o(i.ENC28J60_Init) refers to misc.o(i.NVIC_Init) for NVIC_Init
+    enc28j60.o(i.ENC28J60_Init) refers to spi.o(i.SPI1_Init) for SPI1_Init
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_spi.o(i.SPI_Cmd) for SPI_Cmd
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_spi.o(i.SPI_Init) for SPI_Init
+    enc28j60.o(i.ENC28J60_Init) refers to spi.o(i.SPI1_SetSpeed) for SPI1_SetSpeed
+    enc28j60.o(i.ENC28J60_Init) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    enc28j60.o(i.ENC28J60_Init) refers to bsp_systick.o(i.Delay_ms) for Delay_ms
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(i.ENC28J60_Write_Op) for ENC28J60_Write_Op
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(i.ENC28J60_Read) for ENC28J60_Read
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(i.ENC28J60_Get_EREVID) for ENC28J60_Get_EREVID
+    enc28j60.o(i.ENC28J60_Init) refers to printf8.o(i.__0printf$8) for __2printf
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(i.ENC28J60_Write) for ENC28J60_Write
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(i.ENC28J60_PHY_Write) for ENC28J60_PHY_Write
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(i.ENC28J60_Set_Bank) for ENC28J60_Set_Bank
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(i.ENC28J60_Get_Duplex) for ENC28J60_Get_Duplex
+    enc28j60.o(i.ENC28J60_Init) refers to enc28j60.o(.bss) for enc28j60_dev
+    enc28j60.o(i.ENC28J60_PHY_Read) refers to enc28j60.o(i.ENC28J60_Read) for ENC28J60_Read
+    enc28j60.o(i.ENC28J60_PHY_Read) refers to enc28j60.o(i.ENC28J60_Write) for ENC28J60_Write
+    enc28j60.o(i.ENC28J60_PHY_Write) refers to enc28j60.o(i.ENC28J60_Write) for ENC28J60_Write
+    enc28j60.o(i.ENC28J60_PHY_Write) refers to enc28j60.o(i.ENC28J60_Read) for ENC28J60_Read
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(i.INTX_DISABLE) for INTX_DISABLE
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(i.ENC28J60_Read) for ENC28J60_Read
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(i.ENC28J60_Write) for ENC28J60_Write
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(i.ENC28J60_Read_Op) for ENC28J60_Read_Op
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(i.ENC28J60_Read_Buf) for ENC28J60_Read_Buf
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(i.ENC28J60_Write_Op) for ENC28J60_Write_Op
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(i.INTX_ENABLE) for INTX_ENABLE
+    enc28j60.o(i.ENC28J60_Packet_Receive) refers to enc28j60.o(.bss) for enc28j60_dev
+    enc28j60.o(i.ENC28J60_Packet_Send) refers to enc28j60.o(i.INTX_DISABLE) for INTX_DISABLE
+    enc28j60.o(i.ENC28J60_Packet_Send) refers to enc28j60.o(i.ENC28J60_Read) for ENC28J60_Read
+    enc28j60.o(i.ENC28J60_Packet_Send) refers to enc28j60.o(i.ENC28J60_Write_Op) for ENC28J60_Write_Op
+    enc28j60.o(i.ENC28J60_Packet_Send) refers to enc28j60.o(i.ENC28J60_Write) for ENC28J60_Write
+    enc28j60.o(i.ENC28J60_Packet_Send) refers to enc28j60.o(i.ENC28J60_Write_Buf) for ENC28J60_Write_Buf
+    enc28j60.o(i.ENC28J60_Packet_Send) refers to enc28j60.o(i.INTX_ENABLE) for INTX_ENABLE
+    enc28j60.o(i.ENC28J60_Read) refers to enc28j60.o(i.ENC28J60_Set_Bank) for ENC28J60_Set_Bank
+    enc28j60.o(i.ENC28J60_Read) refers to enc28j60.o(i.ENC28J60_Read_Op) for ENC28J60_Read_Op
+    enc28j60.o(i.ENC28J60_Read_Buf) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    enc28j60.o(i.ENC28J60_Read_Buf) refers to spi.o(i.SPI1_ReadWriteByte) for SPI1_ReadWriteByte
+    enc28j60.o(i.ENC28J60_Read_Buf) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    enc28j60.o(i.ENC28J60_Read_Op) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    enc28j60.o(i.ENC28J60_Read_Op) refers to spi.o(i.SPI1_ReadWriteByte) for SPI1_ReadWriteByte
+    enc28j60.o(i.ENC28J60_Read_Op) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    enc28j60.o(i.ENC28J60_Set_Bank) refers to enc28j60.o(i.ENC28J60_Write_Op) for ENC28J60_Write_Op
+    enc28j60.o(i.ENC28J60_Set_Bank) refers to enc28j60.o(.bss) for enc28j60_dev
+    enc28j60.o(i.ENC28J60_Write) refers to enc28j60.o(i.ENC28J60_Set_Bank) for ENC28J60_Set_Bank
+    enc28j60.o(i.ENC28J60_Write) refers to enc28j60.o(i.ENC28J60_Write_Op) for ENC28J60_Write_Op
+    enc28j60.o(i.ENC28J60_Write_Buf) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    enc28j60.o(i.ENC28J60_Write_Buf) refers to spi.o(i.SPI1_ReadWriteByte) for SPI1_ReadWriteByte
+    enc28j60.o(i.ENC28J60_Write_Buf) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    enc28j60.o(i.ENC28J60_Write_Op) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    enc28j60.o(i.ENC28J60_Write_Op) refers to spi.o(i.SPI1_ReadWriteByte) for SPI1_ReadWriteByte
+    enc28j60.o(i.ENC28J60_Write_Op) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    enc28j60.o(i.EXTI1_IRQHandler) refers to stm32f10x_exti.o(i.EXTI_ClearITPendingBit) for EXTI_ClearITPendingBit
+    enc28j60.o(i.EXTI1_IRQHandler) refers to enc28j60.o(i.ENC28J60_ISRHandler) for ENC28J60_ISRHandler
+    enc28j60.o(i.EXTI1_IRQHandler) refers to stm32f10x_gpio.o(i.GPIO_ReadInputDataBit) for GPIO_ReadInputDataBit
+    spi.o(i.SPI1_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    spi.o(i.SPI1_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
+    spi.o(i.SPI1_Init) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    spi.o(i.SPI1_Init) refers to stm32f10x_spi.o(i.SPI_Init) for SPI_Init
+    spi.o(i.SPI1_Init) refers to stm32f10x_spi.o(i.SPI_Cmd) for SPI_Cmd
+    spi.o(i.SPI1_Init) refers to spi.o(i.SPI1_ReadWriteByte) for SPI1_ReadWriteByte
+    spi.o(i.SPI1_Init) refers to spi.o(.bss) for SPI_InitStructure
+    spi.o(i.SPI1_ReadWriteByte) refers to stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
+    spi.o(i.SPI1_ReadWriteByte) refers to stm32f10x_spi.o(i.SPI_I2S_SendData) for SPI_I2S_SendData
+    spi.o(i.SPI1_ReadWriteByte) refers to stm32f10x_spi.o(i.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
+    err.o(i.lwip_strerr) refers to err.o(.data) for err_strerr
+    err.o(.data) refers to err.o(.conststring) for .conststring
+    def.o(i.lwip_ntohl) refers to def.o(i.lwip_htonl) for lwip_htonl
+    def.o(i.lwip_ntohs) refers to def.o(i.lwip_htons) for lwip_htons
+    dhcp.o(i.dhcp_arp_reply) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_arp_reply) refers to dhcp.o(i.dhcp_decline) for dhcp_decline
+    dhcp.o(i.dhcp_arp_reply) refers to dhcp.o(.conststring) for .conststring
+    dhcp.o(i.dhcp_bind) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_bind) refers to netif.o(i.netif_set_ipaddr) for netif_set_ipaddr
+    dhcp.o(i.dhcp_bind) refers to netif.o(i.netif_set_netmask) for netif_set_netmask
+    dhcp.o(i.dhcp_bind) refers to netif.o(i.netif_set_gw) for netif_set_gw
+    dhcp.o(i.dhcp_bind) refers to netif.o(i.netif_set_up) for netif_set_up
+    dhcp.o(i.dhcp_bind) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_check) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_check) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_check) refers to etharp.o(i.etharp_query) for etharp_query
+    dhcp.o(i.dhcp_cleanup) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_cleanup) refers to mem.o(i.mem_free) for mem_free
+    dhcp.o(i.dhcp_coarse_tmr) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_coarse_tmr) refers to dhcp.o(i.dhcp_t2_timeout) for dhcp_t2_timeout
+    dhcp.o(i.dhcp_coarse_tmr) refers to dhcp.o(i.dhcp_t1_timeout) for dhcp_t1_timeout
+    dhcp.o(i.dhcp_coarse_tmr) refers to netif.o(.data) for netif_list
+    dhcp.o(i.dhcp_create_msg) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_create_msg) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    dhcp.o(i.dhcp_create_msg) refers to def.o(i.lwip_htonl) for lwip_htonl
+    dhcp.o(i.dhcp_create_msg) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_create_msg) refers to dhcp.o(i.dhcp_option_byte) for dhcp_option_byte
+    dhcp.o(i.dhcp_create_msg) refers to dhcp.o(.data) for xid
+    dhcp.o(i.dhcp_decline) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_decline) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_decline) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_decline) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_decline) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    dhcp.o(i.dhcp_decline) refers to dhcp.o(i.dhcp_option_long) for dhcp_option_long
+    dhcp.o(i.dhcp_decline) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_decline) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_decline) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_decline) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_decline) refers to ip_addr.o(.constdata) for ip_addr_broadcast
+    dhcp.o(i.dhcp_delete_msg) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_delete_msg) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    dhcp.o(i.dhcp_discover) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(i.dhcp_option_short) for dhcp_option_short
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(i.dhcp_option_byte) for dhcp_option_byte
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_discover) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_discover) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_discover) refers to dhcp.o(.conststring) for .conststring
+    dhcp.o(i.dhcp_discover) refers to ip_addr.o(.constdata) for ip_addr_broadcast
+    dhcp.o(i.dhcp_fine_tmr) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_fine_tmr) refers to dhcp.o(i.dhcp_timeout) for dhcp_timeout
+    dhcp.o(i.dhcp_fine_tmr) refers to netif.o(.data) for netif_list
+    dhcp.o(i.dhcp_handle_ack) refers to def.o(i.lwip_htonl) for lwip_htonl
+    dhcp.o(i.dhcp_handle_ack) refers to dhcp.o(.bss) for dhcp_rx_options_given
+    dhcp.o(i.dhcp_handle_nak) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_handle_nak) refers to netif.o(i.netif_set_down) for netif_set_down
+    dhcp.o(i.dhcp_handle_nak) refers to netif.o(i.netif_set_ipaddr) for netif_set_ipaddr
+    dhcp.o(i.dhcp_handle_nak) refers to netif.o(i.netif_set_gw) for netif_set_gw
+    dhcp.o(i.dhcp_handle_nak) refers to netif.o(i.netif_set_netmask) for netif_set_netmask
+    dhcp.o(i.dhcp_handle_nak) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_handle_nak) refers to dhcp.o(i.dhcp_discover) for dhcp_discover
+    dhcp.o(i.dhcp_handle_nak) refers to ip_addr.o(.constdata) for ip_addr_any
+    dhcp.o(i.dhcp_handle_offer) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_handle_offer) refers to def.o(i.lwip_htonl) for lwip_htonl
+    dhcp.o(i.dhcp_handle_offer) refers to dhcp.o(i.dhcp_select) for dhcp_select
+    dhcp.o(i.dhcp_handle_offer) refers to dhcp.o(.bss) for dhcp_rx_options_given
+    dhcp.o(i.dhcp_inform) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_inform) refers to memseta.o(.text) for __aeabi_memclr4
+    dhcp.o(i.dhcp_inform) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_inform) refers to udp.o(i.udp_new) for udp_new
+    dhcp.o(i.dhcp_inform) refers to udp.o(i.udp_bind) for udp_bind
+    dhcp.o(i.dhcp_inform) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_inform) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_inform) refers to dhcp.o(i.dhcp_option_short) for dhcp_option_short
+    dhcp.o(i.dhcp_inform) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_inform) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_inform) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_inform) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_inform) refers to udp.o(i.udp_remove) for udp_remove
+    dhcp.o(i.dhcp_inform) refers to ip_addr.o(.constdata) for ip_addr_any
+    dhcp.o(i.dhcp_network_changed) refers to netif.o(i.netif_set_down) for netif_set_down
+    dhcp.o(i.dhcp_network_changed) refers to dhcp.o(i.dhcp_reboot) for dhcp_reboot
+    dhcp.o(i.dhcp_network_changed) refers to dhcp.o(i.dhcp_discover) for dhcp_discover
+    dhcp.o(i.dhcp_option) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_option) refers to dhcp.o(.conststring) for .conststring
+    dhcp.o(i.dhcp_option_byte) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_option_long) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_option_short) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_option_short) refers to dhcp.o(.conststring) for .conststring
+    dhcp.o(i.dhcp_option_trailer) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_parse_reply) refers to memseta.o(.text) for __aeabi_memclr4
+    dhcp.o(i.dhcp_parse_reply) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_parse_reply) refers to pbuf.o(i.pbuf_copy_partial) for pbuf_copy_partial
+    dhcp.o(i.dhcp_parse_reply) refers to def.o(i.lwip_htonl) for lwip_htonl
+    dhcp.o(i.dhcp_parse_reply) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    dhcp.o(i.dhcp_parse_reply) refers to dhcp.o(.bss) for dhcp_rx_options_given
+    dhcp.o(i.dhcp_rebind) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_rebind) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_rebind) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_rebind) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_rebind) refers to dhcp.o(i.dhcp_option_short) for dhcp_option_short
+    dhcp.o(i.dhcp_rebind) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_rebind) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_rebind) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_rebind) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_rebind) refers to ip_addr.o(.constdata) for ip_addr_broadcast
+    dhcp.o(i.dhcp_reboot) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_reboot) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_reboot) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_reboot) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_reboot) refers to dhcp.o(i.dhcp_option_short) for dhcp_option_short
+    dhcp.o(i.dhcp_reboot) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    dhcp.o(i.dhcp_reboot) refers to dhcp.o(i.dhcp_option_long) for dhcp_option_long
+    dhcp.o(i.dhcp_reboot) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_reboot) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_reboot) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_reboot) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_reboot) refers to ip_addr.o(.constdata) for ip_addr_broadcast
+    dhcp.o(i.dhcp_recv) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_recv) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    dhcp.o(i.dhcp_recv) refers to dhcp.o(i.dhcp_parse_reply) for dhcp_parse_reply
+    dhcp.o(i.dhcp_recv) refers to dhcp.o(i.dhcp_handle_ack) for dhcp_handle_ack
+    dhcp.o(i.dhcp_recv) refers to dhcp.o(i.dhcp_check) for dhcp_check
+    dhcp.o(i.dhcp_recv) refers to dhcp.o(i.dhcp_bind) for dhcp_bind
+    dhcp.o(i.dhcp_recv) refers to dhcp.o(i.dhcp_handle_nak) for dhcp_handle_nak
+    dhcp.o(i.dhcp_recv) refers to dhcp.o(i.dhcp_handle_offer) for dhcp_handle_offer
+    dhcp.o(i.dhcp_recv) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    dhcp.o(i.dhcp_recv) refers to dhcp.o(.bss) for dhcp_rx_options_given
+    dhcp.o(i.dhcp_release) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_release) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_release) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_release) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_release) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_release) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_release) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_release) refers to netif.o(i.netif_set_down) for netif_set_down
+    dhcp.o(i.dhcp_release) refers to netif.o(i.netif_set_ipaddr) for netif_set_ipaddr
+    dhcp.o(i.dhcp_release) refers to netif.o(i.netif_set_gw) for netif_set_gw
+    dhcp.o(i.dhcp_release) refers to netif.o(i.netif_set_netmask) for netif_set_netmask
+    dhcp.o(i.dhcp_release) refers to ip_addr.o(.constdata) for ip_addr_any
+    dhcp.o(i.dhcp_renew) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_renew) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_renew) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_renew) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_renew) refers to dhcp.o(i.dhcp_option_short) for dhcp_option_short
+    dhcp.o(i.dhcp_renew) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_renew) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_renew) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_renew) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_select) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_create_msg) for dhcp_create_msg
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_option) for dhcp_option
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_option_short) for dhcp_option_short
+    dhcp.o(i.dhcp_select) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_option_long) for dhcp_option_long
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_option_byte) for dhcp_option_byte
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_option_trailer) for dhcp_option_trailer
+    dhcp.o(i.dhcp_select) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    dhcp.o(i.dhcp_select) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    dhcp.o(i.dhcp_select) refers to dhcp.o(i.dhcp_delete_msg) for dhcp_delete_msg
+    dhcp.o(i.dhcp_select) refers to ip_addr.o(.constdata) for ip_addr_broadcast
+    dhcp.o(i.dhcp_set_struct) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_set_struct) refers to memseta.o(.text) for __aeabi_memclr4
+    dhcp.o(i.dhcp_start) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_start) refers to mem.o(i.mem_malloc) for mem_malloc
+    dhcp.o(i.dhcp_start) refers to udp.o(i.udp_remove) for udp_remove
+    dhcp.o(i.dhcp_start) refers to memseta.o(.text) for __aeabi_memclr4
+    dhcp.o(i.dhcp_start) refers to udp.o(i.udp_new) for udp_new
+    dhcp.o(i.dhcp_start) refers to udp.o(i.udp_bind) for udp_bind
+    dhcp.o(i.dhcp_start) refers to udp.o(i.udp_connect) for udp_connect
+    dhcp.o(i.dhcp_start) refers to udp.o(i.udp_recv) for udp_recv
+    dhcp.o(i.dhcp_start) refers to dhcp.o(i.dhcp_discover) for dhcp_discover
+    dhcp.o(i.dhcp_start) refers to dhcp.o(i.dhcp_stop) for dhcp_stop
+    dhcp.o(i.dhcp_start) refers to dhcp.o(.conststring) for .conststring
+    dhcp.o(i.dhcp_start) refers to ip_addr.o(.constdata) for ip_addr_any
+    dhcp.o(i.dhcp_start) refers to dhcp.o(i.dhcp_recv) for dhcp_recv
+    dhcp.o(i.dhcp_stop) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_stop) refers to udp.o(i.udp_remove) for udp_remove
+    dhcp.o(i.dhcp_stop) refers to dhcp.o(i.dhcp_set_state) for dhcp_set_state
+    dhcp.o(i.dhcp_t1_timeout) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_t1_timeout) refers to dhcp.o(i.dhcp_renew) for dhcp_renew
+    dhcp.o(i.dhcp_t2_timeout) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_t2_timeout) refers to dhcp.o(i.dhcp_rebind) for dhcp_rebind
+    dhcp.o(i.dhcp_timeout) refers to printf8.o(i.__0printf$8) for __2printf
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_discover) for dhcp_discover
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_select) for dhcp_select
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_release) for dhcp_release
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_check) for dhcp_check
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_bind) for dhcp_bind
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_renew) for dhcp_renew
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_rebind) for dhcp_rebind
+    dhcp.o(i.dhcp_timeout) refers to dhcp.o(i.dhcp_reboot) for dhcp_reboot
+    init.o(i.lwip_init) refers to mem.o(i.mem_init) for mem_init
+    init.o(i.lwip_init) refers to memp.o(i.memp_init) for memp_init
+    init.o(i.lwip_init) refers to netif.o(i.netif_init) for netif_init
+    init.o(i.lwip_init) refers to udp.o(i.udp_init) for udp_init
+    init.o(i.lwip_init) refers to tcp.o(i.tcp_init) for tcp_init
+    init.o(i.lwip_init) refers to timers.o(i.sys_timeouts_init) for sys_timeouts_init
+    mem.o(i.mem_calloc) refers to mem.o(i.mem_malloc) for mem_malloc
+    mem.o(i.mem_calloc) refers to memseta.o(.text) for __aeabi_memclr
+    mem.o(i.mem_free) refers to printf8.o(i.__0printf$8) for __2printf
+    mem.o(i.mem_free) refers to mem.o(i.plug_holes) for plug_holes
+    mem.o(i.mem_free) refers to mem.o(.data) for ram
+    mem.o(i.mem_init) refers to mem.o(.bss) for ram_heap
+    mem.o(i.mem_init) refers to mem.o(.data) for ram
+    mem.o(i.mem_malloc) refers to printf8.o(i.__0printf$8) for __2printf
+    mem.o(i.mem_malloc) refers to mem.o(.data) for lfree
+    mem.o(i.mem_trim) refers to printf8.o(i.__0printf$8) for __2printf
+    mem.o(i.mem_trim) refers to mem.o(.data) for ram
+    mem.o(i.plug_holes) refers to printf8.o(i.__0printf$8) for __2printf
+    mem.o(i.plug_holes) refers to mem.o(.data) for ram
+    memp.o(i.memp_free) refers to printf8.o(i.__0printf$8) for __2printf
+    memp.o(i.memp_free) refers to memp.o(.bss) for memp_tab
+    memp.o(i.memp_init) refers to memp.o(.bss) for memp_memory
+    memp.o(i.memp_init) refers to memp.o(.constdata) for memp_sizes
+    memp.o(i.memp_malloc) refers to printf8.o(i.__0printf$8) for __2printf
+    memp.o(i.memp_malloc) refers to memp.o(.bss) for memp_tab
+    memp.o(.data) refers to memp.o(.conststring) for .conststring
+    netif.o(i.netif_add) refers to printf8.o(i.__0printf$8) for __2printf
+    netif.o(i.netif_add) refers to netif.o(i.netif_set_addr) for netif_set_addr
+    netif.o(i.netif_add) refers to netif.o(.data) for netif_num
+    netif.o(i.netif_find) refers to netif.o(.data) for netif_list
+    netif.o(i.netif_remove) refers to netif.o(i.netif_set_down) for netif_set_down
+    netif.o(i.netif_remove) refers to netif.o(i.netif_set_default) for netif_set_default
+    netif.o(i.netif_remove) refers to netif.o(.data) for netif_list
+    netif.o(i.netif_set_addr) refers to netif.o(i.netif_set_ipaddr) for netif_set_ipaddr
+    netif.o(i.netif_set_addr) refers to netif.o(i.netif_set_netmask) for netif_set_netmask
+    netif.o(i.netif_set_addr) refers to netif.o(i.netif_set_gw) for netif_set_gw
+    netif.o(i.netif_set_default) refers to netif.o(.data) for netif_default
+    netif.o(i.netif_set_down) refers to etharp.o(i.etharp_cleanup_netif) for etharp_cleanup_netif
+    netif.o(i.netif_set_ipaddr) refers to tcp.o(i.tcp_abort) for tcp_abort
+    netif.o(i.netif_set_ipaddr) refers to tcp.o(.data) for tcp_active_pcbs
+    netif.o(i.netif_set_link_up) refers to dhcp.o(i.dhcp_network_changed) for dhcp_network_changed
+    netif.o(i.netif_set_link_up) refers to etharp.o(i.etharp_request) for etharp_request
+    netif.o(i.netif_set_up) refers to etharp.o(i.etharp_request) for etharp_request
+    pbuf.o(i.pbuf_alloc) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_alloc) refers to memp.o(i.memp_malloc) for memp_malloc
+    pbuf.o(i.pbuf_alloc) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    pbuf.o(i.pbuf_alloc) refers to mem.o(i.mem_malloc) for mem_malloc
+    pbuf.o(i.pbuf_alloced_custom) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_cat) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_chain) refers to pbuf.o(i.pbuf_cat) for pbuf_cat
+    pbuf.o(i.pbuf_chain) refers to pbuf.o(i.pbuf_ref) for pbuf_ref
+    pbuf.o(i.pbuf_coalesce) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    pbuf.o(i.pbuf_coalesce) refers to pbuf.o(i.pbuf_copy) for pbuf_copy
+    pbuf.o(i.pbuf_coalesce) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_coalesce) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    pbuf.o(i.pbuf_copy) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_copy) refers to memcpya.o(.text) for __aeabi_memcpy
+    pbuf.o(i.pbuf_copy_partial) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_copy_partial) refers to memcpya.o(.text) for __aeabi_memcpy
+    pbuf.o(i.pbuf_dechain) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_dechain) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    pbuf.o(i.pbuf_free) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_free) refers to memp.o(i.memp_free) for memp_free
+    pbuf.o(i.pbuf_free) refers to mem.o(i.mem_free) for mem_free
+    pbuf.o(i.pbuf_header) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_memcmp) refers to pbuf.o(i.pbuf_get_at) for pbuf_get_at
+    pbuf.o(i.pbuf_memfind) refers to pbuf.o(i.pbuf_memcmp) for pbuf_memcmp
+    pbuf.o(i.pbuf_realloc) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_realloc) refers to mem.o(i.mem_trim) for mem_trim
+    pbuf.o(i.pbuf_realloc) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    pbuf.o(i.pbuf_strstr) refers to strlen.o(.text) for strlen
+    pbuf.o(i.pbuf_strstr) refers to pbuf.o(i.pbuf_memfind) for pbuf_memfind
+    pbuf.o(i.pbuf_take) refers to printf8.o(i.__0printf$8) for __2printf
+    pbuf.o(i.pbuf_take) refers to memcpya.o(.text) for __aeabi_memcpy
+    raw.o(i.raw_input) refers to raw.o(.data) for raw_pcbs
+    raw.o(i.raw_input) refers to ip.o(.data) for current_iphdr_dest
+    raw.o(i.raw_new) refers to memp.o(i.memp_malloc) for memp_malloc
+    raw.o(i.raw_new) refers to memseta.o(.text) for __aeabi_memclr4
+    raw.o(i.raw_new) refers to raw.o(.data) for raw_pcbs
+    raw.o(i.raw_remove) refers to memp.o(i.memp_free) for memp_free
+    raw.o(i.raw_remove) refers to raw.o(.data) for raw_pcbs
+    raw.o(i.raw_send) refers to raw.o(i.raw_sendto) for raw_sendto
+    raw.o(i.raw_sendto) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    raw.o(i.raw_sendto) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    raw.o(i.raw_sendto) refers to pbuf.o(i.pbuf_chain) for pbuf_chain
+    raw.o(i.raw_sendto) refers to printf8.o(i.__0printf$8) for __2printf
+    raw.o(i.raw_sendto) refers to ip.o(i.ip_route) for ip_route
+    raw.o(i.raw_sendto) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    raw.o(i.raw_sendto) refers to ip.o(i.ip_output_if) for ip_output_if
+    tcp.o(i.tcp_abandon) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_abandon) refers to tcp.o(i.tcp_pcb_remove) for tcp_pcb_remove
+    tcp.o(i.tcp_abandon) refers to memp.o(i.memp_free) for memp_free
+    tcp.o(i.tcp_abandon) refers to tcp.o(i.tcp_segs_free) for tcp_segs_free
+    tcp.o(i.tcp_abandon) refers to tcp_out.o(i.tcp_rst) for tcp_rst
+    tcp.o(i.tcp_abandon) refers to tcp.o(.data) for tcp_tw_pcbs
+    tcp.o(i.tcp_abort) refers to tcp.o(i.tcp_abandon) for tcp_abandon
+    tcp.o(i.tcp_alloc) refers to memp.o(i.memp_malloc) for memp_malloc
+    tcp.o(i.tcp_alloc) refers to tcp.o(i.tcp_kill_timewait) for tcp_kill_timewait
+    tcp.o(i.tcp_alloc) refers to tcp.o(i.tcp_kill_prio) for tcp_kill_prio
+    tcp.o(i.tcp_alloc) refers to memseta.o(.text) for __aeabi_memclr4
+    tcp.o(i.tcp_alloc) refers to tcp.o(i.tcp_next_iss) for tcp_next_iss
+    tcp.o(i.tcp_alloc) refers to tcp.o(.data) for tcp_ticks
+    tcp.o(i.tcp_alloc) refers to tcp.o(i.tcp_recv_null) for tcp_recv_null
+    tcp.o(i.tcp_bind) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_bind) refers to tcp.o(i.tcp_new_port) for tcp_new_port
+    tcp.o(i.tcp_bind) refers to timers.o(i.tcp_timer_needed) for tcp_timer_needed
+    tcp.o(i.tcp_bind) refers to tcp.o(.constdata) for tcp_pcb_lists
+    tcp.o(i.tcp_bind) refers to tcp.o(.data) for tcp_bound_pcbs
+    tcp.o(i.tcp_close) refers to tcp.o(i.tcp_close_shutdown) for tcp_close_shutdown
+    tcp.o(i.tcp_close_shutdown) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_close_shutdown) refers to tcp_out.o(i.tcp_rst) for tcp_rst
+    tcp.o(i.tcp_close_shutdown) refers to tcp.o(i.tcp_pcb_purge) for tcp_pcb_purge
+    tcp.o(i.tcp_close_shutdown) refers to timers.o(i.tcp_timer_needed) for tcp_timer_needed
+    tcp.o(i.tcp_close_shutdown) refers to memp.o(i.memp_free) for memp_free
+    tcp.o(i.tcp_close_shutdown) refers to tcp.o(i.tcp_pcb_remove) for tcp_pcb_remove
+    tcp.o(i.tcp_close_shutdown) refers to tcp_out.o(i.tcp_send_fin) for tcp_send_fin
+    tcp.o(i.tcp_close_shutdown) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp.o(i.tcp_close_shutdown) refers to tcp.o(.data) for tcp_active_pcbs
+    tcp.o(i.tcp_connect) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_connect) refers to ip.o(i.ip_route) for ip_route
+    tcp.o(i.tcp_connect) refers to tcp.o(i.tcp_new_port) for tcp_new_port
+    tcp.o(i.tcp_connect) refers to tcp.o(i.tcp_next_iss) for tcp_next_iss
+    tcp.o(i.tcp_connect) refers to tcp.o(i.tcp_eff_send_mss) for tcp_eff_send_mss
+    tcp.o(i.tcp_connect) refers to tcp_out.o(i.tcp_enqueue_flags) for tcp_enqueue_flags
+    tcp.o(i.tcp_connect) refers to timers.o(i.tcp_timer_needed) for tcp_timer_needed
+    tcp.o(i.tcp_connect) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp.o(i.tcp_connect) refers to tcp.o(.data) for tcp_bound_pcbs
+    tcp.o(i.tcp_debug_state_str) refers to tcp.o(.constdata) for tcp_state_str
+    tcp.o(i.tcp_eff_send_mss) refers to ip.o(i.ip_route) for ip_route
+    tcp.o(i.tcp_err) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_fasttmr) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp.o(i.tcp_fasttmr) refers to tcp.o(i.tcp_process_refused_data) for tcp_process_refused_data
+    tcp.o(i.tcp_fasttmr) refers to tcp.o(.data) for tcp_timer_ctr
+    tcp.o(i.tcp_kill_prio) refers to tcp.o(i.tcp_abort) for tcp_abort
+    tcp.o(i.tcp_kill_prio) refers to tcp.o(.data) for tcp_active_pcbs
+    tcp.o(i.tcp_kill_timewait) refers to tcp.o(i.tcp_abort) for tcp_abort
+    tcp.o(i.tcp_kill_timewait) refers to tcp.o(.data) for tcp_tw_pcbs
+    tcp.o(i.tcp_listen_with_backlog) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_listen_with_backlog) refers to memp.o(i.memp_malloc) for memp_malloc
+    tcp.o(i.tcp_listen_with_backlog) refers to memp.o(i.memp_free) for memp_free
+    tcp.o(i.tcp_listen_with_backlog) refers to timers.o(i.tcp_timer_needed) for tcp_timer_needed
+    tcp.o(i.tcp_listen_with_backlog) refers to tcp.o(.data) for tcp_bound_pcbs
+    tcp.o(i.tcp_listen_with_backlog) refers to tcp.o(i.tcp_accept_null) for tcp_accept_null
+    tcp.o(i.tcp_new) refers to tcp.o(i.tcp_alloc) for tcp_alloc
+    tcp.o(i.tcp_new_port) refers to tcp.o(.data) for tcp_port
+    tcp.o(i.tcp_new_port) refers to tcp.o(.constdata) for tcp_pcb_lists
+    tcp.o(i.tcp_next_iss) refers to tcp.o(.data) for iss
+    tcp.o(i.tcp_pcb_purge) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp.o(i.tcp_pcb_purge) refers to tcp.o(i.tcp_segs_free) for tcp_segs_free
+    tcp.o(i.tcp_pcb_remove) refers to tcp.o(i.tcp_pcb_purge) for tcp_pcb_purge
+    tcp.o(i.tcp_pcb_remove) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp.o(i.tcp_pcb_remove) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_pcb_remove) refers to tcp.o(.data) for tcp_tmp_pcb
+    tcp.o(i.tcp_poll) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_process_refused_data) refers to tcp.o(i.tcp_recv_null) for tcp_recv_null
+    tcp.o(i.tcp_recv) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_recv_null) refers to tcp.o(i.tcp_recved) for tcp_recved
+    tcp.o(i.tcp_recv_null) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp.o(i.tcp_recv_null) refers to tcp.o(i.tcp_close) for tcp_close
+    tcp.o(i.tcp_recved) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_recved) refers to tcp.o(i.tcp_update_rcv_ann_wnd) for tcp_update_rcv_ann_wnd
+    tcp.o(i.tcp_recved) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp.o(i.tcp_seg_free) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp.o(i.tcp_seg_free) refers to memp.o(i.memp_free) for memp_free
+    tcp.o(i.tcp_segs_free) refers to tcp.o(i.tcp_seg_free) for tcp_seg_free
+    tcp.o(i.tcp_sent) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_shutdown) refers to tcp.o(i.tcp_close_shutdown) for tcp_close_shutdown
+    tcp.o(i.tcp_shutdown) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp.o(i.tcp_slowtmr) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(i.tcp_slowtmr) refers to tcp_out.o(i.tcp_zero_window_probe) for tcp_zero_window_probe
+    tcp.o(i.tcp_slowtmr) refers to tcp_out.o(i.tcp_rexmit_rto) for tcp_rexmit_rto
+    tcp.o(i.tcp_slowtmr) refers to tcp_out.o(i.tcp_keepalive) for tcp_keepalive
+    tcp.o(i.tcp_slowtmr) refers to tcp.o(i.tcp_pcb_purge) for tcp_pcb_purge
+    tcp.o(i.tcp_slowtmr) refers to tcp_out.o(i.tcp_rst) for tcp_rst
+    tcp.o(i.tcp_slowtmr) refers to memp.o(i.memp_free) for memp_free
+    tcp.o(i.tcp_slowtmr) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp.o(i.tcp_slowtmr) refers to tcp.o(.data) for tcp_ticks
+    tcp.o(i.tcp_slowtmr) refers to tcp.o(.constdata) for tcp_persist_backoff
+    tcp.o(i.tcp_tmr) refers to tcp.o(i.tcp_fasttmr) for tcp_fasttmr
+    tcp.o(i.tcp_tmr) refers to tcp.o(i.tcp_slowtmr) for tcp_slowtmr
+    tcp.o(i.tcp_tmr) refers to tcp.o(.data) for tcp_timer
+    tcp.o(i.tcp_update_rcv_ann_wnd) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp.o(.constdata) refers to tcp.o(.conststring) for .conststring
+    tcp.o(.constdata) refers to tcp.o(.data) for tcp_listen_pcbs
+    tcp_in.o(i.tcp_input) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    tcp_in.o(i.tcp_input) refers to ip_addr.o(i.ip4_addr_isbroadcast) for ip4_addr_isbroadcast
+    tcp_in.o(i.tcp_input) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    tcp_in.o(i.tcp_input) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    tcp_in.o(i.tcp_input) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    tcp_in.o(i.tcp_input) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_in.o(i.tcp_input) refers to tcp_in.o(i.tcp_timewait_input) for tcp_timewait_input
+    tcp_in.o(i.tcp_input) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp_in.o(i.tcp_input) refers to tcp_in.o(i.tcp_listen_input) for tcp_listen_input
+    tcp_in.o(i.tcp_input) refers to tcp.o(i.tcp_process_refused_data) for tcp_process_refused_data
+    tcp_in.o(i.tcp_input) refers to tcp_in.o(i.tcp_process) for tcp_process
+    tcp_in.o(i.tcp_input) refers to tcp.o(i.tcp_pcb_remove) for tcp_pcb_remove
+    tcp_in.o(i.tcp_input) refers to memp.o(i.memp_free) for memp_free
+    tcp_in.o(i.tcp_input) refers to tcp.o(i.tcp_abort) for tcp_abort
+    tcp_in.o(i.tcp_input) refers to tcp_in.o(.data) for iphdr
+    tcp_in.o(i.tcp_input) refers to ip.o(.data) for current_iphdr_dest
+    tcp_in.o(i.tcp_input) refers to tcp.o(.data) for tcp_active_pcbs
+    tcp_in.o(i.tcp_input) refers to tcp_in.o(.bss) for inseg
+    tcp_in.o(i.tcp_input) refers to tcp.o(i.tcp_recv_null) for tcp_recv_null
+    tcp_in.o(i.tcp_input) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp_in.o(i.tcp_input) refers to tcp_out.o(i.tcp_rst) for tcp_rst
+    tcp_in.o(i.tcp_listen_input) refers to tcp_out.o(i.tcp_rst) for tcp_rst
+    tcp_in.o(i.tcp_listen_input) refers to tcp.o(i.tcp_alloc) for tcp_alloc
+    tcp_in.o(i.tcp_listen_input) refers to timers.o(i.tcp_timer_needed) for tcp_timer_needed
+    tcp_in.o(i.tcp_listen_input) refers to tcp_in.o(i.tcp_parseopt) for tcp_parseopt
+    tcp_in.o(i.tcp_listen_input) refers to tcp.o(i.tcp_eff_send_mss) for tcp_eff_send_mss
+    tcp_in.o(i.tcp_listen_input) refers to tcp_out.o(i.tcp_enqueue_flags) for tcp_enqueue_flags
+    tcp_in.o(i.tcp_listen_input) refers to tcp.o(i.tcp_abandon) for tcp_abandon
+    tcp_in.o(i.tcp_listen_input) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp_in.o(i.tcp_listen_input) refers to tcp_in.o(.data) for flags
+    tcp_in.o(i.tcp_listen_input) refers to ip.o(.data) for current_iphdr_src
+    tcp_in.o(i.tcp_listen_input) refers to tcp.o(.data) for tcp_active_pcbs
+    tcp_in.o(i.tcp_parseopt) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    tcp_in.o(i.tcp_parseopt) refers to tcp_in.o(.data) for tcphdr
+    tcp_in.o(i.tcp_process) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_in.o(i.tcp_process) refers to tcp_in.o(i.tcp_parseopt) for tcp_parseopt
+    tcp_in.o(i.tcp_process) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    tcp_in.o(i.tcp_process) refers to tcp.o(i.tcp_eff_send_mss) for tcp_eff_send_mss
+    tcp_in.o(i.tcp_process) refers to tcp.o(i.tcp_seg_free) for tcp_seg_free
+    tcp_in.o(i.tcp_process) refers to tcp_out.o(i.tcp_rst) for tcp_rst
+    tcp_in.o(i.tcp_process) refers to tcp.o(i.tcp_abort) for tcp_abort
+    tcp_in.o(i.tcp_process) refers to tcp_in.o(i.tcp_receive) for tcp_receive
+    tcp_in.o(i.tcp_process) refers to tcp_out.o(i.tcp_rexmit) for tcp_rexmit
+    tcp_in.o(i.tcp_process) refers to tcp.o(i.tcp_pcb_purge) for tcp_pcb_purge
+    tcp_in.o(i.tcp_process) refers to tcp_in.o(.data) for flags
+    tcp_in.o(i.tcp_process) refers to tcp.o(.data) for tcp_ticks
+    tcp_in.o(i.tcp_process) refers to ip.o(.data) for current_iphdr_src
+    tcp_in.o(i.tcp_process) refers to timers.o(i.tcp_timer_needed) for tcp_timer_needed
+    tcp_in.o(i.tcp_receive) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_in.o(i.tcp_receive) refers to tcp_out.o(i.tcp_rexmit_fast) for tcp_rexmit_fast
+    tcp_in.o(i.tcp_receive) refers to pbuf.o(i.pbuf_clen) for pbuf_clen
+    tcp_in.o(i.tcp_receive) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    tcp_in.o(i.tcp_receive) refers to tcp.o(i.tcp_seg_free) for tcp_seg_free
+    tcp_in.o(i.tcp_receive) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    tcp_in.o(i.tcp_receive) refers to tcp_in.o(.data) for flags
+    tcp_in.o(i.tcp_receive) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    tcp_in.o(i.tcp_receive) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_in.o(i.tcp_receive) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    tcp_in.o(i.tcp_receive) refers to tcp.o(i.tcp_update_rcv_ann_wnd) for tcp_update_rcv_ann_wnd
+    tcp_in.o(i.tcp_receive) refers to tcp_out.o(i.tcp_send_empty_ack) for tcp_send_empty_ack
+    tcp_in.o(i.tcp_receive) refers to tcp.o(.data) for tcp_ticks
+    tcp_in.o(i.tcp_receive) refers to tcp_in.o(.bss) for inseg
+    tcp_in.o(i.tcp_timewait_input) refers to tcp_out.o(i.tcp_rst) for tcp_rst
+    tcp_in.o(i.tcp_timewait_input) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp_in.o(i.tcp_timewait_input) refers to tcp_in.o(.data) for flags
+    tcp_in.o(i.tcp_timewait_input) refers to ip.o(.data) for current_iphdr_src
+    tcp_in.o(i.tcp_timewait_input) refers to tcp.o(.data) for tcp_ticks
+    tcp_out.o(i.tcp_create_segment) refers to memp.o(i.memp_malloc) for memp_malloc
+    tcp_out.o(i.tcp_create_segment) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp_out.o(i.tcp_create_segment) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    tcp_out.o(i.tcp_create_segment) refers to tcp.o(i.tcp_seg_free) for tcp_seg_free
+    tcp_out.o(i.tcp_create_segment) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_create_segment) refers to def.o(i.lwip_htonl) for lwip_htonl
+    tcp_out.o(i.tcp_enqueue_flags) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_out.o(i.tcp_enqueue_flags) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    tcp_out.o(i.tcp_enqueue_flags) refers to tcp_out.o(i.tcp_create_segment) for tcp_create_segment
+    tcp_out.o(i.tcp_enqueue_flags) refers to pbuf.o(i.pbuf_clen) for pbuf_clen
+    tcp_out.o(i.tcp_enqueue_flags) refers to tcp_out.o(.conststring) for .conststring
+    tcp_out.o(i.tcp_keepalive) refers to def.o(i.lwip_htonl) for lwip_htonl
+    tcp_out.o(i.tcp_keepalive) refers to tcp_out.o(i.tcp_output_alloc_header) for tcp_output_alloc_header
+    tcp_out.o(i.tcp_keepalive) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    tcp_out.o(i.tcp_keepalive) refers to ip.o(i.ip_output) for ip_output
+    tcp_out.o(i.tcp_keepalive) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp_out.o(i.tcp_output) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_out.o(i.tcp_output) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    tcp_out.o(i.tcp_output) refers to tcp_out.o(i.tcp_send_empty_ack) for tcp_send_empty_ack
+    tcp_out.o(i.tcp_output) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    tcp_out.o(i.tcp_output) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_output) refers to tcp_out.o(i.tcp_output_segment) for tcp_output_segment
+    tcp_out.o(i.tcp_output) refers to tcp.o(i.tcp_seg_free) for tcp_seg_free
+    tcp_out.o(i.tcp_output) refers to tcp_in.o(.data) for tcp_input_pcb
+    tcp_out.o(i.tcp_output_alloc_header) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    tcp_out.o(i.tcp_output_alloc_header) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_out.o(i.tcp_output_alloc_header) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_output_alloc_header) refers to def.o(i.lwip_htonl) for lwip_htonl
+    tcp_out.o(i.tcp_output_segment) refers to def.o(i.lwip_htonl) for lwip_htonl
+    tcp_out.o(i.tcp_output_segment) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_output_segment) refers to tcp.o(i.tcp_eff_send_mss) for tcp_eff_send_mss
+    tcp_out.o(i.tcp_output_segment) refers to ip.o(i.ip_route) for ip_route
+    tcp_out.o(i.tcp_output_segment) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    tcp_out.o(i.tcp_output_segment) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    tcp_out.o(i.tcp_output_segment) refers to ip.o(i.ip_output) for ip_output
+    tcp_out.o(i.tcp_output_segment) refers to tcp.o(.data) for tcp_ticks
+    tcp_out.o(i.tcp_pbuf_prealloc) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    tcp_out.o(i.tcp_pbuf_prealloc) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_out.o(i.tcp_rexmit) refers to def.o(i.lwip_ntohl) for lwip_ntohl
+    tcp_out.o(i.tcp_rexmit_fast) refers to tcp_out.o(i.tcp_rexmit) for tcp_rexmit
+    tcp_out.o(i.tcp_rexmit_rto) refers to tcp_out.o(i.tcp_output) for tcp_output
+    tcp_out.o(i.tcp_rst) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    tcp_out.o(i.tcp_rst) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_out.o(i.tcp_rst) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_rst) refers to def.o(i.lwip_htonl) for lwip_htonl
+    tcp_out.o(i.tcp_rst) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    tcp_out.o(i.tcp_rst) refers to ip.o(i.ip_output) for ip_output
+    tcp_out.o(i.tcp_rst) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp_out.o(i.tcp_send_empty_ack) refers to def.o(i.lwip_htonl) for lwip_htonl
+    tcp_out.o(i.tcp_send_empty_ack) refers to tcp_out.o(i.tcp_output_alloc_header) for tcp_output_alloc_header
+    tcp_out.o(i.tcp_send_empty_ack) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    tcp_out.o(i.tcp_send_empty_ack) refers to ip.o(i.ip_output) for ip_output
+    tcp_out.o(i.tcp_send_empty_ack) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp_out.o(i.tcp_send_fin) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    tcp_out.o(i.tcp_send_fin) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_send_fin) refers to tcp_out.o(i.tcp_enqueue_flags) for tcp_enqueue_flags
+    tcp_out.o(i.tcp_write) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_out.o(i.tcp_write) refers to tcp_out.o(i.tcp_write_checks) for tcp_write_checks
+    tcp_out.o(i.tcp_write) refers to tcp_out.o(i.tcp_pbuf_prealloc) for tcp_pbuf_prealloc
+    tcp_out.o(i.tcp_write) refers to memcpya.o(.text) for __aeabi_memcpy
+    tcp_out.o(i.tcp_write) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    tcp_out.o(i.tcp_write) refers to pbuf.o(i.pbuf_clen) for pbuf_clen
+    tcp_out.o(i.tcp_write) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    tcp_out.o(i.tcp_write) refers to pbuf.o(i.pbuf_cat) for pbuf_cat
+    tcp_out.o(i.tcp_write) refers to tcp_out.o(i.tcp_create_segment) for tcp_create_segment
+    tcp_out.o(i.tcp_write) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_write) refers to tcp.o(i.tcp_segs_free) for tcp_segs_free
+    tcp_out.o(i.tcp_write_checks) refers to printf8.o(i.__0printf$8) for __2printf
+    tcp_out.o(i.tcp_zero_window_probe) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    tcp_out.o(i.tcp_zero_window_probe) refers to tcp_out.o(i.tcp_output_alloc_header) for tcp_output_alloc_header
+    tcp_out.o(i.tcp_zero_window_probe) refers to def.o(i.lwip_htons) for lwip_htons
+    tcp_out.o(i.tcp_zero_window_probe) refers to pbuf.o(i.pbuf_copy_partial) for pbuf_copy_partial
+    tcp_out.o(i.tcp_zero_window_probe) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    tcp_out.o(i.tcp_zero_window_probe) refers to ip.o(i.ip_output) for ip_output
+    tcp_out.o(i.tcp_zero_window_probe) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    timers.o(i.arp_timer) refers to etharp.o(i.etharp_tmr) for etharp_tmr
+    timers.o(i.arp_timer) refers to timers.o(i.sys_timeout) for sys_timeout
+    timers.o(i.dhcp_timer_coarse) refers to dhcp.o(i.dhcp_coarse_tmr) for dhcp_coarse_tmr
+    timers.o(i.dhcp_timer_coarse) refers to timers.o(i.sys_timeout) for sys_timeout
+    timers.o(i.dhcp_timer_fine) refers to dhcp.o(i.dhcp_fine_tmr) for dhcp_fine_tmr
+    timers.o(i.dhcp_timer_fine) refers to timers.o(i.sys_timeout) for sys_timeout
+    timers.o(i.ip_reass_timer) refers to ip_frag.o(i.ip_reass_tmr) for ip_reass_tmr
+    timers.o(i.ip_reass_timer) refers to timers.o(i.sys_timeout) for sys_timeout
+    timers.o(i.sys_check_timeouts) refers to sys_arch.o(i.sys_now) for sys_now
+    timers.o(i.sys_check_timeouts) refers to memp.o(i.memp_free) for memp_free
+    timers.o(i.sys_check_timeouts) refers to timers.o(.data) for next_timeout
+    timers.o(i.sys_restart_timeouts) refers to sys_arch.o(i.sys_now) for sys_now
+    timers.o(i.sys_restart_timeouts) refers to timers.o(.data) for timeouts_last_time
+    timers.o(i.sys_timeout) refers to memp.o(i.memp_malloc) for memp_malloc
+    timers.o(i.sys_timeout) refers to printf8.o(i.__0printf$8) for __2printf
+    timers.o(i.sys_timeout) refers to timers.o(.data) for next_timeout
+    timers.o(i.sys_timeouts_init) refers to timers.o(i.sys_timeout) for sys_timeout
+    timers.o(i.sys_timeouts_init) refers to sys_arch.o(i.sys_now) for sys_now
+    timers.o(i.sys_timeouts_init) refers to timers.o(i.ip_reass_timer) for ip_reass_timer
+    timers.o(i.sys_timeouts_init) refers to timers.o(i.arp_timer) for arp_timer
+    timers.o(i.sys_timeouts_init) refers to timers.o(i.dhcp_timer_coarse) for dhcp_timer_coarse
+    timers.o(i.sys_timeouts_init) refers to timers.o(i.dhcp_timer_fine) for dhcp_timer_fine
+    timers.o(i.sys_timeouts_init) refers to timers.o(.data) for timeouts_last_time
+    timers.o(i.sys_untimeout) refers to memp.o(i.memp_free) for memp_free
+    timers.o(i.sys_untimeout) refers to timers.o(.data) for next_timeout
+    timers.o(i.tcp_timer_needed) refers to timers.o(i.sys_timeout) for sys_timeout
+    timers.o(i.tcp_timer_needed) refers to timers.o(.data) for tcpip_tcp_timer_active
+    timers.o(i.tcp_timer_needed) refers to tcp.o(.data) for tcp_active_pcbs
+    timers.o(i.tcp_timer_needed) refers to timers.o(i.tcpip_tcp_timer) for tcpip_tcp_timer
+    timers.o(i.tcpip_tcp_timer) refers to tcp.o(i.tcp_tmr) for tcp_tmr
+    timers.o(i.tcpip_tcp_timer) refers to timers.o(i.sys_timeout) for sys_timeout
+    timers.o(i.tcpip_tcp_timer) refers to tcp.o(.data) for tcp_active_pcbs
+    timers.o(i.tcpip_tcp_timer) refers to timers.o(.data) for tcpip_tcp_timer_active
+    udp.o(i.udp_bind) refers to printf8.o(i.__0printf$8) for __2printf
+    udp.o(i.udp_bind) refers to udp.o(i.udp_new_port) for udp_new_port
+    udp.o(i.udp_bind) refers to udp.o(.data) for udp_pcbs
+    udp.o(i.udp_connect) refers to udp.o(i.udp_bind) for udp_bind
+    udp.o(i.udp_connect) refers to udp.o(.data) for udp_pcbs
+    udp.o(i.udp_input) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    udp.o(i.udp_input) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    udp.o(i.udp_input) refers to ip_addr.o(i.ip4_addr_isbroadcast) for ip4_addr_isbroadcast
+    udp.o(i.udp_input) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    udp.o(i.udp_input) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    udp.o(i.udp_input) refers to printf8.o(i.__0printf$8) for __2printf
+    udp.o(i.udp_input) refers to icmp.o(i.icmp_dest_unreach) for icmp_dest_unreach
+    udp.o(i.udp_input) refers to ip.o(.data) for current_iphdr_dest
+    udp.o(i.udp_input) refers to udp.o(.data) for udp_pcbs
+    udp.o(i.udp_new) refers to memp.o(i.memp_malloc) for memp_malloc
+    udp.o(i.udp_new) refers to memseta.o(.text) for __aeabi_memclr4
+    udp.o(i.udp_new_port) refers to udp.o(.data) for udp_port
+    udp.o(i.udp_remove) refers to memp.o(i.memp_free) for memp_free
+    udp.o(i.udp_remove) refers to udp.o(.data) for udp_pcbs
+    udp.o(i.udp_send) refers to udp.o(i.udp_sendto) for udp_sendto
+    udp.o(i.udp_sendto) refers to ip.o(i.ip_route) for ip_route
+    udp.o(i.udp_sendto) refers to udp.o(i.udp_sendto_if) for udp_sendto_if
+    udp.o(i.udp_sendto_if) refers to udp.o(i.udp_bind) for udp_bind
+    udp.o(i.udp_sendto_if) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    udp.o(i.udp_sendto_if) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    udp.o(i.udp_sendto_if) refers to pbuf.o(i.pbuf_chain) for pbuf_chain
+    udp.o(i.udp_sendto_if) refers to printf8.o(i.__0printf$8) for __2printf
+    udp.o(i.udp_sendto_if) refers to def.o(i.lwip_htons) for lwip_htons
+    udp.o(i.udp_sendto_if) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    udp.o(i.udp_sendto_if) refers to inet_chksum.o(i.inet_chksum_pseudo) for inet_chksum_pseudo
+    udp.o(i.udp_sendto_if) refers to ip.o(i.ip_output_if) for ip_output_if
+    icmp.o(i.icmp_dest_unreach) refers to icmp.o(i.icmp_send_response) for icmp_send_response
+    icmp.o(i.icmp_input) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    icmp.o(i.icmp_input) refers to printf8.o(i.__0printf$8) for __2printf
+    icmp.o(i.icmp_input) refers to ip_addr.o(i.ip4_addr_isbroadcast) for ip4_addr_isbroadcast
+    icmp.o(i.icmp_input) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    icmp.o(i.icmp_input) refers to inet_chksum.o(i.inet_chksum_pbuf) for inet_chksum_pbuf
+    icmp.o(i.icmp_input) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    icmp.o(i.icmp_input) refers to pbuf.o(i.pbuf_copy) for pbuf_copy
+    icmp.o(i.icmp_input) refers to inet_chksum.o(i.inet_chksum) for inet_chksum
+    icmp.o(i.icmp_input) refers to ip.o(i.ip_output_if) for ip_output_if
+    icmp.o(i.icmp_input) refers to ip.o(.data) for current_iphdr_dest
+    icmp.o(i.icmp_send_response) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    icmp.o(i.icmp_send_response) refers to printf8.o(i.__0printf$8) for __2printf
+    icmp.o(i.icmp_send_response) refers to memcpya.o(.text) for __aeabi_memcpy
+    icmp.o(i.icmp_send_response) refers to inet_chksum.o(i.inet_chksum) for inet_chksum
+    icmp.o(i.icmp_send_response) refers to ip.o(i.ip_output) for ip_output
+    icmp.o(i.icmp_send_response) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    icmp.o(i.icmp_time_exceeded) refers to icmp.o(i.icmp_send_response) for icmp_send_response
+    inet_chksum.o(i.inet_chksum) refers to inet_chksum.o(i.lwip_standard_chksum) for lwip_standard_chksum
+    inet_chksum.o(i.inet_chksum_pbuf) refers to inet_chksum.o(i.lwip_standard_chksum) for lwip_standard_chksum
+    inet_chksum.o(i.inet_chksum_pseudo) refers to inet_chksum.o(i.lwip_standard_chksum) for lwip_standard_chksum
+    inet_chksum.o(i.inet_chksum_pseudo) refers to def.o(i.lwip_htons) for lwip_htons
+    inet_chksum.o(i.inet_chksum_pseudo_partial) refers to inet_chksum.o(i.lwip_standard_chksum) for lwip_standard_chksum
+    inet_chksum.o(i.inet_chksum_pseudo_partial) refers to printf8.o(i.__0printf$8) for __2printf
+    inet_chksum.o(i.inet_chksum_pseudo_partial) refers to def.o(i.lwip_htons) for lwip_htons
+    ip.o(i.ip_input) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    ip.o(i.ip_input) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    ip.o(i.ip_input) refers to inet_chksum.o(i.inet_chksum) for inet_chksum
+    ip.o(i.ip_input) refers to pbuf.o(i.pbuf_realloc) for pbuf_realloc
+    ip.o(i.ip_input) refers to ip_addr.o(i.ip4_addr_isbroadcast) for ip4_addr_isbroadcast
+    ip.o(i.ip_input) refers to ip_frag.o(i.ip_reass) for ip_reass
+    ip.o(i.ip_input) refers to raw.o(i.raw_input) for raw_input
+    ip.o(i.ip_input) refers to udp.o(i.udp_input) for udp_input
+    ip.o(i.ip_input) refers to tcp_in.o(i.tcp_input) for tcp_input
+    ip.o(i.ip_input) refers to icmp.o(i.icmp_input) for icmp_input
+    ip.o(i.ip_input) refers to icmp.o(i.icmp_dest_unreach) for icmp_dest_unreach
+    ip.o(i.ip_input) refers to ip.o(.data) for current_iphdr_dest
+    ip.o(i.ip_input) refers to netif.o(.data) for netif_list
+    ip.o(i.ip_output) refers to printf8.o(i.__0printf$8) for __2printf
+    ip.o(i.ip_output) refers to ip.o(i.ip_route) for ip_route
+    ip.o(i.ip_output) refers to ip.o(i.ip_output_if) for ip_output_if
+    ip.o(i.ip_output_if) refers to printf8.o(i.__0printf$8) for __2printf
+    ip.o(i.ip_output_if) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    ip.o(i.ip_output_if) refers to def.o(i.lwip_htons) for lwip_htons
+    ip.o(i.ip_output_if) refers to ip_frag.o(i.ip_frag) for ip_frag
+    ip.o(i.ip_output_if) refers to ip.o(.data) for ip_id
+    ip.o(i.ip_route) refers to netif.o(.data) for netif_list
+    ip_addr.o(i.ip4_addr_netmask_valid) refers to def.o(i.lwip_htonl) for lwip_htonl
+    ip_addr.o(i.ipaddr_addr) refers to ip_addr.o(i.ipaddr_aton) for ipaddr_aton
+    ip_addr.o(i.ipaddr_aton) refers to printf8.o(i.__0printf$8) for __2printf
+    ip_addr.o(i.ipaddr_aton) refers to def.o(i.lwip_htonl) for lwip_htonl
+    ip_addr.o(i.ipaddr_ntoa) refers to ip_addr.o(i.ipaddr_ntoa_r) for ipaddr_ntoa_r
+    ip_addr.o(i.ipaddr_ntoa) refers to ip_addr.o(.bss) for str
+    ip_frag.o(i.ip_frag) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    ip_frag.o(i.ip_frag) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    ip_frag.o(i.ip_frag) refers to printf8.o(i.__0printf$8) for __2printf
+    ip_frag.o(i.ip_frag) refers to memcpya.o(.text) for __aeabi_memcpy
+    ip_frag.o(i.ip_frag) refers to ip_frag.o(i.ip_frag_alloc_pbuf_custom_ref) for ip_frag_alloc_pbuf_custom_ref
+    ip_frag.o(i.ip_frag) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    ip_frag.o(i.ip_frag) refers to pbuf.o(i.pbuf_alloced_custom) for pbuf_alloced_custom
+    ip_frag.o(i.ip_frag) refers to ip_frag.o(i.ip_frag_free_pbuf_custom_ref) for ip_frag_free_pbuf_custom_ref
+    ip_frag.o(i.ip_frag) refers to pbuf.o(i.pbuf_ref) for pbuf_ref
+    ip_frag.o(i.ip_frag) refers to pbuf.o(i.pbuf_cat) for pbuf_cat
+    ip_frag.o(i.ip_frag) refers to def.o(i.lwip_htons) for lwip_htons
+    ip_frag.o(i.ip_frag) refers to inet_chksum.o(i.inet_chksum) for inet_chksum
+    ip_frag.o(i.ip_frag) refers to ip_frag.o(i.ipfrag_free_pbuf_custom) for ipfrag_free_pbuf_custom
+    ip_frag.o(i.ip_frag_alloc_pbuf_custom_ref) refers to memp.o(i.memp_malloc) for memp_malloc
+    ip_frag.o(i.ip_frag_free_pbuf_custom_ref) refers to printf8.o(i.__0printf$8) for __2printf
+    ip_frag.o(i.ip_frag_free_pbuf_custom_ref) refers to memp.o(i.memp_free) for memp_free
+    ip_frag.o(i.ip_reass) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    ip_frag.o(i.ip_reass) refers to pbuf.o(i.pbuf_clen) for pbuf_clen
+    ip_frag.o(i.ip_reass) refers to ip_frag.o(i.ip_reass_remove_oldest_datagram) for ip_reass_remove_oldest_datagram
+    ip_frag.o(i.ip_reass) refers to ip_frag.o(i.ip_reass_enqueue_new_datagram) for ip_reass_enqueue_new_datagram
+    ip_frag.o(i.ip_reass) refers to memcpya.o(.text) for __aeabi_memcpy
+    ip_frag.o(i.ip_reass) refers to ip_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate) for ip_reass_chain_frag_into_datagram_and_validate
+    ip_frag.o(i.ip_reass) refers to def.o(i.lwip_htons) for lwip_htons
+    ip_frag.o(i.ip_reass) refers to inet_chksum.o(i.inet_chksum) for inet_chksum
+    ip_frag.o(i.ip_reass) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    ip_frag.o(i.ip_reass) refers to pbuf.o(i.pbuf_cat) for pbuf_cat
+    ip_frag.o(i.ip_reass) refers to ip_frag.o(i.ip_reass_dequeue_datagram) for ip_reass_dequeue_datagram
+    ip_frag.o(i.ip_reass) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    ip_frag.o(i.ip_reass) refers to ip_frag.o(.data) for ip_reass_pbufcount
+    ip_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate) refers to def.o(i.lwip_ntohs) for lwip_ntohs
+    ip_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate) refers to printf8.o(i.__0printf$8) for __2printf
+    ip_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate) refers to pbuf.o(i.pbuf_clen) for pbuf_clen
+    ip_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    ip_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate) refers to ip_frag.o(.data) for ip_reass_pbufcount
+    ip_frag.o(i.ip_reass_dequeue_datagram) refers to printf8.o(i.__0printf$8) for __2printf
+    ip_frag.o(i.ip_reass_dequeue_datagram) refers to memp.o(i.memp_free) for memp_free
+    ip_frag.o(i.ip_reass_dequeue_datagram) refers to ip_frag.o(.data) for reassdatagrams
+    ip_frag.o(i.ip_reass_enqueue_new_datagram) refers to memp.o(i.memp_malloc) for memp_malloc
+    ip_frag.o(i.ip_reass_enqueue_new_datagram) refers to ip_frag.o(i.ip_reass_remove_oldest_datagram) for ip_reass_remove_oldest_datagram
+    ip_frag.o(i.ip_reass_enqueue_new_datagram) refers to memseta.o(.text) for __aeabi_memclr4
+    ip_frag.o(i.ip_reass_enqueue_new_datagram) refers to memcpya.o(.text) for __aeabi_memcpy
+    ip_frag.o(i.ip_reass_enqueue_new_datagram) refers to ip_frag.o(.data) for reassdatagrams
+    ip_frag.o(i.ip_reass_free_complete_datagram) refers to printf8.o(i.__0printf$8) for __2printf
+    ip_frag.o(i.ip_reass_free_complete_datagram) refers to memcpya.o(.text) for __aeabi_memcpy
+    ip_frag.o(i.ip_reass_free_complete_datagram) refers to icmp.o(i.icmp_time_exceeded) for icmp_time_exceeded
+    ip_frag.o(i.ip_reass_free_complete_datagram) refers to pbuf.o(i.pbuf_clen) for pbuf_clen
+    ip_frag.o(i.ip_reass_free_complete_datagram) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    ip_frag.o(i.ip_reass_free_complete_datagram) refers to ip_frag.o(i.ip_reass_dequeue_datagram) for ip_reass_dequeue_datagram
+    ip_frag.o(i.ip_reass_free_complete_datagram) refers to ip_frag.o(.data) for ip_reass_pbufcount
+    ip_frag.o(i.ip_reass_remove_oldest_datagram) refers to ip_frag.o(i.ip_reass_free_complete_datagram) for ip_reass_free_complete_datagram
+    ip_frag.o(i.ip_reass_remove_oldest_datagram) refers to ip_frag.o(.data) for reassdatagrams
+    ip_frag.o(i.ip_reass_tmr) refers to ip_frag.o(i.ip_reass_free_complete_datagram) for ip_reass_free_complete_datagram
+    ip_frag.o(i.ip_reass_tmr) refers to ip_frag.o(.data) for reassdatagrams
+    ip_frag.o(i.ipfrag_free_pbuf_custom) refers to printf8.o(i.__0printf$8) for __2printf
+    ip_frag.o(i.ipfrag_free_pbuf_custom) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    ip_frag.o(i.ipfrag_free_pbuf_custom) refers to ip_frag.o(i.ip_frag_free_pbuf_custom_ref) for ip_frag_free_pbuf_custom_ref
+    etharp.o(i.etharp_arp_input) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_arp_input) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    etharp.o(i.etharp_arp_input) refers to etharp.o(i.etharp_update_arp_entry) for etharp_update_arp_entry
+    etharp.o(i.etharp_arp_input) refers to def.o(i.lwip_htons) for lwip_htons
+    etharp.o(i.etharp_arp_input) refers to dhcp.o(i.dhcp_arp_reply) for dhcp_arp_reply
+    etharp.o(i.etharp_arp_input) refers to etharp.o(.conststring) for .conststring
+    etharp.o(i.etharp_cleanup_netif) refers to etharp.o(i.etharp_free_entry) for etharp_free_entry
+    etharp.o(i.etharp_cleanup_netif) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_find_addr) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_find_addr) refers to etharp.o(i.etharp_find_entry) for etharp_find_entry
+    etharp.o(i.etharp_find_addr) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_find_entry) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_find_entry) refers to etharp.o(i.etharp_free_entry) for etharp_free_entry
+    etharp.o(i.etharp_find_entry) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_free_entry) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    etharp.o(i.etharp_free_entry) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_free_entry) refers to etharp.o(.constdata) for ethzero
+    etharp.o(i.etharp_output) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_output) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    etharp.o(i.etharp_output) refers to ip_addr.o(i.ip4_addr_isbroadcast) for ip4_addr_isbroadcast
+    etharp.o(i.etharp_output) refers to etharp.o(i.etharp_output_to_arp_index) for etharp_output_to_arp_index
+    etharp.o(i.etharp_output) refers to etharp.o(i.etharp_query) for etharp_query
+    etharp.o(i.etharp_output) refers to etharp.o(i.etharp_send_ip) for etharp_send_ip
+    etharp.o(i.etharp_output) refers to etharp.o(.constdata) for ethbroadcast
+    etharp.o(i.etharp_output) refers to etharp.o(.data) for etharp_cached_entry
+    etharp.o(i.etharp_output) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_output_to_arp_index) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_output_to_arp_index) refers to etharp.o(i.etharp_request) for etharp_request
+    etharp.o(i.etharp_output_to_arp_index) refers to etharp.o(i.etharp_send_ip) for etharp_send_ip
+    etharp.o(i.etharp_output_to_arp_index) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_query) refers to ip_addr.o(i.ip4_addr_isbroadcast) for ip4_addr_isbroadcast
+    etharp.o(i.etharp_query) refers to etharp.o(i.etharp_find_entry) for etharp_find_entry
+    etharp.o(i.etharp_query) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_query) refers to etharp.o(i.etharp_request) for etharp_request
+    etharp.o(i.etharp_query) refers to etharp.o(i.etharp_send_ip) for etharp_send_ip
+    etharp.o(i.etharp_query) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    etharp.o(i.etharp_query) refers to pbuf.o(i.pbuf_copy) for pbuf_copy
+    etharp.o(i.etharp_query) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    etharp.o(i.etharp_query) refers to pbuf.o(i.pbuf_ref) for pbuf_ref
+    etharp.o(i.etharp_query) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_query) refers to etharp.o(.data) for etharp_cached_entry
+    etharp.o(i.etharp_raw) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_raw) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    etharp.o(i.etharp_raw) refers to def.o(i.lwip_htons) for lwip_htons
+    etharp.o(i.etharp_raw) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    etharp.o(i.etharp_raw) refers to etharp.o(.conststring) for .conststring
+    etharp.o(i.etharp_request) refers to etharp.o(i.etharp_raw) for etharp_raw
+    etharp.o(i.etharp_request) refers to etharp.o(.constdata) for ethzero
+    etharp.o(i.etharp_send_ip) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_send_ip) refers to etharp.o(.conststring) for .conststring
+    etharp.o(i.etharp_tmr) refers to etharp.o(i.etharp_free_entry) for etharp_free_entry
+    etharp.o(i.etharp_tmr) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.etharp_update_arp_entry) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.etharp_update_arp_entry) refers to ip_addr.o(i.ip4_addr_isbroadcast) for ip4_addr_isbroadcast
+    etharp.o(i.etharp_update_arp_entry) refers to etharp.o(i.etharp_find_entry) for etharp_find_entry
+    etharp.o(i.etharp_update_arp_entry) refers to etharp.o(i.etharp_send_ip) for etharp_send_ip
+    etharp.o(i.etharp_update_arp_entry) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    etharp.o(i.etharp_update_arp_entry) refers to etharp.o(.bss) for arp_table
+    etharp.o(i.ethernet_input) refers to memcmp.o(.text) for memcmp
+    etharp.o(i.ethernet_input) refers to pbuf.o(i.pbuf_header) for pbuf_header
+    etharp.o(i.ethernet_input) refers to printf8.o(i.__0printf$8) for __2printf
+    etharp.o(i.ethernet_input) refers to ip.o(i.ip_input) for ip_input
+    etharp.o(i.ethernet_input) refers to etharp.o(i.etharp_arp_input) for etharp_arp_input
+    etharp.o(i.ethernet_input) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    etharp.o(i.ethernet_input) refers to etharp.o(.constdata) for ethbroadcast
+    ethernetif.o(i.ethernetif_init) refers to printf8.o(i.__0printf$8) for __2printf
+    ethernetif.o(i.ethernetif_init) refers to mem.o(i.mem_malloc) for mem_malloc
+    ethernetif.o(i.ethernetif_init) refers to ethernetif.o(i.low_level_init) for low_level_init
+    ethernetif.o(i.ethernetif_init) refers to etharp.o(i.etharp_output) for etharp_output
+    ethernetif.o(i.ethernetif_init) refers to ethernetif.o(i.low_level_output) for low_level_output
+    ethernetif.o(i.ethernetif_input) refers to ethernetif.o(i.low_level_input) for low_level_input
+    ethernetif.o(i.ethernetif_input) refers to def.o(i.lwip_htons) for lwip_htons
+    ethernetif.o(i.ethernetif_input) refers to pbuf.o(i.pbuf_free) for pbuf_free
+    ethernetif.o(i.low_level_init) refers to ethernetif.o(.bss) for lwipdev
+    ethernetif.o(i.low_level_input) refers to bsp_malloc.o(i.mymalloc) for mymalloc
+    ethernetif.o(i.low_level_input) refers to enc28j60.o(i.ENC28J60_Packet_Receive) for ENC28J60_Packet_Receive
+    ethernetif.o(i.low_level_input) refers to printf8.o(i.__0printf$8) for __2printf
+    ethernetif.o(i.low_level_input) refers to pbuf.o(i.pbuf_alloc) for pbuf_alloc
+    ethernetif.o(i.low_level_input) refers to bsp_malloc.o(i.mymemcpy) for mymemcpy
+    ethernetif.o(i.low_level_input) refers to bsp_malloc.o(i.myfree) for myfree
+    ethernetif.o(i.low_level_output) refers to bsp_malloc.o(i.mymalloc) for mymalloc
+    ethernetif.o(i.low_level_output) refers to printf8.o(i.__0printf$8) for __2printf
+    ethernetif.o(i.low_level_output) refers to bsp_malloc.o(i.mymemcpy) for mymemcpy
+    ethernetif.o(i.low_level_output) refers to enc28j60.o(i.ENC28J60_Packet_Send) for ENC28J60_Packet_Send
+    ethernetif.o(i.low_level_output) refers to bsp_malloc.o(i.myfree) for myfree
+    sys_arch.o(i.sys_now) refers to bsp_systick.o(.data) for lwip_localtime
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    printfb.o(i.__0fprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0fprintf$bare) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfb.o(i.__0printf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0printf$bare) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfb.o(i.__0printf$bare) refers to stdout.o(.data) for __stdout
+    printfb.o(i.__0snprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0snprintf$bare) refers to printfb.o(i._snputc) for _snputc
+    printfb.o(i.__0sprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0sprintf$bare) refers to printfb.o(i._sputc) for _sputc
+    printfb.o(i.__0vfprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vfprintf$bare) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfb.o(i.__0vprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vprintf$bare) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfb.o(i.__0vprintf$bare) refers to stdout.o(.data) for __stdout
+    printfb.o(i.__0vsnprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vsnprintf$bare) refers to printfb.o(i._snputc) for _snputc
+    printfb.o(i.__0vsprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
+    printfb.o(i.__0vsprintf$bare) refers to printfb.o(i._sputc) for _sputc
+    printf0.o(i.__0fprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0fprintf$0) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf0.o(i.__0printf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0printf$0) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf0.o(i.__0printf$0) refers to stdout.o(.data) for __stdout
+    printf0.o(i.__0snprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0snprintf$0) refers to printf0.o(i._snputc) for _snputc
+    printf0.o(i.__0sprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0sprintf$0) refers to printf0.o(i._sputc) for _sputc
+    printf0.o(i.__0vfprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vfprintf$0) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf0.o(i.__0vprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vprintf$0) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf0.o(i.__0vprintf$0) refers to stdout.o(.data) for __stdout
+    printf0.o(i.__0vsnprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vsnprintf$0) refers to printf0.o(i._snputc) for _snputc
+    printf0.o(i.__0vsprintf$0) refers to printf0.o(i._printf_core) for _printf_core
+    printf0.o(i.__0vsprintf$0) refers to printf0.o(i._sputc) for _sputc
+    printf1.o(i.__0fprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0fprintf$1) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf1.o(i.__0printf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0printf$1) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf1.o(i.__0printf$1) refers to stdout.o(.data) for __stdout
+    printf1.o(i.__0snprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0snprintf$1) refers to printf1.o(i._snputc) for _snputc
+    printf1.o(i.__0sprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0sprintf$1) refers to printf1.o(i._sputc) for _sputc
+    printf1.o(i.__0vfprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vfprintf$1) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf1.o(i.__0vprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vprintf$1) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf1.o(i.__0vprintf$1) refers to stdout.o(.data) for __stdout
+    printf1.o(i.__0vsnprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vsnprintf$1) refers to printf1.o(i._snputc) for _snputc
+    printf1.o(i.__0vsprintf$1) refers to printf1.o(i._printf_core) for _printf_core
+    printf1.o(i.__0vsprintf$1) refers to printf1.o(i._sputc) for _sputc
+    printf1.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printf2.o(i.__0fprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0fprintf$2) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf2.o(i.__0printf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0printf$2) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf2.o(i.__0printf$2) refers to stdout.o(.data) for __stdout
+    printf2.o(i.__0snprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0snprintf$2) refers to printf2.o(i._snputc) for _snputc
+    printf2.o(i.__0sprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0sprintf$2) refers to printf2.o(i._sputc) for _sputc
+    printf2.o(i.__0vfprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vfprintf$2) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf2.o(i.__0vprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vprintf$2) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf2.o(i.__0vprintf$2) refers to stdout.o(.data) for __stdout
+    printf2.o(i.__0vsnprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vsnprintf$2) refers to printf2.o(i._snputc) for _snputc
+    printf2.o(i.__0vsprintf$2) refers to printf2.o(i._printf_core) for _printf_core
+    printf2.o(i.__0vsprintf$2) refers to printf2.o(i._sputc) for _sputc
+    printf3.o(i.__0fprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0fprintf$3) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf3.o(i.__0printf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0printf$3) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf3.o(i.__0printf$3) refers to stdout.o(.data) for __stdout
+    printf3.o(i.__0snprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0snprintf$3) refers to printf3.o(i._snputc) for _snputc
+    printf3.o(i.__0sprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0sprintf$3) refers to printf3.o(i._sputc) for _sputc
+    printf3.o(i.__0vfprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vfprintf$3) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf3.o(i.__0vprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vprintf$3) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf3.o(i.__0vprintf$3) refers to stdout.o(.data) for __stdout
+    printf3.o(i.__0vsnprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vsnprintf$3) refers to printf3.o(i._snputc) for _snputc
+    printf3.o(i.__0vsprintf$3) refers to printf3.o(i._printf_core) for _printf_core
+    printf3.o(i.__0vsprintf$3) refers to printf3.o(i._sputc) for _sputc
+    printf3.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printf4.o(i.__0fprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0fprintf$4) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf4.o(i.__0printf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0printf$4) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf4.o(i.__0printf$4) refers to stdout.o(.data) for __stdout
+    printf4.o(i.__0snprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0snprintf$4) refers to printf4.o(i._snputc) for _snputc
+    printf4.o(i.__0sprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0sprintf$4) refers to printf4.o(i._sputc) for _sputc
+    printf4.o(i.__0vfprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vfprintf$4) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf4.o(i.__0vprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vprintf$4) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf4.o(i.__0vprintf$4) refers to stdout.o(.data) for __stdout
+    printf4.o(i.__0vsnprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vsnprintf$4) refers to printf4.o(i._snputc) for _snputc
+    printf4.o(i.__0vsprintf$4) refers to printf4.o(i._printf_core) for _printf_core
+    printf4.o(i.__0vsprintf$4) refers to printf4.o(i._sputc) for _sputc
+    printf4.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printf5.o(i.__0fprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0fprintf$5) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf5.o(i.__0printf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0printf$5) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf5.o(i.__0printf$5) refers to stdout.o(.data) for __stdout
+    printf5.o(i.__0snprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0snprintf$5) refers to printf5.o(i._snputc) for _snputc
+    printf5.o(i.__0sprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0sprintf$5) refers to printf5.o(i._sputc) for _sputc
+    printf5.o(i.__0vfprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vfprintf$5) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf5.o(i.__0vprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vprintf$5) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf5.o(i.__0vprintf$5) refers to stdout.o(.data) for __stdout
+    printf5.o(i.__0vsnprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vsnprintf$5) refers to printf5.o(i._snputc) for _snputc
+    printf5.o(i.__0vsprintf$5) refers to printf5.o(i._printf_core) for _printf_core
+    printf5.o(i.__0vsprintf$5) refers to printf5.o(i._sputc) for _sputc
+    printf5.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printf6.o(i.__0fprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0fprintf$6) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf6.o(i.__0printf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0printf$6) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf6.o(i.__0printf$6) refers to stdout.o(.data) for __stdout
+    printf6.o(i.__0snprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0snprintf$6) refers to printf6.o(i._snputc) for _snputc
+    printf6.o(i.__0sprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0sprintf$6) refers to printf6.o(i._sputc) for _sputc
+    printf6.o(i.__0vfprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vfprintf$6) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf6.o(i.__0vprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vprintf$6) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf6.o(i.__0vprintf$6) refers to stdout.o(.data) for __stdout
+    printf6.o(i.__0vsnprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vsnprintf$6) refers to printf6.o(i._snputc) for _snputc
+    printf6.o(i.__0vsprintf$6) refers to printf6.o(i._printf_core) for _printf_core
+    printf6.o(i.__0vsprintf$6) refers to printf6.o(i._sputc) for _sputc
+    printf6.o(i._printf_core) refers to printf6.o(i._printf_pre_padding) for _printf_pre_padding
+    printf6.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printf6.o(i._printf_core) refers to printf6.o(i._printf_post_padding) for _printf_post_padding
+    printf7.o(i.__0fprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0fprintf$7) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf7.o(i.__0printf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0printf$7) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf7.o(i.__0printf$7) refers to stdout.o(.data) for __stdout
+    printf7.o(i.__0snprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0snprintf$7) refers to printf7.o(i._snputc) for _snputc
+    printf7.o(i.__0sprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0sprintf$7) refers to printf7.o(i._sputc) for _sputc
+    printf7.o(i.__0vfprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vfprintf$7) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf7.o(i.__0vprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vprintf$7) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf7.o(i.__0vprintf$7) refers to stdout.o(.data) for __stdout
+    printf7.o(i.__0vsnprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vsnprintf$7) refers to printf7.o(i._snputc) for _snputc
+    printf7.o(i.__0vsprintf$7) refers to printf7.o(i._printf_core) for _printf_core
+    printf7.o(i.__0vsprintf$7) refers to printf7.o(i._sputc) for _sputc
+    printf7.o(i._printf_core) refers to printf7.o(i._printf_pre_padding) for _printf_pre_padding
+    printf7.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printf7.o(i._printf_core) refers to printf7.o(i._printf_post_padding) for _printf_post_padding
+    printf8.o(i.__0fprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0fprintf$8) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf8.o(i.__0printf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0printf$8) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf8.o(i.__0printf$8) refers to stdout.o(.data) for __stdout
+    printf8.o(i.__0snprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0snprintf$8) refers to printf8.o(i._snputc) for _snputc
+    printf8.o(i.__0sprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0sprintf$8) refers to printf8.o(i._sputc) for _sputc
+    printf8.o(i.__0vfprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vfprintf$8) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf8.o(i.__0vprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vprintf$8) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printf8.o(i.__0vprintf$8) refers to stdout.o(.data) for __stdout
+    printf8.o(i.__0vsnprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vsnprintf$8) refers to printf8.o(i._snputc) for _snputc
+    printf8.o(i.__0vsprintf$8) refers to printf8.o(i._printf_core) for _printf_core
+    printf8.o(i.__0vsprintf$8) refers to printf8.o(i._sputc) for _sputc
+    printf8.o(i._printf_core) refers to printf8.o(i._printf_pre_padding) for _printf_pre_padding
+    printf8.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printf8.o(i._printf_core) refers to printf8.o(i._printf_post_padding) for _printf_post_padding
+    printfa.o(i.__0fprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0fprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0fprintf) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfa.o(i.__0printf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0printf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0printf) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfa.o(i.__0printf) refers to stdout.o(.data) for __stdout
+    printfa.o(i.__0snprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0snprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0snprintf) refers to printfa.o(i._snputc) for _snputc
+    printfa.o(i.__0sprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0sprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0sprintf) refers to printfa.o(i._sputc) for _sputc
+    printfa.o(i.__0vfprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vfprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vfprintf) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfa.o(i.__0vprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vprintf) refers to bsp_debug_usart.o(i.fputc) for fputc
+    printfa.o(i.__0vprintf) refers to stdout.o(.data) for __stdout
+    printfa.o(i.__0vsnprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vsnprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vsnprintf) refers to printfa.o(i._snputc) for _snputc
+    printfa.o(i.__0vsprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i.__0vsprintf) refers to printfa.o(i._printf_core) for _printf_core
+    printfa.o(i.__0vsprintf) refers to printfa.o(i._sputc) for _sputc
+    printfa.o(i._fp_digits) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._fp_digits) refers to dmul.o(.text) for __aeabi_dmul
+    printfa.o(i._fp_digits) refers to ddiv.o(.text) for __aeabi_ddiv
+    printfa.o(i._fp_digits) refers to cdrcmple.o(.text) for __aeabi_cdrcmple
+    printfa.o(i._fp_digits) refers to dadd.o(.text) for __aeabi_dadd
+    printfa.o(i._fp_digits) refers to dfixul.o(.text) for __aeabi_d2ulz
+    printfa.o(i._fp_digits) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printfa.o(i._printf_core) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._printf_core) refers to printfa.o(i._printf_pre_padding) for _printf_pre_padding
+    printfa.o(i._printf_core) refers to uldiv.o(.text) for __aeabi_uldivmod
+    printfa.o(i._printf_core) refers to printfa.o(i._printf_post_padding) for _printf_post_padding
+    printfa.o(i._printf_core) refers to printfa.o(i._fp_digits) for _fp_digits
+    printfa.o(i._printf_core) refers to uidiv.o(.text) for __aeabi_uidivmod
+    printfa.o(i._printf_post_padding) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._printf_pre_padding) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._snputc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    printfa.o(i._sputc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup_stm32f10x_hd.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup_stm32f10x_hd.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(i.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(i.main) for main
+    uldiv.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    uldiv.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
+    dadd.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dmul.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    ddiv.o(.text) refers to depilogue.o(.text) for _double_round
+    dfixul.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    dfixul.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+    depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing startup_stm32f10x_hd.o(HEAP), (512 bytes).
+    Removing core_cm3.o(.emb_text), (32 bytes).
+    Removing system_stm32f10x.o(i.SystemCoreClockUpdate), (164 bytes).
+    Removing misc.o(i.NVIC_Init), (112 bytes).
+    Removing misc.o(i.NVIC_SetVectorTable), (20 bytes).
+    Removing misc.o(i.NVIC_SystemLPConfig), (32 bytes).
+    Removing misc.o(i.SysTick_CLKSourceConfig), (40 bytes).
+    Removing stm32f10x_adc.o(i.ADC_AnalogWatchdogCmd), (20 bytes).
+    Removing stm32f10x_adc.o(i.ADC_AnalogWatchdogSingleChannelConfig), (16 bytes).
+    Removing stm32f10x_adc.o(i.ADC_AnalogWatchdogThresholdsConfig), (6 bytes).
+    Removing stm32f10x_adc.o(i.ADC_AutoInjectedConvCmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_ClearFlag), (6 bytes).
+    Removing stm32f10x_adc.o(i.ADC_ClearITPendingBit), (10 bytes).
+    Removing stm32f10x_adc.o(i.ADC_Cmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_DMACmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_DeInit), (92 bytes).
+    Removing stm32f10x_adc.o(i.ADC_DiscModeChannelCountConfig), (24 bytes).
+    Removing stm32f10x_adc.o(i.ADC_DiscModeCmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_ExternalTrigConvCmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_ExternalTrigInjectedConvCmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_ExternalTrigInjectedConvConfig), (16 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetCalibrationStatus), (20 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetConversionValue), (8 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetDualModeConversionValue), (12 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetFlagStatus), (18 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetITStatus), (36 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetInjectedConversionValue), (28 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetResetCalibrationStatus), (20 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetSoftwareStartConvStatus), (20 bytes).
+    Removing stm32f10x_adc.o(i.ADC_GetSoftwareStartInjectedConvCmdStatus), (20 bytes).
+    Removing stm32f10x_adc.o(i.ADC_ITConfig), (24 bytes).
+    Removing stm32f10x_adc.o(i.ADC_Init), (80 bytes).
+    Removing stm32f10x_adc.o(i.ADC_InjectedChannelConfig), (130 bytes).
+    Removing stm32f10x_adc.o(i.ADC_InjectedDiscModeCmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_InjectedSequencerLengthConfig), (24 bytes).
+    Removing stm32f10x_adc.o(i.ADC_RegularChannelConfig), (184 bytes).
+    Removing stm32f10x_adc.o(i.ADC_ResetCalibration), (10 bytes).
+    Removing stm32f10x_adc.o(i.ADC_SetInjectedOffset), (20 bytes).
+    Removing stm32f10x_adc.o(i.ADC_SoftwareStartConvCmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_SoftwareStartInjectedConvCmd), (22 bytes).
+    Removing stm32f10x_adc.o(i.ADC_StartCalibration), (10 bytes).
+    Removing stm32f10x_adc.o(i.ADC_StructInit), (18 bytes).
+    Removing stm32f10x_adc.o(i.ADC_TempSensorVrefintCmd), (36 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_ClearFlag), (20 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_ClearITPendingBit), (20 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_DeInit), (16 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_GetFlagStatus), (12 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_GetITStatus), (12 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_ITConfig), (12 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_RTCOutputConfig), (28 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_ReadBackupRegister), (28 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_SetRTCCalibrationValue), (28 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_TamperPinCmd), (12 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_TamperPinLevelConfig), (12 bytes).
+    Removing stm32f10x_bkp.o(i.BKP_WriteBackupRegister), (28 bytes).
+    Removing stm32f10x_can.o(i.CAN_CancelTransmit), (48 bytes).
+    Removing stm32f10x_can.o(i.CAN_ClearFlag), (56 bytes).
+    Removing stm32f10x_can.o(i.CAN_ClearITPendingBit), (168 bytes).
+    Removing stm32f10x_can.o(i.CAN_DBGFreeze), (22 bytes).
+    Removing stm32f10x_can.o(i.CAN_DeInit), (56 bytes).
+    Removing stm32f10x_can.o(i.CAN_FIFORelease), (22 bytes).
+    Removing stm32f10x_can.o(i.CAN_FilterInit), (264 bytes).
+    Removing stm32f10x_can.o(i.CAN_GetFlagStatus), (120 bytes).
+    Removing stm32f10x_can.o(i.CAN_GetITStatus), (288 bytes).
+    Removing stm32f10x_can.o(i.CAN_GetLSBTransmitErrorCounter), (12 bytes).
+    Removing stm32f10x_can.o(i.CAN_GetLastErrorCode), (12 bytes).
+    Removing stm32f10x_can.o(i.CAN_GetReceiveErrorCounter), (10 bytes).
+    Removing stm32f10x_can.o(i.CAN_ITConfig), (18 bytes).
+    Removing stm32f10x_can.o(i.CAN_Init), (276 bytes).
+    Removing stm32f10x_can.o(i.CAN_MessagePending), (30 bytes).
+    Removing stm32f10x_can.o(i.CAN_OperatingModeRequest), (162 bytes).
+    Removing stm32f10x_can.o(i.CAN_Receive), (240 bytes).
+    Removing stm32f10x_can.o(i.CAN_SlaveStartBank), (52 bytes).
+    Removing stm32f10x_can.o(i.CAN_Sleep), (30 bytes).
+    Removing stm32f10x_can.o(i.CAN_StructInit), (32 bytes).
+    Removing stm32f10x_can.o(i.CAN_TTComModeCmd), (118 bytes).
+    Removing stm32f10x_can.o(i.CAN_Transmit), (294 bytes).
+    Removing stm32f10x_can.o(i.CAN_TransmitStatus), (160 bytes).
+    Removing stm32f10x_can.o(i.CAN_WakeUp), (48 bytes).
+    Removing stm32f10x_can.o(i.CheckITStatus), (18 bytes).
+    Removing stm32f10x_cec.o(i.CEC_ClearFlag), (36 bytes).
+    Removing stm32f10x_cec.o(i.CEC_ClearITPendingBit), (36 bytes).
+    Removing stm32f10x_cec.o(i.CEC_Cmd), (32 bytes).
+    Removing stm32f10x_cec.o(i.CEC_DeInit), (22 bytes).
+    Removing stm32f10x_cec.o(i.CEC_EndOfMessageCmd), (12 bytes).
+    Removing stm32f10x_cec.o(i.CEC_GetFlagStatus), (48 bytes).
+    Removing stm32f10x_cec.o(i.CEC_GetITStatus), (40 bytes).
+    Removing stm32f10x_cec.o(i.CEC_ITConfig), (12 bytes).
+    Removing stm32f10x_cec.o(i.CEC_Init), (32 bytes).
+    Removing stm32f10x_cec.o(i.CEC_OwnAddressConfig), (12 bytes).
+    Removing stm32f10x_cec.o(i.CEC_ReceiveDataByte), (12 bytes).
+    Removing stm32f10x_cec.o(i.CEC_SendDataByte), (12 bytes).
+    Removing stm32f10x_cec.o(i.CEC_SetPrescaler), (12 bytes).
+    Removing stm32f10x_cec.o(i.CEC_StartOfMessage), (12 bytes).
+    Removing stm32f10x_crc.o(i.CRC_CalcBlockCRC), (36 bytes).
+    Removing stm32f10x_crc.o(i.CRC_CalcCRC), (16 bytes).
+    Removing stm32f10x_crc.o(i.CRC_GetCRC), (12 bytes).
+    Removing stm32f10x_crc.o(i.CRC_GetIDRegister), (12 bytes).
+    Removing stm32f10x_crc.o(i.CRC_ResetDR), (12 bytes).
+    Removing stm32f10x_crc.o(i.CRC_SetIDRegister), (12 bytes).
+    Removing stm32f10x_dac.o(i.DAC_Cmd), (40 bytes).
+    Removing stm32f10x_dac.o(i.DAC_DMACmd), (44 bytes).
+    Removing stm32f10x_dac.o(i.DAC_DeInit), (22 bytes).
+    Removing stm32f10x_dac.o(i.DAC_DualSoftwareTriggerCmd), (36 bytes).
+    Removing stm32f10x_dac.o(i.DAC_GetDataOutputValue), (36 bytes).
+    Removing stm32f10x_dac.o(i.DAC_Init), (52 bytes).
+    Removing stm32f10x_dac.o(i.DAC_SetChannel1Data), (32 bytes).
+    Removing stm32f10x_dac.o(i.DAC_SetChannel2Data), (32 bytes).
+    Removing stm32f10x_dac.o(i.DAC_SetDualChannelData), (36 bytes).
+    Removing stm32f10x_dac.o(i.DAC_SoftwareTriggerCmd), (44 bytes).
+    Removing stm32f10x_dac.o(i.DAC_StructInit), (12 bytes).
+    Removing stm32f10x_dac.o(i.DAC_WaveGenerationCmd), (40 bytes).
+    Removing stm32f10x_dbgmcu.o(i.DBGMCU_Config), (32 bytes).
+    Removing stm32f10x_dbgmcu.o(i.DBGMCU_GetDEVID), (16 bytes).
+    Removing stm32f10x_dbgmcu.o(i.DBGMCU_GetREVID), (12 bytes).
+    Removing stm32f10x_dma.o(i.DMA_ClearFlag), (28 bytes).
+    Removing stm32f10x_dma.o(i.DMA_ClearITPendingBit), (28 bytes).
+    Removing stm32f10x_dma.o(i.DMA_Cmd), (24 bytes).
+    Removing stm32f10x_dma.o(i.DMA_DeInit), (332 bytes).
+    Removing stm32f10x_dma.o(i.DMA_GetCurrDataCounter), (8 bytes).
+    Removing stm32f10x_dma.o(i.DMA_GetFlagStatus), (44 bytes).
+    Removing stm32f10x_dma.o(i.DMA_GetITStatus), (44 bytes).
+    Removing stm32f10x_dma.o(i.DMA_ITConfig), (18 bytes).
+    Removing stm32f10x_dma.o(i.DMA_Init), (60 bytes).
+    Removing stm32f10x_dma.o(i.DMA_SetCurrDataCounter), (4 bytes).
+    Removing stm32f10x_dma.o(i.DMA_StructInit), (26 bytes).
+    Removing stm32f10x_exti.o(i.EXTI_ClearFlag), (12 bytes).
+    Removing stm32f10x_exti.o(i.EXTI_DeInit), (36 bytes).
+    Removing stm32f10x_exti.o(i.EXTI_GenerateSWInterrupt), (16 bytes).
+    Removing stm32f10x_exti.o(i.EXTI_GetFlagStatus), (24 bytes).
+    Removing stm32f10x_exti.o(i.EXTI_GetITStatus), (40 bytes).
+    Removing stm32f10x_exti.o(i.EXTI_Init), (148 bytes).
+    Removing stm32f10x_exti.o(i.EXTI_StructInit), (16 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_ClearFlag), (12 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_EnableWriteProtection), (196 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_EraseAllBank1Pages), (72 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_EraseAllPages), (72 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_EraseOptionBytes), (168 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_ErasePage), (76 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_GetBank1Status), (52 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_GetFlagStatus), (48 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_GetPrefetchBufferStatus), (24 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_GetReadOutProtectionStatus), (24 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_GetStatus), (52 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_GetUserOptionByte), (12 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_GetWriteProtectionOptionByte), (12 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_HalfCycleAccessCmd), (28 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_ITConfig), (32 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_Lock), (20 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_LockBank1), (20 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_PrefetchBufferCmd), (28 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_ProgramHalfWord), (64 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_ProgramOptionByteData), (84 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_ProgramWord), (108 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_ReadOutProtection), (172 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_SetLatency), (24 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_Unlock), (24 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_UnlockBank1), (24 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_UserOptionByteConfig), (104 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_WaitForLastBank1Operation), (38 bytes).
+    Removing stm32f10x_flash.o(i.FLASH_WaitForLastOperation), (38 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_ClearFlag), (64 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_ClearITPendingBit), (72 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_GetECC), (28 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_GetFlagStatus), (56 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_GetITStatus), (68 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_ITConfig), (128 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_NANDCmd), (92 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_NANDDeInit), (68 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_NANDECCCmd), (92 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_NANDInit), (136 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_NANDStructInit), (54 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_NORSRAMDeInit), (54 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_NORSRAMStructInit), (114 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_PCCARDCmd), (48 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_PCCARDDeInit), (40 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_PCCARDInit), (132 bytes).
+    Removing stm32f10x_fsmc.o(i.FSMC_PCCARDStructInit), (60 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_AFIODeInit), (20 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_DeInit), (200 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_ETH_MediaInterfaceConfig), (12 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_EXTILineConfig), (64 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_EventOutputCmd), (12 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_EventOutputConfig), (32 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_PinLockConfig), (18 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_PinRemapConfig), (144 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_ReadInputData), (8 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_ReadOutputData), (8 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_ReadOutputDataBit), (18 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_StructInit), (16 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_Write), (4 bytes).
+    Removing stm32f10x_gpio.o(i.GPIO_WriteBit), (10 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_ARPCmd), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_AcknowledgeConfig), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_CalculatePEC), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_CheckEvent), (42 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_ClearFlag), (12 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_ClearITPendingBit), (12 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_Cmd), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_DMACmd), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_DMALastTransferCmd), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_DeInit), (56 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_DualAddressCmd), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_FastModeDutyCycleConfig), (28 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_GeneralCallCmd), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_GenerateSTART), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_GenerateSTOP), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_GetFlagStatus), (58 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_GetITStatus), (38 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_GetLastEvent), (26 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_GetPEC), (8 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_ITConfig), (18 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_Init), (236 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_NACKPositionConfig), (28 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_OwnAddress2Config), (22 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_PECPositionConfig), (28 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_ReadRegister), (22 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_ReceiveData), (8 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_SMBusAlertConfig), (28 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_Send7bitAddress), (18 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_SendData), (4 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_SoftwareResetCmd), (22 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_StretchClockCmd), (24 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_StructInit), (30 bytes).
+    Removing stm32f10x_i2c.o(i.I2C_TransmitPEC), (24 bytes).
+    Removing stm32f10x_iwdg.o(i.IWDG_Enable), (16 bytes).
+    Removing stm32f10x_iwdg.o(i.IWDG_GetFlagStatus), (24 bytes).
+    Removing stm32f10x_iwdg.o(i.IWDG_ReloadCounter), (16 bytes).
+    Removing stm32f10x_iwdg.o(i.IWDG_SetPrescaler), (12 bytes).
+    Removing stm32f10x_iwdg.o(i.IWDG_SetReload), (12 bytes).
+    Removing stm32f10x_iwdg.o(i.IWDG_WriteAccessCmd), (12 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_BackupAccessCmd), (12 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_ClearFlag), (20 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_DeInit), (22 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_EnterSTANDBYMode), (52 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_EnterSTOPMode), (64 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_GetFlagStatus), (24 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_PVDCmd), (12 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_PVDLevelConfig), (24 bytes).
+    Removing stm32f10x_pwr.o(i.PWR_WakeUpPinCmd), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_ADCCLKConfig), (24 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd), (32 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd), (32 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd), (32 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_AdjustHSICalibrationValue), (24 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_BackupResetCmd), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_ClearFlag), (20 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_ClearITPendingBit), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_ClockSecuritySystemCmd), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_DeInit), (76 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_GetFlagStatus), (60 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_GetITStatus), (24 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_GetSYSCLKSource), (16 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_HCLKConfig), (24 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_HSEConfig), (76 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_HSICmd), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_ITConfig), (32 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_LSEConfig), (52 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_LSICmd), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_MCOConfig), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_PCLK1Config), (24 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_PCLK2Config), (24 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_PLLCmd), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_PLLConfig), (28 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_RTCCLKCmd), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_RTCCLKConfig), (16 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_SYSCLKConfig), (24 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_USBCLKConfig), (12 bytes).
+    Removing stm32f10x_rcc.o(i.RCC_WaitForHSEStartUp), (56 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_ClearFlag), (16 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_ClearITPendingBit), (16 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_EnterConfigMode), (20 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_ExitConfigMode), (20 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_GetCounter), (20 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_GetDivider), (24 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_GetFlagStatus), (24 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_GetITStatus), (36 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_ITConfig), (32 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_SetAlarm), (28 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_SetCounter), (28 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_SetPrescaler), (32 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_WaitForLastTask), (20 bytes).
+    Removing stm32f10x_rtc.o(i.RTC_WaitForSynchro), (36 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_CEATAITCmd), (16 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_ClearFlag), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_ClearITPendingBit), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_ClockCmd), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_CmdStructInit), (14 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_CommandCompletionCmd), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_DMACmd), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_DataConfig), (48 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_DataStructInit), (20 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_DeInit), (36 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_GetCommandResponse), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_GetDataCounter), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_GetFIFOCount), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_GetFlagStatus), (24 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_GetITStatus), (24 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_GetPowerState), (16 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_GetResponse), (24 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_ITConfig), (32 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_Init), (48 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_ReadData), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_SendCEATACmd), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_SendCommand), (44 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_SendSDIOSuspendCmd), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_SetPowerState), (28 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_SetSDIOOperation), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_SetSDIOReadWaitMode), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_StartSDIOReadWait), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_StopSDIOReadWait), (12 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_StructInit), (16 bytes).
+    Removing stm32f10x_sdio.o(i.SDIO_WriteData), (12 bytes).
+    Removing stm32f10x_spi.o(i.I2S_Cmd), (24 bytes).
+    Removing stm32f10x_spi.o(i.I2S_Init), (232 bytes).
+    Removing stm32f10x_spi.o(i.I2S_StructInit), (20 bytes).
+    Removing stm32f10x_spi.o(i.SPI_BiDirectionalLineConfig), (28 bytes).
+    Removing stm32f10x_spi.o(i.SPI_CalculateCRC), (24 bytes).
+    Removing stm32f10x_spi.o(i.SPI_Cmd), (24 bytes).
+    Removing stm32f10x_spi.o(i.SPI_DataSizeConfig), (18 bytes).
+    Removing stm32f10x_spi.o(i.SPI_GetCRC), (16 bytes).
+    Removing stm32f10x_spi.o(i.SPI_GetCRCPolynomial), (6 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_ClearFlag), (6 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_ClearITPendingBit), (20 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_DMACmd), (18 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_DeInit), (88 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_GetITStatus), (52 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_ITConfig), (32 bytes).
+    Removing stm32f10x_spi.o(i.SPI_Init), (60 bytes).
+    Removing stm32f10x_spi.o(i.SPI_NSSInternalSoftwareConfig), (30 bytes).
+    Removing stm32f10x_spi.o(i.SPI_SSOutputCmd), (24 bytes).
+    Removing stm32f10x_spi.o(i.SPI_StructInit), (24 bytes).
+    Removing stm32f10x_spi.o(i.SPI_TransmitCRC), (10 bytes).
+    Removing stm32f10x_tim.o(i.TI1_Config), (128 bytes).
+    Removing stm32f10x_tim.o(i.TI2_Config), (152 bytes).
+    Removing stm32f10x_tim.o(i.TI3_Config), (144 bytes).
+    Removing stm32f10x_tim.o(i.TI4_Config), (152 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ARRPreloadConfig), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_BDTRConfig), (32 bytes).
+    Removing stm32f10x_tim.o(i.TIM_BDTRStructInit), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_CCPreloadControl), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_CCxCmd), (30 bytes).
+    Removing stm32f10x_tim.o(i.TIM_CCxNCmd), (30 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ClearFlag), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ClearITPendingBit), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ClearOC1Ref), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ClearOC2Ref), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ClearOC3Ref), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ClearOC4Ref), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_Cmd), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_CounterModeConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_CtrlPWMOutputs), (30 bytes).
+    Removing stm32f10x_tim.o(i.TIM_DMACmd), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_DMAConfig), (10 bytes).
+    Removing stm32f10x_tim.o(i.TIM_DeInit), (488 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ETRClockMode1Config), (54 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ETRClockMode2Config), (32 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ETRConfig), (28 bytes).
+    Removing stm32f10x_tim.o(i.TIM_EncoderInterfaceConfig), (66 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ForcedOC1Config), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ForcedOC2Config), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ForcedOC3Config), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ForcedOC4Config), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GenerateEvent), (4 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetCapture1), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetCapture2), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetCapture3), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetCapture4), (8 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetCounter), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetFlagStatus), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetITStatus), (34 bytes).
+    Removing stm32f10x_tim.o(i.TIM_GetPrescaler), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ICInit), (172 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ICStructInit), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ITConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_ITRxExternalClockConfig), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_InternalClockConfig), (12 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC1FastConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC1Init), (152 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC1NPolarityConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC1PolarityConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC1PreloadConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC2FastConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC2Init), (164 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC2NPolarityConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC2PolarityConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC2PreloadConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC3FastConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC3Init), (160 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC3NPolarityConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC3PolarityConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC3PreloadConfig), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC4FastConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC4Init), (124 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC4PolarityConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OC4PreloadConfig), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_OCStructInit), (20 bytes).
+    Removing stm32f10x_tim.o(i.TIM_PWMIConfig), (124 bytes).
+    Removing stm32f10x_tim.o(i.TIM_PrescalerConfig), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectCCDMA), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectCOM), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectHallSensor), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectInputTrigger), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectMasterSlaveMode), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectOCxM), (82 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectOnePulseMode), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectOutputTrigger), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SelectSlaveMode), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetAutoreload), (4 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetClockDivision), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetCompare1), (4 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetCompare2), (4 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetCompare3), (4 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetCompare4), (6 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetCounter), (4 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetIC1Prescaler), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetIC2Prescaler), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetIC3Prescaler), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_SetIC4Prescaler), (26 bytes).
+    Removing stm32f10x_tim.o(i.TIM_TIxExternalClockConfig), (62 bytes).
+    Removing stm32f10x_tim.o(i.TIM_TimeBaseInit), (164 bytes).
+    Removing stm32f10x_tim.o(i.TIM_TimeBaseStructInit), (18 bytes).
+    Removing stm32f10x_tim.o(i.TIM_UpdateDisableConfig), (24 bytes).
+    Removing stm32f10x_tim.o(i.TIM_UpdateRequestConfig), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_ClearFlag), (18 bytes).
+    Removing stm32f10x_usart.o(i.USART_ClearITPendingBit), (30 bytes).
+    Removing stm32f10x_usart.o(i.USART_ClockInit), (34 bytes).
+    Removing stm32f10x_usart.o(i.USART_ClockStructInit), (12 bytes).
+    Removing stm32f10x_usart.o(i.USART_DMACmd), (18 bytes).
+    Removing stm32f10x_usart.o(i.USART_DeInit), (156 bytes).
+    Removing stm32f10x_usart.o(i.USART_GetITStatus), (84 bytes).
+    Removing stm32f10x_usart.o(i.USART_HalfDuplexCmd), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_ITConfig), (74 bytes).
+    Removing stm32f10x_usart.o(i.USART_IrDACmd), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_IrDAConfig), (18 bytes).
+    Removing stm32f10x_usart.o(i.USART_LINBreakDetectLengthConfig), (18 bytes).
+    Removing stm32f10x_usart.o(i.USART_LINCmd), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_OneBitMethodCmd), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_OverSampling8Cmd), (22 bytes).
+    Removing stm32f10x_usart.o(i.USART_ReceiveData), (10 bytes).
+    Removing stm32f10x_usart.o(i.USART_ReceiverWakeUpCmd), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_SendBreak), (10 bytes).
+    Removing stm32f10x_usart.o(i.USART_SetAddress), (18 bytes).
+    Removing stm32f10x_usart.o(i.USART_SetGuardTime), (16 bytes).
+    Removing stm32f10x_usart.o(i.USART_SetPrescaler), (16 bytes).
+    Removing stm32f10x_usart.o(i.USART_SmartCardCmd), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_SmartCardNACKCmd), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_StructInit), (24 bytes).
+    Removing stm32f10x_usart.o(i.USART_WakeUpConfig), (18 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_ClearFlag), (12 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_DeInit), (22 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_Enable), (16 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_EnableIT), (12 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_GetFlagStatus), (12 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_SetCounter), (16 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_SetPrescaler), (24 bytes).
+    Removing stm32f10x_wwdg.o(i.WWDG_SetWindowValue), (40 bytes).
+    Removing bsp_debug_usart.o(i.fgetc), (32 bytes).
+    Removing bsp_led.o(i.LED_GPIO_Init), (100 bytes).
+    Removing bsp_led.o(i.LEDx_StateSet), (104 bytes).
+    Removing bsp_malloc.o(i.my_mem_free), (108 bytes).
+    Removing bsp_malloc.o(i.my_mem_malloc), (168 bytes).
+    Removing bsp_malloc.o(i.myfree), (36 bytes).
+    Removing bsp_malloc.o(i.mymalloc), (40 bytes).
+    Removing bsp_malloc.o(i.mymemcpy), (26 bytes).
+    Removing bsp_malloc.o(i.myrealloc), (68 bytes).
+    Removing bsp_sram.o(i.FSMC_SRAM_ReadBuffer), (22 bytes).
+    Removing bsp_sram.o(i.FSMC_SRAM_WriteBuffer), (24 bytes).
+    Removing bsp_sram.o(i.fsmc_sram_test_read), (20 bytes).
+    Removing bsp_sram.o(i.fsmc_sram_test_write), (16 bytes).
+    Removing bsp_systick.o(i.Delay_ms), (24 bytes).
+    Removing enc28j60.o(i.ENC28J60_Get_Duplex), (16 bytes).
+    Removing enc28j60.o(i.ENC28J60_Get_EREVID), (14 bytes).
+    Removing enc28j60.o(i.ENC28J60_Init), (784 bytes).
+    Removing enc28j60.o(i.ENC28J60_PHY_Read), (94 bytes).
+    Removing enc28j60.o(i.ENC28J60_PHY_Write), (60 bytes).
+    Removing enc28j60.o(i.ENC28J60_Packet_Receive), (216 bytes).
+    Removing enc28j60.o(i.ENC28J60_Packet_Send), (154 bytes).
+    Removing enc28j60.o(i.ENC28J60_Read_Buf), (56 bytes).
+    Removing enc28j60.o(i.ENC28J60_Write_Buf), (60 bytes).
+    Removing enc28j60.o(i.INTX_DISABLE), (4 bytes).
+    Removing enc28j60.o(i.INTX_ENABLE), (4 bytes).
+    Removing spi.o(i.SPI1_Init), (120 bytes).
+    Removing spi.o(i.SPI1_SetSpeed), (40 bytes).
+    Removing spi.o(.bss), (18 bytes).
+    Removing err.o(i.lwip_strerr), (16 bytes).
+    Removing err.o(.conststring), (295 bytes).
+    Removing err.o(.data), (64 bytes).
+    Removing def.o(i.lwip_htonl), (26 bytes).
+    Removing def.o(i.lwip_htons), (12 bytes).
+    Removing def.o(i.lwip_ntohl), (12 bytes).
+    Removing def.o(i.lwip_ntohs), (12 bytes).
+    Removing dhcp.o(i.dhcp_arp_reply), (276 bytes).
+    Removing dhcp.o(i.dhcp_bind), (804 bytes).
+    Removing dhcp.o(i.dhcp_check), (232 bytes).
+    Removing dhcp.o(i.dhcp_cleanup), (136 bytes).
+    Removing dhcp.o(i.dhcp_coarse_tmr), (196 bytes).
+    Removing dhcp.o(i.dhcp_create_msg), (824 bytes).
+    Removing dhcp.o(i.dhcp_decline), (332 bytes).
+    Removing dhcp.o(i.dhcp_delete_msg), (292 bytes).
+    Removing dhcp.o(i.dhcp_discover), (552 bytes).
+    Removing dhcp.o(i.dhcp_fine_tmr), (120 bytes).
+    Removing dhcp.o(i.dhcp_handle_ack), (120 bytes).
+    Removing dhcp.o(i.dhcp_handle_nak), (124 bytes).
+    Removing dhcp.o(i.dhcp_handle_offer), (304 bytes).
+    Removing dhcp.o(i.dhcp_inform), (492 bytes).
+    Removing dhcp.o(i.dhcp_network_changed), (80 bytes).
+    Removing dhcp.o(i.dhcp_option), (148 bytes).
+    Removing dhcp.o(i.dhcp_option_byte), (184 bytes).
+    Removing dhcp.o(i.dhcp_option_long), (236 bytes).
+    Removing dhcp.o(i.dhcp_option_short), (144 bytes).
+    Removing dhcp.o(i.dhcp_option_trailer), (364 bytes).
+    Removing dhcp.o(i.dhcp_parse_reply), (1504 bytes).
+    Removing dhcp.o(i.dhcp_rebind), (328 bytes).
+    Removing dhcp.o(i.dhcp_reboot), (364 bytes).
+    Removing dhcp.o(i.dhcp_recv), (1148 bytes).
+    Removing dhcp.o(i.dhcp_release), (372 bytes).
+    Removing dhcp.o(i.dhcp_renew), (328 bytes).
+    Removing dhcp.o(i.dhcp_select), (476 bytes).
+    Removing dhcp.o(i.dhcp_set_state), (16 bytes).
+    Removing dhcp.o(i.dhcp_set_struct), (236 bytes).
+    Removing dhcp.o(i.dhcp_start), (860 bytes).
+    Removing dhcp.o(i.dhcp_stop), (256 bytes).
+    Removing dhcp.o(i.dhcp_t1_timeout), (112 bytes).
+    Removing dhcp.o(i.dhcp_t2_timeout), (112 bytes).
+    Removing dhcp.o(i.dhcp_timeout), (632 bytes).
+    Removing dhcp.o(.bss), (50 bytes).
+    Removing dhcp.o(.conststring), (349 bytes).
+    Removing dhcp.o(.data), (4 bytes).
+    Removing init.o(i.lwip_init), (28 bytes).
+    Removing mem.o(i.mem_calloc), (34 bytes).
+    Removing mem.o(i.mem_free), (324 bytes).
+    Removing mem.o(i.mem_init), (92 bytes).
+    Removing mem.o(i.mem_malloc), (620 bytes).
+    Removing mem.o(i.mem_trim), (456 bytes).
+    Removing mem.o(i.plug_holes), (432 bytes).
+    Removing mem.o(.bss), (10260 bytes).
+    Removing mem.o(.data), (12 bytes).
+    Removing memp.o(i.memp_free), (172 bytes).
+    Removing memp.o(i.memp_init), (100 bytes).
+    Removing memp.o(i.memp_malloc), (240 bytes).
+    Removing memp.o(.bss), (18315 bytes).
+    Removing memp.o(.constdata), (40 bytes).
+    Removing memp.o(.conststring), (110 bytes).
+    Removing memp.o(.data), (40 bytes).
+    Removing netif.o(i.netif_add), (256 bytes).
+    Removing netif.o(i.netif_find), (76 bytes).
+    Removing netif.o(i.netif_init), (2 bytes).
+    Removing netif.o(i.netif_remove), (104 bytes).
+    Removing netif.o(i.netif_set_addr), (40 bytes).
+    Removing netif.o(i.netif_set_default), (16 bytes).
+    Removing netif.o(i.netif_set_down), (42 bytes).
+    Removing netif.o(i.netif_set_gw), (16 bytes).
+    Removing netif.o(i.netif_set_ipaddr), (132 bytes).
+    Removing netif.o(i.netif_set_link_down), (24 bytes).
+    Removing netif.o(i.netif_set_link_up), (66 bytes).
+    Removing netif.o(i.netif_set_netmask), (16 bytes).
+    Removing netif.o(i.netif_set_up), (54 bytes).
+    Removing netif.o(.data), (9 bytes).
+    Removing pbuf.o(i.pbuf_alloc), (1056 bytes).
+    Removing pbuf.o(i.pbuf_alloced_custom), (260 bytes).
+    Removing pbuf.o(i.pbuf_cat), (324 bytes).
+    Removing pbuf.o(i.pbuf_chain), (26 bytes).
+    Removing pbuf.o(i.pbuf_clen), (18 bytes).
+    Removing pbuf.o(i.pbuf_coalesce), (176 bytes).
+    Removing pbuf.o(i.pbuf_copy), (560 bytes).
+    Removing pbuf.o(i.pbuf_copy_partial), (328 bytes).
+    Removing pbuf.o(i.pbuf_dechain), (260 bytes).
+    Removing pbuf.o(i.pbuf_free), (432 bytes).
+    Removing pbuf.o(i.pbuf_get_at), (46 bytes).
+    Removing pbuf.o(i.pbuf_header), (336 bytes).
+    Removing pbuf.o(i.pbuf_memcmp), (96 bytes).
+    Removing pbuf.o(i.pbuf_memfind), (76 bytes).
+    Removing pbuf.o(i.pbuf_realloc), (448 bytes).
+    Removing pbuf.o(i.pbuf_ref), (10 bytes).
+    Removing pbuf.o(i.pbuf_strstr), (60 bytes).
+    Removing pbuf.o(i.pbuf_take), (372 bytes).
+    Removing raw.o(i.raw_bind), (16 bytes).
+    Removing raw.o(i.raw_connect), (16 bytes).
+    Removing raw.o(i.raw_input), (116 bytes).
+    Removing raw.o(i.raw_new), (52 bytes).
+    Removing raw.o(i.raw_recv), (6 bytes).
+    Removing raw.o(i.raw_remove), (64 bytes).
+    Removing raw.o(i.raw_send), (18 bytes).
+    Removing raw.o(i.raw_sendto), (308 bytes).
+    Removing raw.o(.data), (4 bytes).
+    Removing tcp.o(i.tcp_abandon), (304 bytes).
+    Removing tcp.o(i.tcp_abort), (14 bytes).
+    Removing tcp.o(i.tcp_accept), (4 bytes).
+    Removing tcp.o(i.tcp_accept_null), (8 bytes).
+    Removing tcp.o(i.tcp_alloc), (196 bytes).
+    Removing tcp.o(i.tcp_arg), (4 bytes).
+    Removing tcp.o(i.tcp_bind), (292 bytes).
+    Removing tcp.o(i.tcp_close), (28 bytes).
+    Removing tcp.o(i.tcp_close_shutdown), (584 bytes).
+    Removing tcp.o(i.tcp_connect), (488 bytes).
+    Removing tcp.o(i.tcp_debug_state_str), (16 bytes).
+    Removing tcp.o(i.tcp_eff_send_mss), (46 bytes).
+    Removing tcp.o(i.tcp_err), (156 bytes).
+    Removing tcp.o(i.tcp_fasttmr), (128 bytes).
+    Removing tcp.o(i.tcp_init), (2 bytes).
+    Removing tcp.o(i.tcp_kill_prio), (88 bytes).
+    Removing tcp.o(i.tcp_kill_timewait), (64 bytes).
+    Removing tcp.o(i.tcp_listen_with_backlog), (348 bytes).
+    Removing tcp.o(i.tcp_new), (10 bytes).
+    Removing tcp.o(i.tcp_new_port), (104 bytes).
+    Removing tcp.o(i.tcp_next_iss), (28 bytes).
+    Removing tcp.o(i.tcp_pcb_purge), (88 bytes).
+    Removing tcp.o(i.tcp_pcb_remove), (316 bytes).
+    Removing tcp.o(i.tcp_poll), (156 bytes).
+    Removing tcp.o(i.tcp_process_refused_data), (148 bytes).
+    Removing tcp.o(i.tcp_recv), (156 bytes).
+    Removing tcp.o(i.tcp_recv_null), (46 bytes).
+    Removing tcp.o(i.tcp_recved), (280 bytes).
+    Removing tcp.o(i.tcp_seg_free), (26 bytes).
+    Removing tcp.o(i.tcp_segs_free), (24 bytes).
+    Removing tcp.o(i.tcp_sent), (156 bytes).
+    Removing tcp.o(i.tcp_setprio), (4 bytes).
+    Removing tcp.o(i.tcp_shutdown), (98 bytes).
+    Removing tcp.o(i.tcp_slowtmr), (1512 bytes).
+    Removing tcp.o(i.tcp_tmr), (36 bytes).
+    Removing tcp.o(i.tcp_update_rcv_ann_wnd), (208 bytes).
+    Removing tcp.o(.constdata), (80 bytes).
+    Removing tcp.o(.conststring), (118 bytes).
+    Removing tcp.o(.data), (36 bytes).
+    Removing tcp_in.o(i.tcp_input), (1736 bytes).
+    Removing tcp_in.o(i.tcp_listen_input), (316 bytes).
+    Removing tcp_in.o(i.tcp_parseopt), (208 bytes).
+    Removing tcp_in.o(i.tcp_process), (1680 bytes).
+    Removing tcp_in.o(i.tcp_receive), (2332 bytes).
+    Removing tcp_in.o(i.tcp_timewait_input), (172 bytes).
+    Removing tcp_in.o(.bss), (20 bytes).
+    Removing tcp_in.o(.data), (32 bytes).
+    Removing tcp_out.o(i.tcp_create_segment), (184 bytes).
+    Removing tcp_out.o(i.tcp_enqueue_flags), (672 bytes).
+    Removing tcp_out.o(i.tcp_keepalive), (102 bytes).
+    Removing tcp_out.o(i.tcp_output), (640 bytes).
+    Removing tcp_out.o(i.tcp_output_alloc_header), (276 bytes).
+    Removing tcp_out.o(i.tcp_output_segment), (236 bytes).
+    Removing tcp_out.o(i.tcp_pbuf_prealloc), (244 bytes).
+    Removing tcp_out.o(i.tcp_rexmit), (90 bytes).
+    Removing tcp_out.o(i.tcp_rexmit_fast), (120 bytes).
+    Removing tcp_out.o(i.tcp_rexmit_rto), (58 bytes).
+    Removing tcp_out.o(i.tcp_rst), (304 bytes).
+    Removing tcp_out.o(i.tcp_send_empty_ack), (104 bytes).
+    Removing tcp_out.o(i.tcp_send_fin), (74 bytes).
+    Removing tcp_out.o(i.tcp_write), (1816 bytes).
+    Removing tcp_out.o(i.tcp_write_checks), (380 bytes).
+    Removing tcp_out.o(i.tcp_zero_window_probe), (198 bytes).
+    Removing tcp_out.o(.conststring), (85 bytes).
+    Removing timers.o(i.arp_timer), (32 bytes).
+    Removing timers.o(i.dhcp_timer_coarse), (32 bytes).
+    Removing timers.o(i.dhcp_timer_fine), (32 bytes).
+    Removing timers.o(i.ip_reass_timer), (32 bytes).
+    Removing timers.o(i.sys_check_timeouts), (100 bytes).
+    Removing timers.o(i.sys_restart_timeouts), (16 bytes).
+    Removing timers.o(i.sys_timeout), (320 bytes).
+    Removing timers.o(i.sys_timeouts_init), (80 bytes).
+    Removing timers.o(i.sys_untimeout), (96 bytes).
+    Removing timers.o(i.tcp_timer_needed), (56 bytes).
+    Removing timers.o(i.tcpip_tcp_timer), (56 bytes).
+    Removing timers.o(.data), (12 bytes).
+    Removing udp.o(i.udp_bind), (264 bytes).
+    Removing udp.o(i.udp_connect), (104 bytes).
+    Removing udp.o(i.udp_disconnect), (16 bytes).
+    Removing udp.o(i.udp_init), (2 bytes).
+    Removing udp.o(i.udp_input), (680 bytes).
+    Removing udp.o(i.udp_new), (28 bytes).
+    Removing udp.o(i.udp_new_port), (88 bytes).
+    Removing udp.o(i.udp_recv), (6 bytes).
+    Removing udp.o(i.udp_remove), (64 bytes).
+    Removing udp.o(i.udp_send), (20 bytes).
+    Removing udp.o(i.udp_sendto), (54 bytes).
+    Removing udp.o(i.udp_sendto_if), (428 bytes).
+    Removing udp.o(.data), (8 bytes).
+    Removing icmp.o(i.icmp_dest_unreach), (18 bytes).
+    Removing icmp.o(i.icmp_input), (1296 bytes).
+    Removing icmp.o(i.icmp_send_response), (572 bytes).
+    Removing icmp.o(i.icmp_time_exceeded), (18 bytes).
+    Removing inet_chksum.o(i.inet_chksum), (20 bytes).
+    Removing inet_chksum.o(i.inet_chksum_pbuf), (86 bytes).
+    Removing inet_chksum.o(i.inet_chksum_pseudo), (170 bytes).
+    Removing inet_chksum.o(i.inet_chksum_pseudo_partial), (320 bytes).
+    Removing inet_chksum.o(i.lwip_standard_chksum), (94 bytes).
+    Removing ip.o(i.ip_input), (528 bytes).
+    Removing ip.o(i.ip_output), (176 bytes).
+    Removing ip.o(i.ip_output_if), (464 bytes).
+    Removing ip.o(i.ip_route), (88 bytes).
+    Removing ip.o(.data), (18 bytes).
+    Removing ip_addr.o(i.ip4_addr_isbroadcast), (78 bytes).
+    Removing ip_addr.o(i.ip4_addr_netmask_valid), (56 bytes).
+    Removing ip_addr.o(i.ipaddr_addr), (24 bytes).
+    Removing ip_addr.o(i.ipaddr_aton), (460 bytes).
+    Removing ip_addr.o(i.ipaddr_ntoa), (20 bytes).
+    Removing ip_addr.o(i.ipaddr_ntoa_r), (168 bytes).
+    Removing ip_addr.o(.bss), (16 bytes).
+    Removing ip_addr.o(.constdata), (8 bytes).
+    Removing ip_frag.o(i.ip_frag), (568 bytes).
+    Removing ip_frag.o(i.ip_frag_alloc_pbuf_custom_ref), (10 bytes).
+    Removing ip_frag.o(i.ip_frag_free_pbuf_custom_ref), (136 bytes).
+    Removing ip_frag.o(i.ip_reass), (420 bytes).
+    Removing ip_frag.o(i.ip_reass_chain_frag_into_datagram_and_validate), (780 bytes).
+    Removing ip_frag.o(i.ip_reass_dequeue_datagram), (176 bytes).
+    Removing ip_frag.o(i.ip_reass_enqueue_new_datagram), (88 bytes).
+    Removing ip_frag.o(i.ip_reass_free_complete_datagram), (456 bytes).
+    Removing ip_frag.o(i.ip_reass_remove_oldest_datagram), (124 bytes).
+    Removing ip_frag.o(i.ip_reass_tmr), (60 bytes).
+    Removing ip_frag.o(i.ipfrag_free_pbuf_custom), (184 bytes).
+    Removing ip_frag.o(.data), (6 bytes).
+    Removing etharp.o(i.etharp_arp_input), (452 bytes).
+    Removing etharp.o(i.etharp_cleanup_netif), (56 bytes).
+    Removing etharp.o(i.etharp_find_addr), (228 bytes).
+    Removing etharp.o(i.etharp_find_entry), (748 bytes).
+    Removing etharp.o(i.etharp_free_entry), (120 bytes).
+    Removing etharp.o(i.etharp_output), (516 bytes).
+    Removing etharp.o(i.etharp_output_to_arp_index), (272 bytes).
+    Removing etharp.o(i.etharp_query), (628 bytes).
+    Removing etharp.o(i.etharp_raw), (408 bytes).
+    Removing etharp.o(i.etharp_request), (48 bytes).
+    Removing etharp.o(i.etharp_send_ip), (172 bytes).
+    Removing etharp.o(i.etharp_tmr), (148 bytes).
+    Removing etharp.o(i.etharp_update_arp_entry), (340 bytes).
+    Removing etharp.o(i.ethernet_input), (320 bytes).
+    Removing etharp.o(.bss), (200 bytes).
+    Removing etharp.o(.constdata), (12 bytes).
+    Removing etharp.o(.conststring), (68 bytes).
+    Removing etharp.o(.data), (1 bytes).
+    Removing ethernetif.o(i.ethernetif_init), (196 bytes).
+    Removing ethernetif.o(i.ethernetif_input), (86 bytes).
+    Removing ethernetif.o(i.low_level_init), (76 bytes).
+    Removing ethernetif.o(i.low_level_input), (144 bytes).
+    Removing ethernetif.o(i.low_level_output), (116 bytes).
+    Removing ethernetif.o(.bss), (23 bytes).
+    Removing sys_arch.o(i.sys_now), (12 bytes).
+    Removing dadd.o(.text), (334 bytes).
+    Removing dmul.o(.text), (228 bytes).
+    Removing ddiv.o(.text), (222 bytes).
+    Removing dfixul.o(.text), (48 bytes).
+    Removing cdrcmple.o(.text), (48 bytes).
+    Removing depilogue.o(.text), (186 bytes).
+
+740 unused section(s) (total 107539 bytes) removed from the image.
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x00000000
+
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001248, Max: 0x00080000, ABSOLUTE)
+
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000011f4, Max: 0x00080000, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x08000000   0x00000130   Data   RO            3    RESET               startup_stm32f10x_hd.o
+    0x08000130   0x00000000   Code   RO         5269  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000130   0x00000004   Code   RO         5543    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x08000134   0x00000004   Code   RO         5546    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000138   0x00000000   Code   RO         5548    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000138   0x00000000   Code   RO         5550    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000138   0x00000008   Code   RO         5551    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000140   0x00000000   Code   RO         5553    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x08000140   0x00000000   Code   RO         5555    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x08000140   0x00000004   Code   RO         5544    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000144   0x00000024   Code   RO            4    .text               startup_stm32f10x_hd.o
+    0x08000168   0x00000062   Code   RO         5560    .text               mc_w.l(uldiv.o)
+    0x080001ca   0x00000002   PAD
+    0x080001cc   0x00000024   Code   RO         5573    .text               mc_w.l(init.o)
+    0x080001f0   0x0000001e   Code   RO         5575    .text               mc_w.l(llshl.o)
+    0x0800020e   0x00000020   Code   RO         5577    .text               mc_w.l(llushr.o)
+    0x0800022e   0x00000004   Code   RO         3137    i.BusFault_Handler  stm32f10x_it.o
+    0x08000232   0x00000002   PAD
+    0x08000234   0x00000080   Code   RO         3194    i.DEBUG_USART_Init  bsp_debug_usart.o
+    0x080002b4   0x00000002   Code   RO         3138    i.DebugMon_Handler  stm32f10x_it.o
+    0x080002b6   0x00000002   PAD
+    0x080002b8   0x000000e0   Code   RO         3385    i.ENC28J60_ISRHandler  enc28j60.o
+    0x08000398   0x00000014   Code   RO         3391    i.ENC28J60_Read     enc28j60.o
+    0x080003ac   0x00000044   Code   RO         3393    i.ENC28J60_Read_Op  enc28j60.o
+    0x080003f0   0x00000034   Code   RO         3394    i.ENC28J60_Set_Bank  enc28j60.o
+    0x08000424   0x00000018   Code   RO         3395    i.ENC28J60_Write    enc28j60.o
+    0x0800043c   0x00000038   Code   RO         3397    i.ENC28J60_Write_Op  enc28j60.o
+    0x08000474   0x00000020   Code   RO         3398    i.EXTI1_IRQHandler  enc28j60.o
+    0x08000494   0x0000000c   Code   RO          939    i.EXTI_ClearITPendingBit  stm32f10x_exti.o
+    0x080004a0   0x00000034   Code   RO         1177    i.FSMC_NORSRAMCmd   stm32f10x_fsmc.o
+    0x080004d4   0x000000e6   Code   RO         1179    i.FSMC_NORSRAMInit  stm32f10x_fsmc.o
+    0x080005ba   0x00000002   PAD
+    0x080005bc   0x000000c8   Code   RO         3310    i.FSMC_SRAM_Init    bsp_sram.o
+    0x08000684   0x00000116   Code   RO         1292    i.GPIO_Init         stm32f10x_gpio.o
+    0x0800079a   0x00000012   Code   RO         1296    i.GPIO_ReadInputDataBit  stm32f10x_gpio.o
+    0x080007ac   0x00000004   Code   RO         1299    i.GPIO_ResetBits    stm32f10x_gpio.o
+    0x080007b0   0x00000004   Code   RO         1300    i.GPIO_SetBits      stm32f10x_gpio.o
+    0x080007b4   0x00000004   Code   RO         3139    i.HardFault_Handler  stm32f10x_it.o
+    0x080007b8   0x00000004   Code   RO         3140    i.MemManage_Handler  stm32f10x_it.o
+    0x080007bc   0x00000002   Code   RO         3141    i.NMI_Handler       stm32f10x_it.o
+    0x080007be   0x00000002   PAD
+    0x080007c0   0x00000014   Code   RO          138    i.NVIC_PriorityGroupConfig  misc.o
+    0x080007d4   0x00000002   Code   RO         3142    i.PendSV_Handler    stm32f10x_it.o
+    0x080007d6   0x00000002   PAD
+    0x080007d8   0x00000020   Code   RO         1707    i.RCC_AHBPeriphClockCmd  stm32f10x_rcc.o
+    0x080007f8   0x00000020   Code   RO         1710    i.RCC_APB2PeriphClockCmd  stm32f10x_rcc.o
+    0x08000818   0x000000d4   Code   RO         1718    i.RCC_GetClocksFreq  stm32f10x_rcc.o
+    0x080008ec   0x00000054   Code   RO         3507    i.SPI1_ReadWriteByte  spi.o
+    0x08000940   0x00000012   Code   RO         2195    i.SPI_I2S_GetFlagStatus  stm32f10x_spi.o
+    0x08000952   0x00000006   Code   RO         2198    i.SPI_I2S_ReceiveData  stm32f10x_spi.o
+    0x08000958   0x00000004   Code   RO         2199    i.SPI_I2S_SendData  stm32f10x_spi.o
+    0x0800095c   0x00000002   Code   RO         3143    i.SVC_Handler       stm32f10x_it.o
+    0x0800095e   0x00000008   Code   RO           24    i.SetSysClock       system_stm32f10x.o
+    0x08000966   0x00000002   PAD
+    0x08000968   0x000000e0   Code   RO           25    i.SetSysClockTo72   system_stm32f10x.o
+    0x08000a48   0x00000028   Code   RO         3347    i.SysTick_Handler   bsp_systick.o
+    0x08000a70   0x00000078   Code   RO         3348    i.SysTick_Init      bsp_systick.o
+    0x08000ae8   0x00000060   Code   RO           27    i.SystemInit        system_stm32f10x.o
+    0x08000b48   0x00000018   Code   RO         3349    i.TimingDelay_Decrement  bsp_systick.o
+    0x08000b60   0x00000018   Code   RO         2878    i.USART_Cmd         stm32f10x_usart.o
+    0x08000b78   0x0000001a   Code   RO         2881    i.USART_GetFlagStatus  stm32f10x_usart.o
+    0x08000b92   0x00000002   PAD
+    0x08000b94   0x000000d8   Code   RO         2885    i.USART_Init        stm32f10x_usart.o
+    0x08000c6c   0x00000008   Code   RO         2895    i.USART_SendData    stm32f10x_usart.o
+    0x08000c74   0x00000004   Code   RO         3144    i.UsageFault_Handler  stm32f10x_it.o
+    0x08000c78   0x00000020   Code   RO         5489    i.__0printf$8       mc_w.l(printf8.o)
+    0x08000c98   0x00000410   Code   RO         5496    i._printf_core      mc_w.l(printf8.o)
+    0x080010a8   0x00000024   Code   RO         5497    i._printf_post_padding  mc_w.l(printf8.o)
+    0x080010cc   0x0000002e   Code   RO         5498    i._printf_pre_padding  mc_w.l(printf8.o)
+    0x080010fa   0x00000002   PAD
+    0x080010fc   0x00000024   Code   RO         3196    i.fputc             bsp_debug_usart.o
+    0x08001120   0x00000024   Code   RO         3108    i.main              main.o
+    0x08001144   0x00000044   Code   RO         3241    i.my_mem_init       bsp_malloc.o
+    0x08001188   0x00000040   Code   RO         3243    i.my_mem_perused    bsp_malloc.o
+    0x080011c8   0x00000014   Code   RO         3247    i.mymemset          bsp_malloc.o
+    0x080011dc   0x00000018   Data   RO         3252    .constdata          bsp_malloc.o
+    0x080011f4   0x00000000   Data   RO         5583    Region$$Table       anon$$obj.o
+
+
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x0000ae70, Max: 0x00010000, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x00000014   Data   RW           28    .data               system_stm32f10x.o
+    0x20000014   0x00000014   Data   RW         1738    .data               stm32f10x_rcc.o
+    0x20000028   0x0000001c   Data   RW         3253    .data               bsp_malloc.o
+    0x20000044   0x0000000c   Data   RW         3350    .data               bsp_systick.o
+    0x20000050   0x00000004   Data   RW         5557    .data               mc_w.l(stdout.o)
+    0x20000054   0x0000000c   PAD
+    0x20000060   0x0000aa00   Zero   RW         3251    .bss                bsp_malloc.o
+    0x2000aa60   0x00000010   Zero   RW         3401    .bss                enc28j60.o
+    0x2000aa70   0x00000400   Zero   RW            1    STACK               startup_stm32f10x_hd.o
+
+
+
+  Load Region LR$$.ARM.__AT_0x68000000 (Base: 0x68000000, Size: 0x00000000, Max: 0x000f0000, ABSOLUTE)
+
+    Execution Region ER$$.ARM.__AT_0x68000000 (Base: 0x68000000, Size: 0x00000000, Max: 0x000f0000, ABSOLUTE, UNINIT)
+
+    **** No section assigned to this execution region ****
+
+
+
+  Load Region LR$$.ARM.__AT_0x680F0000 (Base: 0x680f0000, Size: 0x00000000, Max: 0x0000f000, ABSOLUTE)
+
+    Execution Region ER$$.ARM.__AT_0x680F0000 (Base: 0x680f0000, Size: 0x00000000, Max: 0x0000f000, ABSOLUTE, UNINIT)
+
+    **** No section assigned to this execution region ****
+

@@ -1,0 +1,9 @@
+..\output\stats.o: ..\lwip-1.4.1\src\core\stats.c
+..\output\stats.o: ..\lwip-1.4.1\src\include\lwip/opt.h
+..\output\stats.o: ..\User\arch\lwipopts.h
+..\output\stats.o: ..\lwip-1.4.1\src\include\lwip/debug.h
+..\output\stats.o: ..\lwip-1.4.1\src\include\lwip/arch.h
+..\output\stats.o: ..\User\arch/cc.h
+..\output\stats.o: ..\User\arch/cpu.h
+..\output\stats.o: E:\soft\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\output\stats.o: ..\lwip-1.4.1\src\include\lwip/opt.h

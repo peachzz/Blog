@@ -23,7 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-#include "bsp_SysTick.h"
+#include "includes.h"
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -134,7 +134,12 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+#if OS_CRITICAL_METHOD == 3u                     /* Allocate storage for CPU status register           */
+    OS_CPU_SR  cpu_sr = 0u;
+#endif
+    OS_ENTER_CRITICAL();
     TimingDelay_Decrement();
+    OS_EXIT_CRITICAL();
 }
 
 /******************************************************************************/

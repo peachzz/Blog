@@ -63,6 +63,7 @@
 
 #define  APP_TASK_LED3_PRIO                         3
 
+
 #define  OS_TASK_TMR_PRIO                   (OS_LOWEST_PRIO - 2)
 
 
@@ -80,6 +81,7 @@
 #define  APP_TASK_LED2_STK_SIZE                     128
 
 #define  APP_TASK_LED3_STK_SIZE                     1024
+
 
 #define  APP_CFG_TASK_LED_STK_SIZE                  128
 

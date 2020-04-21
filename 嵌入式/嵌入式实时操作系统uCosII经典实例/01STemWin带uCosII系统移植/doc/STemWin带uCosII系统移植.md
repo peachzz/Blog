@@ -446,5 +446,33 @@ Author :terrycoder
 |LCDConf.c|屏幕显示尺寸|#define XSIZE_PHYS    LCD_DEFAULT_WIDTH 、#define XSIZE_PHYS    LCD_DEFAULT_WIDTH |
 |LCDConf.c|数据、命令函数|void LcdWriteReg(U16 Data)、void LcdWriteData(U16 Data)、int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)|
 |LCDConf.c|LCD配置|void LcdWriteDataMultiple(U16 * pData, int NumItems)、void LcdReadDataMultiple(U16 * pData, int NumItems) 、void LCD_X_Config(void) |
-|GUI_X_OS.c|消息邮箱和信号量定义和实现|OS_EVENT *DispSem;OS_EVENT *EventMbox;OS_EVENT *KeySem;|
+|GUI_X_OS.c|消息邮箱和信号量定义和实现|OS_EVENT \*DispSem;OS\_EVENT \*EventMbox;OS_EVENT \*KeySem;|
 |GUIConf.h|配置GUI|根据工程环境配置|
+
+
+----------
+
+#### 使用外部RAM相关配置 ####
+
+移植完以后发现GUIConf.c文件中GUI_NUMBYTES的不能设置太大，否则会报编译错误，所以可以考虑使用外部RAM，不用担心内存不够编译错误了。
+
+	#define GUI_NUMBYTES  40*1024u //0x200000
+
+首先打开system_stm32f10x.c文件在122行定义宏DATA_IN_ExtSRAM，注意STM32F103默认配置的是FSMC的块1RAM3，如果外部RAM在别的块需要在SystemInit_ExtMemCtl中重新定义块地址，
+
+	#define DATA_IN_ExtSRAM
+
+![](5.png)
+
+第二步在启动文件startup_stm32f10x_hd.s文件中修改第39行为：
+
+	__initial_sp    EQU     0x20000000 + Stack_Size  
+
+![](6.png)
+
+最后一步在工程中设置外部RAM的起始地址和大小，重新编译工程就可以使用外部RAM了。
+![](7.png)
+
+可以看到aMemory使用的外部的RAM。
+
+![](8.png)

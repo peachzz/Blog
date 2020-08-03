@@ -74,6 +74,7 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 	#include <linux/errno.h>
 	#include <linux/gpio.h>
 	#include <linux/cdev.h>
+	#include <linux/device.h>
 	#include <linux/of_gpio.h>
 	#include <linux/semaphore.h>
 	#include <linux/timer.h>
@@ -105,7 +106,7 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 	
 	struct leddev_dev leddev;
 	
-	void led0_swithc(u8 sta)
+	void led0_switch(u8 sta)
 	{
 		if(sta == LEDON)
 			gpio_set_value(leddev.led0,0);
@@ -114,7 +115,7 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 	}
 	
 	/*打开设备*/
-	static int led_open(strcut inode *inode,struct file *filp)
+	static int led_open(struct inode *inode,struct file *filp)
 	{
 		filp->private_data = &leddev; /*设置私有数据*/
 		return 0;
@@ -145,7 +146,7 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 	static struct file_operations led_fops = {
 		.owner = THIS_MODULE,
 		.open = led_open,
-		write = led_write,
+		.write = led_write,
 	};
 	
 	/*flatform驱动，当驱动与设备匹配以后此函数会执行*/
@@ -155,8 +156,8 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 	
 		/*1.设置设备号*/
 		if(leddev.major){
-			leddev.devid = MKDEV(led.dev.major,0);
-			register_chrdev_region(led.devid,LEDDEV_CNT,LEDDEV_NAME);
+			leddev.devid = MKDEV(leddev.major,0);
+			register_chrdev_region(leddev.devid,LEDDEV_CNT,LEDDEV_NAME);
 		}else{
 			alloc_chrdev_region(&leddev.devid,0,LEDDEV_CNT,LEDDEV_NAME);
 			leddev.major = MAJOR(leddev.devid);
@@ -167,16 +168,15 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 		cdev_add(&leddev.cdev,leddev.devid,LEDDEV_CNT);
 		
 		/*3.创建类*/
-		leddev.class = class.create(THIS_MODULE,LEDDEV_NAME);
+		leddev.class = class_create(THIS_MODULE,LEDDEV_NAME);
 		if(IS_ERR(leddev.class)){
 			return PTR_ERR(leddev.class);
 		}
-	}
 
 		/*4.创建设备*/
 		leddev.device = device_create(leddev.class,NULL,leddev.devid,NULL,LEDDEV_NAME);
 		
-		if(IS_ERR(leddev.device)){
+		if(IS_ERR(leddev.device){
 			return PTR_ERR(leddev.device);
 		}
 	
@@ -193,7 +193,7 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 			return -EINVAL;
 		}
 	
-		gpoio_request(leddev.led0,"led0");
+		gpio_request(leddev.led0,"led0");
 		gpio_direction_output(leddev.led0,1);
 		return 0;
 	}
@@ -201,7 +201,7 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 	static int led_remove(struct platform_device *dev)
 	{
 		gpio_set_value(leddev.led0,1);
-		cdev_del(&led.cdev);
+		cdev_del(&leddev.cdev);
 		unregister_chrdev_region(leddev.devid,LEDDEV_CNT);
 		device_destroy(leddev.class,leddev.devid);
 		class_destroy(leddev.class);
@@ -231,9 +231,9 @@ platform驱动框架分为总线、设备和驱动，其中总线不需要驱动
 	}
 	
 	/*驱动模块卸载函数*/
-	static int __exit leddriver_exit(void)
+	static void __exit leddriver_exit(void)
 	{
-		return platform_driver_unregister(&led_driver);
+		platform_driver_unregister(&led_driver);
 	}
 	
 	module_init(leddriver_init);

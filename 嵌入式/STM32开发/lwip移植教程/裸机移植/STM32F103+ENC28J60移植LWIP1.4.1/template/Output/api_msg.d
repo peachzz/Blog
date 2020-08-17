@@ -1,9 +1,0 @@
-..\output\api_msg.o: ..\lwip-1.4.1\src\api\api_msg.c
-..\output\api_msg.o: ..\lwip-1.4.1\src\include\lwip/opt.h
-..\output\api_msg.o: ..\User\arch\lwipopts.h
-..\output\api_msg.o: ..\lwip-1.4.1\src\include\lwip/debug.h
-..\output\api_msg.o: ..\lwip-1.4.1\src\include\lwip/arch.h
-..\output\api_msg.o: ..\User\arch/cc.h
-..\output\api_msg.o: ..\User\arch/cpu.h
-..\output\api_msg.o: E:\soft\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\api_msg.o: ..\lwip-1.4.1\src\include\lwip/opt.h

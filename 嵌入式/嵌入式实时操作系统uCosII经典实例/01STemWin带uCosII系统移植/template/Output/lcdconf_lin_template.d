@@ -1,9 +1,0 @@
-..\output\lcdconf_lin_template.o: ..\STemWin\Config\LCDConf_Lin_Template.c
-..\output\lcdconf_lin_template.o: ..\STemWin\inc\GUI.h
-..\output\lcdconf_lin_template.o: ..\STemWin\inc\GUI_ConfDefaults.h
-..\output\lcdconf_lin_template.o: ..\STemWin\Config\GUIConf.h
-..\output\lcdconf_lin_template.o: ..\STemWin\inc\GUI_Type.h
-..\output\lcdconf_lin_template.o: ..\STemWin\inc\LCD.h
-..\output\lcdconf_lin_template.o: ..\STemWin\inc\Global.h
-..\output\lcdconf_lin_template.o: ..\STemWin\inc\GUI_Version.h
-..\output\lcdconf_lin_template.o: ..\STemWin\inc\GUIDRV_Lin.h

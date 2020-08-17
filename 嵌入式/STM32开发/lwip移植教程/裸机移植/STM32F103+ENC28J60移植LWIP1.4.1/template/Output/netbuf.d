@@ -1,9 +1,0 @@
-..\output\netbuf.o: ..\lwip-1.4.1\src\api\netbuf.c
-..\output\netbuf.o: ..\lwip-1.4.1\src\include\lwip/opt.h
-..\output\netbuf.o: ..\User\arch\lwipopts.h
-..\output\netbuf.o: ..\lwip-1.4.1\src\include\lwip/debug.h
-..\output\netbuf.o: ..\lwip-1.4.1\src\include\lwip/arch.h
-..\output\netbuf.o: ..\User\arch/cc.h
-..\output\netbuf.o: ..\User\arch/cpu.h
-..\output\netbuf.o: E:\soft\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-..\output\netbuf.o: ..\lwip-1.4.1\src\include\lwip/opt.h
